@@ -1,10 +1,8 @@
-.App {
-  text-align: center;
-  font-family: 'Pacifico', cursive;
-}
 
 
 body {
-  font-family: 'Pacifico', cursive;
+  font-family: 'lato', sans-serif;
+
   /* Other CSS rules for the body */
+  background-color: #faccb5;
 }

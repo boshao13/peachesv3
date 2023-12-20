@@ -1,12 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Header = styled.header`
+  text-align: center;
+  padding: 20px;
+
+  font-size: 24px; // Adjust the font size as needed
+  font-weight: bold;
+`;
+
 const MissionStatementContainer = styled.div`
-  background: linear-gradient(180deg, #ff9f84 0%, #e26d51 100%); /* Peach to darker peach gradient */
+background-color: rgba(255, 255, 255, 0); // Semi-transparent white
   padding: 20px; /* Padding around the content */
   text-align: center; /* Center-align the text */
   border-radius: 20px; /* Rounded border */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+
   margin: 20px; /* Add margin for spacing */
   
   @media (max-width: 768px) {
@@ -17,7 +25,7 @@ const MissionStatementContainer = styled.div`
 `;
 
 const MissionStatementText = styled.p`
-  font-size: 24px; /* Font size */
+  font-size: 1em; /* Font size */
   color: #333; /* Text color */
   max-width: 800px; /* Maximum width for the text */
   margin: 0 auto; /* Center-align the text horizontally */
@@ -31,9 +39,15 @@ const MissionStatementText = styled.p`
 const MissionStatement = () => {
   return (
     <MissionStatementContainer>
+        <Header>Peaches Bloom: Where Fitness Shapes Confidence</Header>
       <MissionStatementText>
-        At Peaches Gym, our mission is to empower women to embrace their strength, achieve their fitness goals, and thrive in a supportive community. We believe that fitness is not just about physical health but also about mental well-being. We provide a safe and inclusive space where you can focus on your journey to a healthier and happier you.
-      </MissionStatementText>
+
+      At Peaches Fitness Club, we're dedicated to fostering a welcoming, 
+      judgment-free environment that empowers clients to achieve their fitness goals. 
+      Our commitment to safety, support for women, and emphasis on diversity and 
+      inclusivity underpin our community's spirit. With top-notch trainers, advanced facilities, 
+      and a nurturing community, we inspire confidence and healthy living, celebrating the joy of self-improvement 
+      and the strength found in encouragement. At Peaches, we're more than a gym; we're a community where everyone grows together.      </MissionStatementText>
     </MissionStatementContainer>
   );
 };

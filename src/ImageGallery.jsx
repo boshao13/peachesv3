@@ -53,13 +53,13 @@ const Title = styled.div`
 
 const ImageGallery = () => {
   const photos = [
-    { title: 'Daycare', img: require('./images/daycare.png') },
-    { title: 'Lockers', img: require('./images/lockers.png') },
-    { title: 'Classes', img: require('./images/classes.png') },
-    { title: 'Equipment', img: require('./images/equipment.png') },
-    { title: 'Drink Bar', img: require('./images/drinkbar.png') },
-    { title: 'Cosmetics', img: require('./images/cosmetics.png') },
-    { title: 'Private Workout Studio', img: require('./images/studio.png') }
+
+    { title: 'Lockers', img: require('./images/stockgym1.avif') },
+    { title: 'Classes', img: require('./images/stockgym2.jpeg') },
+    { title: 'Equipment', img: require('./images/stockgym3.avif') },
+    { title: 'Drink Bar', img: require('./images/stockgym4.jpeg') },
+    { title: 'Cosmetics', img: require('./images/stockgym5.jpeg') },
+    { title: 'Private Workout Studio', img: require('./images/stockgym6.jpeg') }
   ];
 
   return (

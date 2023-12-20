@@ -1,28 +1,47 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import logo from './images/peacheslogo.png'; // Import your logo
 
 // Define keyframes
 const wordSlider = keyframes`
   0%, 27% {
     transform: translateY(0%);
+\
   }
   33%, 60% {
     transform: translateY(-25%);
+
   }
   66%, 93% {
     transform: translateY(-50%);
+\
   }
   100% {
     transform: translateY(-75%);
+  }
+`;
+const wordFade = keyframes`
+0%, 3% {
+    opacity:0
+    }
+  3%, 97% {
+  opacity:1
+\
+  }
+  97%, 100% {
+  opacity:0
   }
 `;
 
 // Styled components
 const CarouselContainer = styled.div`
 display: flex;
-justify-content: center;
+flex-direction: column;
 align-items: center;
-height: 100vh;
+justify-content: center;
+height: 80vh;
+font-family: pacifico;
+
 `;
 
 const Header = styled.header`
@@ -38,18 +57,25 @@ const Header = styled.header`
 const HeaderTitle = styled.h1`
   flex: 1;
   text-align: center;
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: bold;
-  color: #fff;
+  color: #FAB39D;
   text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4);
+  @media (max-width: 768px) {
+    font-size: 2rem; // Smaller size for mobile
+  }
 `;
 
 const MaskedText = styled.div`
   display: inline-block;
-  height: 9rem; /* Adjust to fit the text size */
+  height:6rem; /* Adjust to fit the text size */
+  margin-bottom: 1rem;
   overflow: hidden;
   vertical-align: middle;
-  margin-left: 0.2rem; /* Adjust spacing as needed */
+  padding-left: 0.1rem; /* Adjust spacing as needed */
+  @media (max-width: 768px) {
+    height: 3.8rem; // Smaller size for mobile
+  }
 `;
 
 const WordList = styled.ul`
@@ -58,24 +84,33 @@ const WordList = styled.ul`
   padding: 0;
   list-style: none;
   animation-name: ${wordSlider};
-  animation-timing-function: ease-out;
+
   animation-iteration-count: infinite;
-  animation-duration: 8s;
+  animation-duration: 12s;
   overflow:hidden;
 `;
 
 const WordItem = styled.li`
+-webkit-animation: ${wordFade} 4s infinite;
   display: block;
   line-height: 2em;
   text-align: left;
-  background:linear-gradient(transparent 150px, white);
   color: green;
+  padding-left: 0.2rem; /* Adjust spacing as needed */
 
+`;
+const Logo = styled.img`
+margin-top: 10vh;
+  width:500px;
+  @media (max-width: 768px) {
+    width: 60vw; // Adjusted width for smaller screens
+  }
 `;
 
 const Carousel = () => {
   return (
     <CarouselContainer>
+    <Logo src={logo} alt="Peaches Gym Logo" />
       <Header>
         <HeaderTitle>
           Where good things are&nbsp;
