@@ -4,5 +4,18 @@ body {
   font-family: 'lato', sans-serif;
 
   /* Other CSS rules for the body */
-  background-color: #faccb5;
+  /* background-color: #faccb5; */
+  background-color: #FACCB5;
+}
+.hidden {
+  opacity:0;
+  filter:blur(5px);
+  transform:  translateX(-100%);
+  transition: all 1s;
+}
+.show{
+  opacity: 1;
+  filter:blur(0px);
+  transform:  translateX(0%);
+  transition: all 1s;
 }

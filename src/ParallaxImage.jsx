@@ -22,9 +22,12 @@ const ParallaxContainer = styled.div`
     left: 0;
     width: 100%;
     height: 100px; // Adjust as needed
-    background: linear-gradient(transparent, #faccb5); // Replace #backgroundColor with your background color
+    background: linear-gradient(transparent, #FACCB5); // Replace #backgroundColor with your background color
   }
 `;
+//#D56F52
+//#FACCB5
+//#4E7A51
 
 
 const ParallaxImage = () => {
@@ -34,7 +37,7 @@ const ParallaxImage = () => {
         <Parallax bgImage={parallaxImage} strength={100}>
             
             <ParallaxContainer>
-            <Header />
+
             <Slogan />
         
             </ParallaxContainer>

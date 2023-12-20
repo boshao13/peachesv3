@@ -59,7 +59,8 @@ const HeaderTitle = styled.h1`
   text-align: center;
   font-size: 3rem;
   font-weight: bold;
-  color: #FAB39D;
+//   color: #FAB39D;
+color: white;
   text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4);
   @media (max-width: 768px) {
     font-size: 2rem; // Smaller size for mobile
@@ -86,24 +87,25 @@ const WordList = styled.ul`
   animation-name: ${wordSlider};
 
   animation-iteration-count: infinite;
-  animation-duration: 12s;
+  animation-duration: 9s;
   overflow:hidden;
 `;
 
 const WordItem = styled.li`
--webkit-animation: ${wordFade} 4s infinite;
+-webkit-animation: ${wordFade} 3s infinite;
   display: block;
   line-height: 2em;
   text-align: left;
-  color: green;
+  color: #D56F52;
   padding-left: 0.2rem; /* Adjust spacing as needed */
 
 `;
 const Logo = styled.img`
-margin-top: 10vh;
+margin-top: 15vh;
   width:500px;
   @media (max-width: 768px) {
-    width: 60vw; // Adjusted width for smaller screens
+    width: 90vw;
+   // Adjusted width for smaller screens
   }
 `;
 

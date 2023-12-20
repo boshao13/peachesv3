@@ -1,45 +1,52 @@
 import React from 'react';
 import styled from 'styled-components';
+import asset from "./images/peachesbloom.png"
+const Header = styled.img`
+width: 35vw;
+margin-top: -50px;
 
-const Header = styled.header`
-  text-align: center;
-  padding: 20px;
-
-  font-size: 24px; // Adjust the font size as needed
-  font-weight: bold;
+@media (max-width: 768px) {
+    width:80vw;
+    margin-top: -10px;
+  }
 `;
 
 const MissionStatementContainer = styled.div`
 background-color: rgba(255, 255, 255, 0); // Semi-transparent white
   padding: 20px; /* Padding around the content */
-  text-align: center; /* Center-align the text */
+  font-family: 'Oswald', sans-serif;
+
   border-radius: 20px; /* Rounded border */
 
   margin: 20px; /* Add margin for spacing */
-  
+  text-align: center;
   @media (max-width: 768px) {
     padding: 15px; /* Adjust padding for smaller screens */
     border-radius: 10px; /* Adjust border radius for smaller screens */
     margin: 10px; /* Adjust margin for spacing on smaller screens */
+
   }
 `;
 
 const MissionStatementText = styled.p`
+
+
   font-size: 1em; /* Font size */
-  color: #333; /* Text color */
+  color: white; /* Text color */
   max-width: 800px; /* Maximum width for the text */
   margin: 0 auto; /* Center-align the text horizontally */
   line-height: 1.5; /* Line height for readability */
+  text-align: left; /* Center-align the text */
 
   @media (max-width: 768px) {
-    font-size: 18px; /* Adjust font size for smaller screens */
+    font-size: 12px; /* Adjust font size for smaller screens */
   }
 `;
 
 const MissionStatement = () => {
   return (
     <MissionStatementContainer>
-        <Header>Peaches Bloom: Where Fitness Shapes Confidence</Header>
+        <Header src={asset}></Header>
       <MissionStatementText>
 
       At Peaches Fitness Club, we're dedicated to fostering a welcoming, 
