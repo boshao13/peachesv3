@@ -9,6 +9,8 @@ import MissionStatement from './MissionStatement';
 import PreEnrollment from './PreEnrollment';
 import Address from "./Address"
 import Footer from './Footer'; 
+require('dotenv').config()
+
 
 
 //#D56F52

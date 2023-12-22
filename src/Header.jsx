@@ -5,7 +5,8 @@ import { IoMdClose } from 'react-icons/io'; // Importing Close icon
 import logo from './images/logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLeaf } from '@fortawesome/free-solid-svg-icons';
-import { keyframes } from 'styled-components';
+
+
 
 const HeaderWrapper = styled.div`
   display: flex;

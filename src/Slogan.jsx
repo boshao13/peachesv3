@@ -1,8 +1,51 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import logo from './images/peacheslogo4.png'; // Import your logo
+import wheregoodthings from "./images/wheregoodthingsare.png"
+import growing from "./images/growing.png"
+import thriving from "./images/thriving.png"
+import happening from "./images/happening.png"
+const Happening = styled.img`
+  width: 220px;
+  height: auto;
 
-// Define keyframes
+  margin-left: 5px;
+  @media (max-width: 768px) {
+    width: 120px;
+    margin-bottom:-12px;
+  }
+`;
+const Thriving = styled.img`
+  width: 220px;
+  height: auto;
+  margin-bottom: -5px;
+
+  @media (max-width: 768px) {
+    width: 120px;
+    margin-bottom:-12px;
+    margin-left: -8px;
+  }
+`;
+const Wheregoodthings = styled.img`
+  width: 450px;
+  height: auto;
+
+  @media (max-width: 768px) {
+    width: 250px;
+  }
+`;
+const Growing = styled.img`
+width: 220px;
+height: auto;
+margin-bottom: -15px;
+
+@media (max-width: 768px) {
+    width: 120px;
+    margin-bottom: -14px;
+    margin-left: -8px;
+  }
+`;
+
 const wordSlider = keyframes`
   0%, 27% {
     transform: translateY(0%);
@@ -70,13 +113,21 @@ color: white;
 
 const MaskedText = styled.div`
   display: inline-block;
-  height:6rem; /* Adjust to fit the text size */
-  margin-bottom: .4rem;
+
+  height:5.5rem; /* Adjust to fit the text size */
+  margin-bottom: 40px;
+
   overflow: hidden;
   vertical-align: middle;
   padding-left: 0.1rem; /* Adjust spacing as needed */
+  padding-top: 10px;
   @media (max-width: 768px) {
-    height: 3rem; // Smaller size for mobile
+    height: 2.8rem; // Smaller size for mobile
+    padding-top: 5px;
+    margin-bottom: 32px;
+    padding-bottom: -5px;
+    padding-left: 0rem; /* Adjust spacing as needed */
+
   }
 `;
 
@@ -95,7 +146,7 @@ const WordList = styled.ul`
 const WordItem = styled.li`
 -webkit-animation: ${wordFade} 3s infinite;
   display: block;
-  line-height: 2em;
+  line-height: 1.9em;
   text-align: left;
   color: green;
   
@@ -119,13 +170,13 @@ const Carousel = () => {
     <Logo src={logo} alt="Peaches Gym Logo" />
       <Header>
         <HeaderTitle>
-          Where good things are&nbsp;
+          <Wheregoodthings src={wheregoodthings}/>
           <MaskedText>
             <WordList>
-              <WordItem>growing</WordItem>
-              <WordItem>thriving</WordItem>
-              <WordItem>happening</WordItem>
-              <WordItem>growing</WordItem>
+              <WordItem><Growing src={growing}/></WordItem>
+              <WordItem><Thriving src={thriving}/></WordItem>
+              <WordItem><Happening src={happening}/></WordItem>
+              <WordItem><Growing src={growing}/></WordItem>
             </WordList>
           </MaskedText>
         </HeaderTitle>

@@ -5,7 +5,7 @@ import customMarkerImg from './images/logo3.png';
 import headerImage from './images/cometrainwithus.png'; // Update the path to your image
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapPin } from '@fortawesome/free-solid-svg-icons';
-require.
+
 
 
 mapboxgl.accessToken = ; // Replace with your Mapbox access token
@@ -22,7 +22,7 @@ const MapWrapper = styled.div`
     width: 90vw;
   }
 `;
-``
+
 const StyledMapContainer = styled.div`
   width: 300px;
   height: 300px;
