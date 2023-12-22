@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import logo from './images/peacheslogo.png'; // Import your logo
+import logo from './images/peacheslogo4.png'; // Import your logo
 
 // Define keyframes
 const wordSlider = keyframes`
@@ -40,8 +40,8 @@ flex-direction: column;
 align-items: center;
 justify-content: center;
 height: 80vh;
-font-family: pacifico;
-
+// font-family: pacifico;
+font-family: 'Vujahday Script', cursive;
 `;
 
 const Header = styled.header`
@@ -63,19 +63,20 @@ const HeaderTitle = styled.h1`
 color: white;
   text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4);
   @media (max-width: 768px) {
-    font-size: 2rem; // Smaller size for mobile
+    font-size: 1.5rem; // Smaller size for mobile
+   
   }
 `;
 
 const MaskedText = styled.div`
   display: inline-block;
   height:6rem; /* Adjust to fit the text size */
-  margin-bottom: 1rem;
+  margin-bottom: .4rem;
   overflow: hidden;
   vertical-align: middle;
   padding-left: 0.1rem; /* Adjust spacing as needed */
   @media (max-width: 768px) {
-    height: 3.8rem; // Smaller size for mobile
+    height: 3rem; // Smaller size for mobile
   }
 `;
 
@@ -96,15 +97,18 @@ const WordItem = styled.li`
   display: block;
   line-height: 2em;
   text-align: left;
-  color: #D56F52;
+  color: green;
+  
   padding-left: 0.2rem; /* Adjust spacing as needed */
 
 `;
 const Logo = styled.img`
-margin-top: 15vh;
-  width:500px;
+margin-top: 0px;
+  width:600px;
+  margin-bottom: -150px;
   @media (max-width: 768px) {
-    width: 90vw;
+    width: 110vw;
+    margin-top: 120px
    // Adjusted width for smaller screens
   }
 `;

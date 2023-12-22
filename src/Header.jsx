@@ -5,131 +5,201 @@ import { IoMdClose } from 'react-icons/io'; // Importing Close icon
 import logo from './images/logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLeaf } from '@fortawesome/free-solid-svg-icons';
+import { keyframes } from 'styled-components';
 
-const HeaderContainer = styled.header`
-  display: flex;
-  height:20px;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #D56F52;
-  border-bottom: 3px solid #4e7a51; // Adds the bottom border
-  border-radius: 0 0 10px 10px; // Rounds the bottom corners
-  width:80vw;
-  position: fixed; // Fixes the header at the top of the viewport
-  top: 0; // Aligns the header to the top of the viewport
-  left: 50%; // Centers the header horizontally
-  transform: translateX(-50%); // Adjusts for the horizontal centering
-  z-index: 1000; // Ensures the header stays on top of other elements
-`;
 const HeaderWrapper = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
 `;
 
-const CenteredHeader = styled.div`
-  width: 80%;
-  0margin: 0 auto;
+
+const HeaderContainer = styled.header`
+  background-color: #D56F52;
+  border-bottom: 3px solid #4e7a51;
+  border-radius: 0 0 10px 10px;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  height:10px;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 80vw;
+  padding: 10px 20px;
+  display: flex; // Added for flex layout
+  justify-content: space-between; // Space out the logo and navigation
+  align-items: center; // Vertically center items
+
+  @media (max-width: 768px) {
+  
+   height: ${({ isOpen }) => isOpen ? '30vh' : '28px'};
+   transition: height 0.7s ease-in-out;
+  }
+`;
+const TopBar = styled.div`
+display:none;
+  @media (max-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #D56F52;
+    border-radius: 0 0 10px 10px;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80vw;
+  }
+
+  border-bottom: ${({ isOpen }) => isOpen ? 'none' : 'border-bottom: 3px solid #4e7a51'};
+
 `;
 
-const Logo = styled.img`
-  width: 28px; // Fixed width
-  height: auto; // Maintains aspect ratio
+const Logo1 = styled.img`
+  width: 25px;
+  height: auto;
   margin-bottom: 5px;
-  margin-left: -10px
+  margin-left: -10px;
+
+  @media (max-width: 768px) {
+  display:none;
+   }
+
 `;
+const Logo2 = styled.img`
+  display:none;
+  width: 25px;
+  height: auto;
+  margin-bottom: 5px;
+  margin-left: -10px;
+  @media (max-width: 768px) {
+    display:block;
+     }
+  
+
+`;
+
+const BookTourButton = styled.a`
+  display: none; // Hidden by default
+  background-color: #fab39d; // Choose a suitable color
+  color: #333; // Text color
+  padding: 7px 14px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-size: 11px;
+  align-self: center;
+  font-family: 'lato';
+  margin-left: 5px;
+
+  @media (max-width: 768px) {
+    display: block; // Show only on mobile
+  }
+`;
+
 const Nav = styled.nav`
   display: flex;
   gap: 20px;
+
   @media (max-width: 768px) {
-    display: none; // Hide on mobile
     flex-direction: column;
+    align-items: center;
     position: absolute;
-    text: bold;
-  margin-top: 20px;
+    top: 60px;
     left: 0;
-    right: 0;
+    right: 0; 
+    background-color: transparent;
+    overflow: hidden;
+    gap: 25px;
+ 
+    height: ${({ isOpen }) => isOpen ? '25vh' : '0'};
+    opacity: ${({ isOpen }) => isOpen ? 1 : 0}; // Control opacity
+    transition: height 0.7s ease-in-out, opacity 0.7s ease-in-out;
+    width: 100%;
+    // display: ${({ isOpen }) => isOpen ? 'flex' : 'none'};
+
+   
   
 
-    background-color: white;
-
-    ${({ isOpen }) => isOpen && `
-      display: flex;
-    `}
   }
 `;
 const LeafIcon = styled(FontAwesomeIcon)`
   position: absolute;
-  top: -10px; // Adjusted to be less negative
+  top: -5px;
   left: 50%;
   transform: translateX(-50%);
-  opacity: 0; // Initially hidden
+  opacity: 0;
   transition: opacity 0.3s ease;
-  font-size: 12px; // Smaller leaf icon
+  font-size: 8px;
 `;
 
 const NavLink = styled.a`
   text-decoration: none;
   font-family: 'Oswald', sans-serif;
   font-size: 13px;
-
   color: white;
-  position: relative; // For positioning the leaf icon
-  margin-top: 8px; // Added margin at the top
-  margin-bottom: 8px; 
+  position: relative;
+  margin-top: 0px;
+  margin-bottom: 4px;
   &:hover ${LeafIcon} {
-    opacity: 1; // Show the icon on hover
+    opacity: 1;
   }
 `;
 
 const MobileIcon = styled.div`
   display: none;
+  color: white;
 
   @media (max-width: 768px) {
     display: block;
-    color: white;
-    
   }
 `;
 
-const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const Header = ({ openModal, setModalIsOpen, isOpen, setIsOpen }) => {
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth' // Smooth scroll
-    });
-  };
-  const scrollToBottom = () => {
-    window.scrollTo({
-      top: document.documentElement.scrollHeight,
-      behavior: 'smooth'
-    });
-  };
+  
+    const toggleMenu = () => {
+      setIsOpen(!isOpen);
+    
+    };
 
-  return (
-    <HeaderWrapper>
-      <CenteredHeader>
-        <HeaderContainer>
-          <Logo src={logo} alt="Peaches Gym Logo" onClick={scrollToTop} />
+  
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    };
+  
+    const scrollToBottom = () => {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth'
+      });
+    };
+  
+    return (
+      <HeaderWrapper>
+        <HeaderContainer isOpen={isOpen}>
+        <Logo1 src={logo} alt="Peaches Gym Logo" onClick={scrollToTop} />
+            <TopBar>
+          <Logo2 src={logo} alt="Peaches Gym Logo" onClick={scrollToTop} />
+
+          <BookTourButton onClick={openModal} href="#book-tour">Pre-Enroll</BookTourButton>
+
           <MobileIcon onClick={toggleMenu}>
             {isOpen ? <IoMdClose size="1.5em"/> : <FiMenu size="1.5em"/>}
           </MobileIcon>
+          </TopBar>
+
           <Nav isOpen={isOpen}>
             {["Memberships", "Kids Care", "Classes", "Contact Us", "FAQ"].map((item, index) => (
               item === "Contact Us" ? (
-                // Special handling for "Contact Us"
                 <NavLink key={index} onClick={scrollToBottom}>
                   {item}
                   <LeafIcon icon={faLeaf} />
                 </NavLink>
               ) : (
-                // Default handling for other links
                 <NavLink key={index} href={`#${item.toLowerCase().replace(/\s+/g, '')}`}>
                   {item}
                   <LeafIcon icon={faLeaf} />
@@ -138,9 +208,8 @@ const Header = () => {
             ))}
           </Nav>
         </HeaderContainer>
-      </CenteredHeader>
-    </HeaderWrapper>
-  );
-};
-
+      </HeaderWrapper>
+    );
+  };
+  
 export default Header;

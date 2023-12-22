@@ -22,7 +22,7 @@ const PhotoCard = styled.div`
   height: 300px; // Adjust as needed
   cursor: pointer;
   overflow: hidden;
-  border-radius: 10px; // Rounded corners like in alphalandstore
+  border-radius: 10px; 
   font-family: 'Oswald', sans-serif;
   border: 2px solid #CD6E57;
 
@@ -32,7 +32,7 @@ const PhotoCard = styled.div`
   }
 
   @media (max-width: 768px) {
-    width: 85vw;
+    width: 95vw;
   }
 `;
 
@@ -44,7 +44,7 @@ const Title = styled.div`
   color: white;
   text-align: center;
   padding: 10px 0;
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: bold;
   transition: transform 0.3s ease-in-out;
 
@@ -56,12 +56,12 @@ const Title = styled.div`
 const ImageGallery = () => {
   const photos = [
 
-    { title: 'Lockers', img: require('./images/stockgym1.avif') },
-    { title: 'Classes', img: require('./images/stockgym2.jpeg') },
+    { title: 'Peaches Lounge', img: require('./images/stockgym1.avif') },
+    { title: 'Kids Care', img: require('./images/stockgym2.jpeg') },
     { title: 'Equipment', img: require('./images/stockgym3.avif') },
-    { title: 'Drink Bar', img: require('./images/stockgym4.jpeg') },
-    { title: 'Cosmetics', img: require('./images/stockgym5.jpeg') },
-    { title: 'Private Workout Studio', img: require('./images/stockgym6.jpeg') }
+    { title: 'Peachy Bar', img: require('./images/stockgym4.jpeg') },
+    { title: 'Lockers', img: require('./images/stockgym5.jpeg') },
+    { title: 'Sauna', img: require('./images/stockgym6.jpeg') }
   ];
   const cardsRef = useRef([]);
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+
 
 import styled from 'styled-components';
 import PreModal from './PreModal';
@@ -11,7 +11,7 @@ justify-content: center;
 height: 50vh; // Half the view height
 text-align: center;
 padding: 20px;
-background-color: rgba(255, 255, 255, 0); // Semi-transparent white
+
 
 `;
 const Heading = styled.h1`
@@ -47,29 +47,16 @@ const Form = styled.form`
 
 
 
-const PreEnrollment = () => {
-  const [modalIsOpen, setIsOpen] = useState(false);
+const PreEnrollment = ({openModal, modalIsOpen, setModalIsOpen}) => {
+  
 
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    // Handle form submission here
-    closeModal();
-  }
 
   return (
     <PreEnrollmentSection> 
         <Heading>Pre Enrollment</Heading>
         <Subheading>Only 150 memberships left!</Subheading>
       <EnrollmentButton onClick={openModal}>Pre Enroll Now</EnrollmentButton>
-      <PreModal isOpen={modalIsOpen} onRequestClose={() => setIsOpen(false)} />
+      <PreModal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} />
     </PreEnrollmentSection>
   );
 };
