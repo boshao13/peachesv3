@@ -10,6 +10,7 @@ const Happening = styled.img`
   height: auto;
 
   margin-left: 5px;
+  margin-bottom: 10px;
   @media (max-width: 768px) {
     width: 120px;
     margin-bottom:-12px;
@@ -18,8 +19,8 @@ const Happening = styled.img`
 const Thriving = styled.img`
   width: 220px;
   height: auto;
-  margin-bottom: -5px;
-
+  margin-bottom: 0px;
+  margin-left: -10px;
   @media (max-width: 768px) {
     width: 120px;
     margin-bottom:-12px;
@@ -31,14 +32,15 @@ const Wheregoodthings = styled.img`
   height: auto;
 
   @media (max-width: 768px) {
-    width: 250px;
+    width: 230px;
+    
   }
 `;
 const Growing = styled.img`
 width: 220px;
 height: auto;
-margin-bottom: -15px;
-
+margin-bottom: -12px;
+margin-left: -12px;
 @media (max-width: 768px) {
     width: 120px;
     margin-bottom: -14px;
@@ -85,6 +87,7 @@ justify-content: center;
 height: 80vh;
 // font-family: pacifico;
 font-family: 'Vujahday Script', cursive;
+
 `;
 
 const Header = styled.header`
@@ -94,6 +97,10 @@ const Header = styled.header`
   justify-content: center;
   width: 100vw;
   height: 100vh;
+  @media (max-width: 768px) {
+margin-left:20px;
+
+  }
 
 `;
 

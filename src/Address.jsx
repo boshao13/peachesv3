@@ -5,21 +5,36 @@ import customMarkerImg from './images/logo3.png';
 import headerImage from './images/cometrainwithus.png'; // Update the path to your image
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapPin } from '@fortawesome/free-solid-svg-icons';
+const key = process.env.REACT_APP_MAPBOX_API_KEY;
 
 
+mapboxgl.accessToken = key; // Replace with your Mapbox access token
 
-mapboxgl.accessToken = ; // Replace with your Mapbox access token
+const FlexContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 350px;
+  margin-top: -60px;
+
+  @media (min-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+`;
+
 
 const MapWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: auto;
-  margin-bottom:100px;
+  margin-bottom: 100px;
 
-
-  @media (max-width: 768px) {
-    width: 90vw;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 100px;
   }
 `;
 
@@ -28,19 +43,34 @@ const StyledMapContainer = styled.div`
   height: 300px;
   border: 2px solid #CD6E57;
   border-radius: 20px;
+  margin-bottom: 10px; // Space between map and button
+
   @media (max-width: 768px) {
-    width: 100%; // Full width on mobile
-    height: 300px; // Adjust height as needed
+    width: 90vw;
+    height: 340px;
+    margin-top: 10px;
+  }
+`;
+const RightContainer= styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+  @media (max-width: 768px) {
+    width: 90vw;
+    height: 340px;
+    margin-top: 10px;
   }
 `;
 
 const HeaderImage = styled.img`
-  max-width: 80vw; // Ensure the image is responsive
-  height: 100px; // Maintain aspect ratio
-  margin-bottom: -40px;
+  max-width: 300px; // Ensure the image is responsive
+  height: auto; // Maintain aspect ratio
+  margin-bottom: -50px;
+
   @media (max-width: 768px) {
-    width: 80vw; // Adjusted width for mobile
+    width: 90vw; // Adjusted width for mobile
     height: auto; // Height adjusted to maintain aspect ratio
+    margin-bottom: -50px;
   }
 `;
 const DirectionsButton = styled.a`
@@ -63,16 +93,50 @@ const DirectionsButton = styled.a`
 const AddressText = styled.p`
   color: white;
   text-align: center;
-  margin-top: 20px; // Adjust spacing as needed
+  margin-top: 0px; // Adjust spacing as needed
+`;
+const StaffedText = styled.p`
+  color: white;
+  text-align: center;
+  margin-top: 4px; // Adjust spacing as needed
+  @media (max-width: 768px) {
+    margin-top: 8px; // Adjust spacing as needed
+  }
 `;
 
 const Icon = styled(FontAwesomeIcon)`
   margin-right: 8px;
 `;
 
+const HoursContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 10px; // Adjust spacing as needed
+  font-size: 15px;
+`;
+
+const DaysColumn = styled.div`
+  margin-right: 20px; // Space between days and hours
+`;
+
+const HoursColumn = styled.div``;
+
+const Day = styled.p`
+  color: white;
+  text-align: left; // Align days to the left
+  margin: 0; // Remove default margins
+`;
+
+const Hours = styled.p`
+  color: white;
+  text-align: left; // Align hours to the left
+  margin: 0; // Remove default margins
+`;
+
 const Address = () => {
   const mapContainerRef = useRef(null);
-
+  const key = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
   useEffect(() => {
     let map; // Define map variable outside the try block
 
@@ -105,15 +169,45 @@ const Address = () => {
       if (map) map.remove();
     };
   }, []);
+
   return (
     <MapWrapper>
-      <HeaderImage src={headerImage} alt="Come Train With Us!" />
+      <FlexContainer>
+        <HeaderImage src={headerImage} alt="Come Train With Us!" />
+        <AddressText>2801 Eubank Blvd, Albuquerque NM, 87110</AddressText>
+        <AddressText>(505) 555-1234 </AddressText>
+           
+        <HoursContainer>
+          <DaysColumn>
+            <Day>Monday</Day>
+            <Day>Tuesday</Day>
+            <Day>Wednesday</Day>
+            <Day>Thursday</Day>
+            <Day>Friday</Day>
+            <Day>Saturday</Day>
+            <Day>Sunday</Day>
+          </DaysColumn>
+          <HoursColumn>
+            <Hours>5 AM - 10 PM</Hours>
+            <Hours>5 AM - 10 PM</Hours>
+            <Hours>5 AM - 10 PM</Hours>
+            <Hours>5 AM - 10 PM</Hours>
+            <Hours>5 AM - 10 PM</Hours>
+            <Hours>5 AM - 8 PM</Hours>
+            <Hours>5 AM - 8 PM</Hours>
+          </HoursColumn>
+        </HoursContainer>
+        <StaffedText>Staffed Hours</StaffedText>
+        <Hours>M-F 8 AM-10 PM</Hours>
+        <Hours>Sat Sun 8 AM - 8 PM</Hours>
+      </FlexContainer>
+      <RightContainer>
       <StyledMapContainer ref={mapContainerRef} />
-      <AddressText>2801 Eubank Blvd, Albuquerque NM, 87110</AddressText>
-      <DirectionsButton href="https://www.google.com/maps/dir/?api=1&destination=2801+Eubank+Blvd,+Albuquerque+NM,+87110" target="_blank">
-        <Icon icon={faMapPin} />
-        Directions
-      </DirectionsButton>
+              <DirectionsButton href="https://www.google.com/maps/dir/?api=1&destination=2801+Eubank+Blvd,+Albuquerque+NM,+87110" target="_blank">
+          <Icon icon={faMapPin} />
+          Directions
+        </DirectionsButton>
+        </RightContainer>
     </MapWrapper>
   );
 };

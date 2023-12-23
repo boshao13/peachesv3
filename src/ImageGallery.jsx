@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 const PhotoGrid = styled.div`
@@ -26,6 +26,7 @@ const PhotoCard = styled.div`
   font-family: 'Oswald', sans-serif;
   border: 2px solid #CD6E57;
 
+  transition: none; 
 
   &:hover {
     opacity: 0.9;
@@ -52,68 +53,126 @@ const Title = styled.div`
     transform: translateY(-100%);
   }
 `;
-
 const ImageGallery = () => {
-  const photos = [
+    const [currentPhotoIndex, setCurrentPhotoIndex] = useState(new Array(6).fill(0));
+    const cardsRef = useRef([]);
+  
+    const photos = [
+      {
+        title: 'Peaches Lounge',
+        images: [require('./images/stockgym4.jpeg') , require('./images/stockgym1.avif'), 
+        require('./images/stockgym2.jpeg'),require('./images/stockgym3.avif'),require('./images/stockgym5.jpeg'),
+        require('./images/stockgym6.jpeg')]
+      },
+      // ... [5 more objects for each card with an array of up to 5 images]
+      {
+        title: 'Gym',
+        images: [require('./images/stockgym4.jpeg') , require('./images/stockgym1.avif'), 
+        require('./images/stockgym2.jpeg'),require('./images/stockgym3.avif'),require('./images/stockgym5.jpeg'),
+        require('./images/stockgym6.jpeg')]
+      },
+      {
+        title: 'Kids Care',
+        images: [require('./images/stockgym4.jpeg') , require('./images/stockgym1.avif'), 
+        require('./images/stockgym2.jpeg'),require('./images/stockgym3.avif'),require('./images/stockgym5.jpeg'),
+        require('./images/stockgym6.jpeg')]
+      },
+      {
+        title: 'Sauna',
+        images: [require('./images/stockgym4.jpeg') , require('./images/stockgym1.avif'), 
+        require('./images/stockgym2.jpeg'),require('./images/stockgym3.avif'),require('./images/stockgym5.jpeg'),
+        require('./images/stockgym6.jpeg')]
+      },
+      {
+        title: 'Peachy Bar',
+        images: [require('./images/stockgym4.jpeg') , require('./images/stockgym1.avif'), 
+        require('./images/stockgym2.jpeg'),require('./images/stockgym3.avif'),require('./images/stockgym5.jpeg'),
+        require('./images/stockgym6.jpeg')]
+      },
+      {
+        title: 'Cold Plunge',
+        images: [require('./images/stockgym4.jpeg') , require('./images/stockgym1.avif'), 
+        require('./images/stockgym2.jpeg'),require('./images/stockgym3.avif'),require('./images/stockgym5.jpeg'),
+        require('./images/stockgym6.jpeg')]
+      },
+    ];
 
-    { title: 'Peaches Lounge', img: require('./images/stockgym1.avif') },
-    { title: 'Kids Care', img: require('./images/stockgym2.jpeg') },
-    { title: 'Equipment', img: require('./images/stockgym3.avif') },
-    { title: 'Peachy Bar', img: require('./images/stockgym4.jpeg') },
-    { title: 'Lockers', img: require('./images/stockgym5.jpeg') },
-    { title: 'Sauna', img: require('./images/stockgym6.jpeg') }
-  ];
-  const cardsRef = useRef([]);
+//   useEffect(() => {
+//     const isNotMobile = window.innerWidth > 768;
 
-  useEffect(() => {
-    const isNotMobile = window.innerWidth > 768;
+//     if (isNotMobile) {
+//       const observer = new IntersectionObserver(
+//         (entries) => {
+//           entries.forEach((entry) => {
+//             if (entry.isIntersecting) {
+//               entry.target.classList.add("show");
+//               entry.target.classList.remove("hidden");
+//               observer.unobserve(entry.target); // Stop observing once it's shown
+//             }
+//           });
+//         },
+//         { threshold: 0.1 }
+//       );
 
-    if (isNotMobile) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("show");
-              entry.target.classList.remove("hidden");
-              observer.unobserve(entry.target); // Stop observing once it's shown
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
+//       cardsRef.current.forEach((card) => {
+//         if (card) {
+//           observer.observe(card);
+//         }
+//       });
 
-      cardsRef.current.forEach((card) => {
-        if (card) {
-          observer.observe(card);
-        }
-      });
+//       return () => {
+//         observer.disconnect();
+//       };
+//     } else {
+//       // For mobile, directly show all elements
+//       cardsRef.current.forEach((card) => {
+//         if (card) {
+//           card.classList.add("show");
+//           card.classList.remove("hidden");
+//         }
+//       });
+//     }
+//   }, []);
 
-      return () => {
-        observer.disconnect();
-      };
+
+  const handlePhotoChange = (cardIndex, direction) => {
+    setCurrentPhotoIndex(prev => {
+      const newIndexes = [...prev];
+      if (direction === 'right') {
+        newIndexes[cardIndex] = (prev[cardIndex] + 1) % photos[cardIndex].images.length;
+      } else {
+        newIndexes[cardIndex] = (prev[cardIndex] - 1 + photos[cardIndex].images.length) % photos[cardIndex].images.length;
+      }
+      return newIndexes;
+    });
+  };
+
+  const handleClick = (e, index) => {
+    const rect = e.target.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    if (x < rect.width / 2) {
+      handlePhotoChange(index, 'left');
     } else {
-      // For mobile, directly show all elements
-      cardsRef.current.forEach((card) => {
-        if (card) {
-          card.classList.add("show");
-          card.classList.remove("hidden");
-        }
-      });
+      handlePhotoChange(index, 'right');
     }
-  }, []);
+  };
+
   return (
     <PhotoGrid>
-      {photos.map((photo, index) => (
-        // Assign a ref to each PhotoCard and initially set the class to "hidden"
-        <PhotoCard
-          ref={(el) => (cardsRef.current[index] = el)}
-          className="hidden" // Start with "hidden" class
-          key={index}
-          image={photo.img}
-        >
-          <Title>{photo.title}</Title>
-        </PhotoCard>
-      ))}
+      {photos.map((photo, index) => {
+        console.log("Image URL for card", index, ": ", photo.images[currentPhotoIndex[index]]); // Debugging line
+        return (
+          <PhotoCard
+            ref={(el) => (cardsRef.current[index] = el)}
+            className="show"
+            key={index}
+            image={photo.images[currentPhotoIndex[index]]}
+            onClick={(e) => handleClick(e, index)}
+          >
+            <Title>{photo.title}</Title>
+          </PhotoCard>
+        );
+      })}
     </PhotoGrid>
   );
 };

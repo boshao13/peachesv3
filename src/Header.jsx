@@ -17,7 +17,7 @@ const HeaderWrapper = styled.div`
 
 const HeaderContainer = styled.header`
   background-color: #D56F52;
-  border-bottom: 3px solid #4e7a51;
+ 
   border-radius: 0 0 10px 10px;
   position: fixed;
   top: 0;
@@ -83,8 +83,9 @@ const Logo2 = styled.img`
 
 const BookTourButton = styled.a`
   display: none; // Hidden by default
-  background-color: #fab39d; // Choose a suitable color
-  color: #333; // Text color
+  background: linear-gradient(90deg, #faccb5, #fab39d); // Gradient background
+
+  color: white; // Text color
   padding: 7px 14px;
   border-radius: 7px;
   text-decoration: none;
@@ -111,7 +112,7 @@ const Nav = styled.nav`
     right: 0; 
     background-color: transparent;
     overflow: hidden;
-    gap: 25px;
+    gap: 20px;
  
     height: ${({ isOpen }) => isOpen ? '25vh' : '0'};
     opacity: ${({ isOpen }) => isOpen ? 1 : 0}; // Control opacity
@@ -140,7 +141,7 @@ const NavLink = styled.a`
   font-size: 13px;
   color: white;
   position: relative;
-  margin-top: 0px;
+  margin-top: 3px;
   margin-bottom: 4px;
   &:hover ${LeafIcon} {
     opacity: 1;
@@ -172,13 +173,18 @@ const Header = ({ openModal, setModalIsOpen, isOpen, setIsOpen }) => {
       });
     };
   
-    const scrollToBottom = () => {
+    const scrollToContact = () => {
       window.scrollTo({
-        top: document.documentElement.scrollHeight,
+        top: 3500,
         behavior: 'smooth'
       });
     };
-  
+    const scrollToBottom = () => {
+        window.scrollTo({
+            top: document.documentElement.scrollHeight,
+          behavior: 'smooth'
+        });
+      };
     return (
       <HeaderWrapper>
         <HeaderContainer isOpen={isOpen}>
@@ -192,22 +198,27 @@ const Header = ({ openModal, setModalIsOpen, isOpen, setIsOpen }) => {
             {isOpen ? <IoMdClose size="1.5em"/> : <FiMenu size="1.5em"/>}
           </MobileIcon>
           </TopBar>
-
           <Nav isOpen={isOpen}>
-            {["Memberships", "Kids Care", "Classes", "Contact Us", "FAQ"].map((item, index) => (
-              item === "Contact Us" ? (
-                <NavLink key={index} onClick={scrollToBottom}>
-                  {item}
-                  <LeafIcon icon={faLeaf} />
-                </NavLink>
-              ) : (
-                <NavLink key={index} href={`#${item.toLowerCase().replace(/\s+/g, '')}`}>
-                  {item}
-                  <LeafIcon icon={faLeaf} />
-                </NavLink>
-              )
-            ))}
-          </Nav>
+  {["Day Pass", "Kids Care", "Classes", "Contact Us", "FAQ"].map((item, index) => (
+    item === "Contact Us" ? (
+      <NavLink key={index} onClick={scrollToContact}>
+        {item}
+        <LeafIcon icon={faLeaf} />
+      </NavLink>
+    ) : item === "FAQ" ? (
+      <NavLink key={index} onClick={scrollToBottom}>
+        {item}
+        <LeafIcon icon={faLeaf} />
+      </NavLink>
+    ) : (
+      <NavLink key={index} href={`#${item.toLowerCase().replace(/\s+/g, '')}`}>
+        {item}
+        <LeafIcon icon={faLeaf} />
+      </NavLink>
+    )
+  ))}
+</Nav>
+
         </HeaderContainer>
       </HeaderWrapper>
     );

@@ -1,6 +1,6 @@
 
 import './App.css';
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect,useRef } from 'react'; 
 import { styled, createGlobalStyle } from 'styled-components';
 import Header from './Header';
 import ParallaxImage from './ParallaxImage';
@@ -9,7 +9,9 @@ import MissionStatement from './MissionStatement';
 import PreEnrollment from './PreEnrollment';
 import Address from "./Address"
 import Footer from './Footer'; 
-require('dotenv').config()
+import emailjs from '@emailjs/browser';
+import FAQ from './FAQ';
+
 
 
 
@@ -33,8 +35,13 @@ const GlobalStyle = createGlobalStyle`
 
 `;
 const App = () => {
+
+
   const [isOpen, setIsOpen] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+const form = useRef();
+
 
 
   useEffect(() => {
@@ -62,8 +69,8 @@ const App = () => {
 
   function openModal() {
     setModalIsOpen(true);
-
     setIsOpen(false); // Collapse the header when opening the modal
+    
   }
 
   function closeModal() {
@@ -72,9 +79,23 @@ const App = () => {
 
   function handleModalSubmit(event) {
     event.preventDefault();
-    // Handle form submission here
+    emailjs
+      .sendForm("service_3ykzhp7", "template_8c53d6n", form.current, "gk157tFkxTFBmQWBQ")
+      .then(
+        (response) => {
+          console.log("Email sent successfully:", response);
+          closeModal();
+        },
+        (error) => {
+          console.error("Error sending email:", error);
+          // Handle error gracefully
+        }
+      );
+    console.log(form.current, "form data is ");
     closeModal();
   }
+
+
     useEffect(() => {
         if (isOpen) {
           document.body.classList.add('is-blurred');
@@ -95,8 +116,9 @@ const App = () => {
 
             <MissionStatement/>
             <ImageGallery/>
-            <PreEnrollment setModalIsOpen={setModalIsOpen} openModal={openModal} modalIsOpen={modalIsOpen}/>
+            <PreEnrollment form={form} handleModalSubmit={handleModalSubmit} setModalIsOpen={setModalIsOpen} openModal={openModal} modalIsOpen={modalIsOpen}/>
             <Address/>
+            <FAQ/>
             <Footer/>
             </MainContent>
         </div>

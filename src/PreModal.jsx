@@ -17,7 +17,7 @@ const CustomModal = styled(Modal)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80vw;
+  width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center; // Center everything in the modal
@@ -27,6 +27,10 @@ const CustomModal = styled(Modal)`
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   outline: none;
   animation: ${fadeIn} 1s ease-in-out;
+  @media (max-width: 768px) {
+    width: 80vw; // Adjusted width for mobile
+    height: auto; // Height adjusted to maintain aspect ratio
+  }
 `;
 
 
@@ -42,7 +46,7 @@ const CloseButton = styled.button`
 `;
 
 const ModalHeading = styled.img`
-max-width: 65vw; // Ensure the image is responsive
+max-width: 300px; // Ensure the image is responsive
 display: block; // To center the image in its container
 margin-bottom: -30px;
 margin-top: -40px;
@@ -59,7 +63,7 @@ const Form = styled.form`
 `;
 
 const FormField = styled.input`
-  width: 70vw;
+  width: 300px;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #D56F52; // Peach border
@@ -82,17 +86,19 @@ const SubmitButton = styled.button`
   }
 `;
 
-const PreModal = ({ isOpen, onRequestClose }) => {
+const PreModal = ({ isOpen, onRequestClose, handleModalSubmit, form }) => {
   return (
     <CustomModal isOpen={isOpen} onRequestClose={onRequestClose} overlayClassName="custom-overlay">
       <CloseButton onClick={onRequestClose}>X</CloseButton>
       <ModalHeading src={modalheader}/>
-      <Form>
-        <FormField type="text" placeholder="Name" />
+      
+      <Form ref={form} >
+  
+  <FormField type="text" placeholder="Name" name="user_name"/>
+  <FormField type="tel" placeholder="Phone Number" name="user_phone" />
+  <FormField type="email" placeholder="Email" name="user_email" />
 
-        <FormField type="tel" placeholder="Phone Number" />
-        <FormField type="email" placeholder="Email" />
-        <SubmitButton onClick={onRequestClose} type="submit">Submit</SubmitButton>
+        <SubmitButton onClick={handleModalSubmit} type="submit">Submit</SubmitButton>
       </Form>
     </CustomModal>
   );
