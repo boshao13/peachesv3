@@ -57,9 +57,10 @@ const NewsletterContainer = styled.div`
   padding: 10px; // Reduced padding
   margin-bottom: 10px; // Reduced margin
   border-radius:10px;
-  width: 25vw; // Adjust as needed
+  width: 300px; // Adjust as needed
   padding: 10px;
   border-radius: 10px;
+  
   @media (max-width: 768px) {
     width: 80vw; // Adjusted width for mobile
    
@@ -87,6 +88,7 @@ const EmailInput = styled.input`
   border: none;
   border-radius: 5px;
   outline: none;
+
 `;
 
 const SubscribeButton = styled.button`
@@ -96,6 +98,7 @@ const SubscribeButton = styled.button`
   padding: 5px 10px; // Reduced padding
   border-radius: 5px;
   cursor: pointer;
+
 `;
 
 const Footer = () => {

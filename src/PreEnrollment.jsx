@@ -26,10 +26,14 @@ const PreEnrollmentSection = styled.section`
   height: 50vh; // Adjust the height
   text-align: center;
   font-family: lato;
-  margin-top: 50px;
+  margin-top: 100px;
+  margin-bottom: 200px;
+
   @media (max-width: 768px) {
-  margin-top: -50px;
+  margin-top: 50px;
+  margin-bottom: 10px;
   }
+  
 
 `;
 

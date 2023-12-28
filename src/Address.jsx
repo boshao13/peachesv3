@@ -28,13 +28,14 @@ const MapWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 100px;
-
+  margin-bottom: 50px;
+  margin-top: 50px;
   @media (min-width: 768px) {
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
-    margin-top: 100px;
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
 `;
 
@@ -134,7 +135,7 @@ const Hours = styled.p`
   margin: 0; // Remove default margins
 `;
 
-const Address = () => {
+const Address = ({contactUsRef}) => {
   const mapContainerRef = useRef(null);
   const key = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
   useEffect(() => {
@@ -171,7 +172,7 @@ const Address = () => {
   }, []);
 
   return (
-    <MapWrapper>
+    <MapWrapper ref={contactUsRef}>
       <FlexContainer>
         <HeaderImage src={headerImage} alt="Come Train With Us!" />
         <AddressText>2801 Eubank Blvd, Albuquerque NM, 87110</AddressText>

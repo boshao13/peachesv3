@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { FiMenu } from 'react-icons/fi'; 
 import { IoMdClose } from 'react-icons/io'; // Importing Close icon
@@ -157,7 +157,7 @@ const MobileIcon = styled.div`
   }
 `;
 
-const Header = ({ openModal, setModalIsOpen, isOpen, setIsOpen }) => {
+const Header = ({ openModal, setModalIsOpen, isOpen, setIsOpen, contactUsRef}) => {
 
   
     const toggleMenu = () => {
@@ -172,13 +172,30 @@ const Header = ({ openModal, setModalIsOpen, isOpen, setIsOpen }) => {
         behavior: 'smooth'
       });
     };
-  
+
     const scrollToContact = () => {
-      window.scrollTo({
-        top: 3500,
-        behavior: 'smooth'
-      });
+      if (window.location.pathname !== "/") {
+        // If not on the home page, navigate to the home page
+        window.location.href = "/";
+    
+        // Wait for the home page to load
+        window.onload = () => {
+          if (contactUsRef.current) {
+            const yOffset = contactUsRef.current.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({ top: yOffset, behavior: 'smooth' });
+            setIsOpen(false);
+          }
+        };
+      } else {
+        // Already on the home page, scroll immediately
+        if (contactUsRef.current) {
+          const yOffset = contactUsRef.current.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top: yOffset, behavior: 'smooth' });
+          setIsOpen(false);
+        }
+      }
     };
+    
     const scrollToBottom = () => {
         window.scrollTo({
             top: document.documentElement.scrollHeight,
@@ -192,7 +209,7 @@ const Header = ({ openModal, setModalIsOpen, isOpen, setIsOpen }) => {
             <TopBar>
           <Logo2 src={logo} alt="Peaches Gym Logo" onClick={scrollToTop} />
 
-          <BookTourButton onClick={openModal} href="#book-tour">Pre-Enroll</BookTourButton>
+          <BookTourButton onClick={openModal} href="PreEnroll">Pre-Enroll</BookTourButton>
 
           <MobileIcon onClick={toggleMenu}>
             {isOpen ? <IoMdClose size="1.5em"/> : <FiMenu size="1.5em"/>}
@@ -201,17 +218,17 @@ const Header = ({ openModal, setModalIsOpen, isOpen, setIsOpen }) => {
           <Nav isOpen={isOpen}>
   {["Day Pass", "Kids Care", "Classes", "Contact Us", "FAQ"].map((item, index) => (
     item === "Contact Us" ? (
-      <NavLink key={index} onClick={scrollToContact}>
+      <NavLink  key={index} onClick={scrollToContact}>
         {item}
         <LeafIcon icon={faLeaf} />
       </NavLink>
     ) : item === "FAQ" ? (
       <NavLink key={index} onClick={scrollToBottom}>
         {item}
-        <LeafIcon icon={faLeaf} />
+        <LeafIcon icon={faLeaf} />w
       </NavLink>
     ) : (
-      <NavLink key={index} href={`#${item.toLowerCase().replace(/\s+/g, '')}`}>
+      <NavLink key={index} href={`${item.toLowerCase().replace(/\s+/g, '')}`}>
         {item}
         <LeafIcon icon={faLeaf} />
       </NavLink>

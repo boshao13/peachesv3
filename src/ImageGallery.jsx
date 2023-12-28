@@ -7,8 +7,7 @@ const PhotoGrid = styled.div`
   gap: 15px;
   justify-content: center;
   margin: 20px auto; // Centering the grid
-  width: 60%; // Occupying 60% of the screen width
-
+  width: 60%; // Occupying 60% of the screen width]]
   @media (max-width: 768px) {
     width: 100%; // Full width for mobile
   }
@@ -160,7 +159,7 @@ const ImageGallery = () => {
   return (
     <PhotoGrid>
       {photos.map((photo, index) => {
-        console.log("Image URL for card", index, ": ", photo.images[currentPhotoIndex[index]]); // Debugging line
+        // console.log("Image URL for card", index, ": ", photo.images[currentPhotoIndex[index]]); // Debugging line
         return (
           <PhotoCard
             ref={(el) => (cardsRef.current[index] = el)}

@@ -1,3 +1,4 @@
+
 import Header from './Header';
 import ParallaxImage from './ParallaxImage';
 import ImageGallery from './ImageGallery';
@@ -32,18 +33,8 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 
+const Home = () => {
 
-
-
-//#D56F52
-//#FACCB5
-//#4E7A51 dark green
-
-
-
-
-const App = () => {
-        
     //refs for sections 
     const contactUsRef = useRef(null);
     // header and modal open
@@ -116,25 +107,24 @@ const App = () => {
           }, [isOpen]);
           
         
+      return (
+        <>
+         <GlobalStyle/>
+     <Header contactUsRef={contactUsRef} openModal={openModal} modalIsOpen={modalIsOpen} isOpen={isOpen} setIsOpen={setIsOpen} />
+     <MainContent className={isOpen ? 'blur' : ''}>
+    
+                <ParallaxImage />
+    
+                <MissionStatement/>
+                <ImageGallery/>
+                <PreEnrollment form={form} handleModalSubmit={handleModalSubmit} setModalIsOpen={setModalIsOpen} openModal={openModal} modalIsOpen={modalIsOpen}/>
+                <Address contactUsRef={contactUsRef}/>
+    
+                <FAQ/>
+                <Footer/>
+                </MainContent>
+        </>
+      );
+    };
 
-  return (
-    <>
-     <GlobalStyle/>
- <Header contactUsRef={contactUsRef} openModal={openModal} modalIsOpen={modalIsOpen} isOpen={isOpen} setIsOpen={setIsOpen} />
- <MainContent className={isOpen ? 'blur' : ''}>
-
-            <ParallaxImage />
-
-            <MissionStatement/>
-            <ImageGallery/>
-            <PreEnrollment form={form} handleModalSubmit={handleModalSubmit} setModalIsOpen={setModalIsOpen} openModal={openModal} modalIsOpen={modalIsOpen}/>
-            <Address contactUsRef={contactUsRef}/>
-
-            <FAQ/>
-            <Footer/>
-            </MainContent>
-    </>
-  );
-};
-
-export default App
+    export default Home
