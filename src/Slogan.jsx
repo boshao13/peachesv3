@@ -5,19 +5,20 @@ import wheregoodthings from "./images/wheregoodthingsare.png"
 import growing from "./images/growing.png"
 import thriving from "./images/thriving.png"
 import happening from "./images/happening.png"
+
 const Happening = styled.img`
-  width: 220px;
+  width: 200px;
   height: auto;
 
   margin-left: 5px;
   margin-bottom: 10px;
   @media (max-width: 768px) {
     width: 120px;
-    margin-bottom:-12px;
+    margin-bottom:-10px;
   }
 `;
 const Thriving = styled.img`
-  width: 220px;
+  width: 200px;
   height: auto;
   margin-bottom: 0px;
   margin-left: -10px;
@@ -28,7 +29,7 @@ const Thriving = styled.img`
   }
 `;
 const Wheregoodthings = styled.img`
-  width: 450px;
+  width: 400px;
   height: auto;
 
   @media (max-width: 768px) {
@@ -37,7 +38,7 @@ const Wheregoodthings = styled.img`
   }
 `;
 const Growing = styled.img`
-width: 220px;
+width: 200px;
 height: auto;
 margin-bottom: -12px;
 margin-left: -12px;
@@ -97,6 +98,7 @@ const Header = styled.header`
   justify-content: center;
   width: 100vw;
   height: 100vh;
+  
   @media (max-width: 768px) {
 margin-left:20px;
 
@@ -107,11 +109,12 @@ margin-left:20px;
 const HeaderTitle = styled.h1`
   flex: 1;
   text-align: center;
-  font-size: 3rem;
+  height: 100px;
   font-weight: bold;
 //   color: #FAB39D;
 color: white;
   text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4);
+
   @media (max-width: 768px) {
     font-size: 1.5rem; // Smaller size for mobile
    
@@ -121,15 +124,16 @@ color: white;
 const MaskedText = styled.div`
   display: inline-block;
 
-  height:5.5rem; /* Adjust to fit the text size */
+  height:5.2rem; /* Adjust to fit the text size */
   margin-bottom: 40px;
 
   overflow: hidden;
   vertical-align: middle;
   padding-left: 0.1rem; /* Adjust spacing as needed */
   padding-top: 10px;
+
   @media (max-width: 768px) {
-    height: 2.8rem; // Smaller size for mobile
+    height: 3.3rem; // Smaller size for mobile
     padding-top: 5px;
     margin-bottom: 32px;
     padding-bottom: -5px;
@@ -153,7 +157,7 @@ const WordList = styled.ul`
 const WordItem = styled.li`
 -webkit-animation: ${wordFade} 3s infinite;
   display: block;
-  line-height: 1.9em;
+  line-height: 2.3em;
   text-align: left;
   color: green;
   
@@ -166,7 +170,7 @@ margin-top: 0px;
   margin-bottom: -150px;
   @media (max-width: 768px) {
     width: 110vw;
-    margin-top: 120px
+    margin-top: 100px
    // Adjusted width for smaller screens
   }
 `;

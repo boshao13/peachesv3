@@ -5,8 +5,8 @@ import { IoMdClose } from 'react-icons/io'; // Importing Close icon
 import logo from './images/logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLeaf } from '@fortawesome/free-solid-svg-icons';
-
-
+import { useHeaderContext } from './HeaderContext';
+import { useNavigate } from 'react-router-dom';
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -156,89 +156,102 @@ const MobileIcon = styled.div`
     display: block;
   }
 `;
+const Header = ({  contactUsRef }) => {
+  const navigate = useNavigate();
+  const { isOpen, setIsOpen, openModal } = useHeaderContext();
 
-const Header = ({ openModal, setModalIsOpen, isOpen, setIsOpen, contactUsRef}) => {
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
 
-  
-    const toggleMenu = () => {
-      setIsOpen(!isOpen);
-    
-    };
-
-  
-    const scrollToTop = () => {
+  const scrollToTop = () => {
+    if (window.location.pathname !== "/" && window.location.pathname !== "/home") {
+      navigate('/');
+    } else {
+      // If already on the homepage
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
       });
-    };
-
-    const scrollToContact = () => {
-      if (window.location.pathname !== "/") {
-        // If not on the home page, navigate to the home page
-        window.location.href = "/";
-    
-        // Wait for the home page to load
-        window.onload = () => {
-          if (contactUsRef.current) {
-            const yOffset = contactUsRef.current.getBoundingClientRect().top + window.scrollY - 80;
-            window.scrollTo({ top: yOffset, behavior: 'smooth' });
-            setIsOpen(false);
-          }
-        };
-      } else {
-        // Already on the home page, scroll immediately
-        if (contactUsRef.current) {
-          const yOffset = contactUsRef.current.getBoundingClientRect().top + window.scrollY - 80;
-          window.scrollTo({ top: yOffset, behavior: 'smooth' });
-          setIsOpen(false);
-        }
-      }
-    };
-    
-    const scrollToBottom = () => {
-        window.scrollTo({
-            top: document.documentElement.scrollHeight,
-          behavior: 'smooth'
-        });
-      };
-    return (
-      <HeaderWrapper>
-        <HeaderContainer isOpen={isOpen}>
-        <Logo1 src={logo} alt="Peaches Gym Logo" onClick={scrollToTop} />
-            <TopBar>
-          <Logo2 src={logo} alt="Peaches Gym Logo" onClick={scrollToTop} />
-
-          <BookTourButton onClick={openModal} href="PreEnroll">Pre-Enroll</BookTourButton>
-
-          <MobileIcon onClick={toggleMenu}>
-            {isOpen ? <IoMdClose size="1.5em"/> : <FiMenu size="1.5em"/>}
-          </MobileIcon>
-          </TopBar>
-          <Nav isOpen={isOpen}>
-  {["Day Pass", "Kids Care", "Classes", "Contact Us", "FAQ"].map((item, index) => (
-    item === "Contact Us" ? (
-      <NavLink  key={index} onClick={scrollToContact}>
-        {item}
-        <LeafIcon icon={faLeaf} />
-      </NavLink>
-    ) : item === "FAQ" ? (
-      <NavLink key={index} onClick={scrollToBottom}>
-        {item}
-        <LeafIcon icon={faLeaf} />w
-      </NavLink>
-    ) : (
-      <NavLink key={index} href={`${item.toLowerCase().replace(/\s+/g, '')}`}>
-        {item}
-        <LeafIcon icon={faLeaf} />
-      </NavLink>
-    )
-  ))}
-</Nav>
-
-        </HeaderContainer>
-      </HeaderWrapper>
-    );
+      // Replace the current URL without the hash
+      window.history.replaceState(null, null, ' ');
+    }
+    setIsOpen(false);
   };
-  
+
+  const scrollToContact = () => {
+    if (window.location.pathname !== "/" && window.location.pathname !== "/home") {
+      navigate('/#contact-us-section');
+      setIsOpen(false);
+    } else if (contactUsRef.current) {
+      const yOffset = contactUsRef.current.getBoundingClientRect().top + window.pageYOffset - 80;
+      window.scrollTo({ top: yOffset, behavior: 'smooth' });
+      setIsOpen(false);
+    }
+  };
+
+  const scrollToPre = () => {
+    if (window.location.pathname !== "/" && window.location.pathname !== "/home") {
+      navigate('/#pre-enrollment-section');
+      setIsOpen(false);
+    } else if (contactUsRef.current) {
+      openModal();
+      setIsOpen(false);
+    }
+  };
+
+  const scrollToBottom = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: 'smooth'
+    });
+  };
+
+  const navigateToKids = () => {
+    navigate('/kidscare');
+    setIsOpen(!isOpen);
+  };
+  const navigateToHome = () => {
+    navigate('/');
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <HeaderWrapper>
+      <HeaderContainer isOpen={isOpen}>
+        <Logo1 src={logo} alt="Peaches Gym Logo" onClick={scrollToTop} />
+        <TopBar>
+          <Logo2 src={logo} alt="Peaches Gym Logo" onClick={scrollToTop} />
+          <BookTourButton onClick={scrollToPre}>Pre-Enroll</BookTourButton>
+          <MobileIcon onClick={toggleMenu}>
+            {isOpen ? <IoMdClose size="1.5em" /> : <FiMenu size="1.5em" />}
+          </MobileIcon>
+        </TopBar>
+        <Nav isOpen={isOpen}>
+          <NavLink href="daypass">
+            Day Pass
+            <LeafIcon icon={faLeaf} />
+          </NavLink>
+          <NavLink  onClick={navigateToKids}>
+            Kids Care
+            <LeafIcon icon={faLeaf} />
+          </NavLink>
+          <NavLink href="classes">
+            Classes
+            <LeafIcon icon={faLeaf} />
+          </NavLink>
+          <NavLink onClick={scrollToContact}>
+            Contact Us
+            <LeafIcon icon={faLeaf} />
+          </NavLink>
+          <NavLink onClick={scrollToBottom}>
+            FAQ
+            <LeafIcon icon={faLeaf} />
+          </NavLink>
+        </Nav>
+      </HeaderContainer>
+    </HeaderWrapper>
+  );
+};
+
 export default Header;

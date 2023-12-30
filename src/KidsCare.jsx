@@ -1,7 +1,8 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import Header from './Header';
-
+import kidscare from "./images/kidscare.png"
+import PreModal from './PreModal';
 const scroll = keyframes`
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -9,11 +10,19 @@ const scroll = keyframes`
 
 const KidsCareContainer = styled.div`
   text-align: center;
+  @media (max-width: 768px) {
+    width:100%;
+  }
 `;
 
 const ImageHeader = styled.img`
-  width: 100%;
-  max-height: 300px; /* Adjust the height as needed */
+  width: 30vw;
+
+  margin-top: 100px;
+  @media (max-width: 768px) {
+    width:80vw;
+    margin-top: 100px;
+  }
 `;
 
 const InfoBox = styled.div`
@@ -26,7 +35,10 @@ const CarouselContainer = styled.div`
   width: 700px; /* Fixed width */
   overflow: hidden;
   position: relative;
-  margin: auto; /* Center the carousel */
+  margin: auto; /* Center the carousel */  @media (max-width: 768px) {
+    width:80vw;
+
+  }
 `;
 
 const CarouselSlider = styled.div`
@@ -50,7 +62,7 @@ const KidsCare = () => {
     <>
       <Header />
       <KidsCareContainer>
-        <ImageHeader src="kids_care_header.jpg" alt="Kids Care Header" />
+        <ImageHeader src={kidscare} alt="Kids Care Header" />
         <InfoBox>
           <h2>Pricing and Hours</h2>
           <p>Information about pricing and hours of availability goes here.</p>
@@ -64,6 +76,7 @@ const KidsCare = () => {
           </CarouselSlider>
         </CarouselContainer>
       </KidsCareContainer>
+    <PreModal/>
     </>
   );
 };

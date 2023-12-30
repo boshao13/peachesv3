@@ -10,7 +10,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 
 const Title = styled.img`
-  width: 350px;
+  width: 25vw;
   height: auto;
 
   @media (max-width: 768px) {
@@ -25,10 +25,9 @@ const PreEnrollmentSection = styled.section`
   justify-content: center;
   height: 50vh; // Adjust the height
   text-align: center;
-  font-family: lato;
-  margin-top: 100px;
-  margin-bottom: 200px;
-
+  font-family: Oswald;
+  margin-bottom: 80px;
+  margin-top: 40px;
   @media (max-width: 768px) {
   margin-top: 50px;
   margin-bottom: 10px;
@@ -68,19 +67,16 @@ const CheckmarkIcon = styled(FontAwesomeIcon).attrs({
     
   `;
   
-
-
-
 const Form = styled.form`
   /* Form styles */
 `;
 
 
-const PreEnrollment = ({ handleModalSubmit, openModal, modalIsOpen, setModalIsOpen, form }) => {
+const PreEnrollment = ({preEnrollmentRef, handleModalSubmit, openModal, modalIsOpen, setModalIsOpen, form }) => {
     const launchDate = new Date('2024-02-01');
 
       return (
-        <PreEnrollmentSection>
+        <PreEnrollmentSection ref={preEnrollmentRef} id="pre-enrollment-section">
           <Title src={title} />
           <Subheading>We Launch In</Subheading>
           <div >

@@ -106,18 +106,18 @@ const Footer = () => {
       <FooterContainer>
               <LinksAndSignupContainer>
 
-        <UtilitiesContainer>
-          <UtilityColumn>
-            <UtilityLink href="#">Link 1</UtilityLink>
+        {/* <UtilitiesContainer> */}
+          {/* <UtilityColumn> */}
+            {/* <UtilityLink href="#">Link 1</UtilityLink>
             <UtilityLink href="#">Link 2</UtilityLink>
-            {/* Add more utility links as needed */}
-          </UtilityColumn>
-          <UtilityColumn>
-            <UtilityLink href="#">Link 3</UtilityLink>
+            Add more utility links as needed */}
+          {/* </UtilityColumn>
+          <UtilityColumn> */}
+            {/* <UtilityLink href="#">Link 3</UtilityLink>
             <UtilityLink href="#">Link 4</UtilityLink>
-            {/* Add more utility links as needed */}
-          </UtilityColumn>
-        </UtilitiesContainer>
+            Add more utility links as needed */}
+          {/* </UtilityColumn> */}
+        {/* </UtilitiesContainer> */}
         <NewsletterContainer>
           <NewsletterTitle>Sign up for our Newsletter</NewsletterTitle>
           <NewsletterForm>

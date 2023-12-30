@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Parallax } from 'react-parallax';
-import parallaxImage from './images/main1.jpeg';
+import parallaxImage from './images/mainphoto.png';
 import Slogan from './Slogan';
-import Header from './Header';
-import logo from './images/peacheslogo.png'; // Import your logo
+
+
 
 const ParallaxContainer = styled.div`
   position: relative;
@@ -13,6 +13,11 @@ const ParallaxContainer = styled.div`
 
   @media (max-width: 768px) {
     height: 100vh; // Smaller height for mobile screens
+  }
+  @media (min-width: 769px) { // Targeting screens larger than mobile devices
+    .react-parallax-bgimage {
+      background-position: center !important; // Override default positioning
+    }
   }
 
   &::after {
@@ -31,10 +36,13 @@ const ParallaxContainer = styled.div`
 
 
 const ParallaxImage = () => {
-
+  const bgImageStyle = {
+    // Adjust the background position for larger screens
+    backgroundPosition: 'center',
+};
 
     return (
-        <Parallax bgImage={parallaxImage} strength={100}>
+        <Parallax bgImage={parallaxImage} strength={100} bgImageStyle={bgImageStyle}>
             
             <ParallaxContainer>
 

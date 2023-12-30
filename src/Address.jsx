@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import mapboxgl from 'mapbox-gl';
 import customMarkerImg from './images/logo3.png'; 
 import headerImage from './images/cometrainwithus.png'; // Update the path to your image
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapPin } from '@fortawesome/free-solid-svg-icons';
+import ContactUsModal from './ContactUsModal';
 const key = process.env.REACT_APP_MAPBOX_API_KEY;
 
 
@@ -29,7 +30,7 @@ const MapWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 50px;
-  margin-top: 50px;
+ font-family: oswald;
   @media (min-width: 768px) {
     flex-direction: row;
     justify-content: center;
@@ -91,6 +92,23 @@ const DirectionsButton = styled.a`
     background-color: #B55C44; // Darken on hover
   }
 `;
+const ContactButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #CD6E57; // Adjust color as needed
+  color: white;
+  padding: 10px 15px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 14px;
+  margin-top: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #B55C44; // Darken on hover
+  }
+`;
 const AddressText = styled.p`
   color: white;
   text-align: center;
@@ -135,9 +153,11 @@ const Hours = styled.p`
   margin: 0; // Remove default margins
 `;
 
-const Address = ({contactUsRef}) => {
+const Address = ({handleContactModalSubmit, contactUsRef, openContactUsModal, isContactUsModalOpen, closeContactUsModal, formRef}) => {
+
+
   const mapContainerRef = useRef(null);
-  const key = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+
   useEffect(() => {
     let map; // Define map variable outside the try block
 
@@ -172,7 +192,7 @@ const Address = ({contactUsRef}) => {
   }, []);
 
   return (
-    <MapWrapper ref={contactUsRef}>
+    <MapWrapper ref={contactUsRef} id="contact-us-section">
       <FlexContainer>
         <HeaderImage src={headerImage} alt="Come Train With Us!" />
         <AddressText>2801 Eubank Blvd, Albuquerque NM, 87110</AddressText>
@@ -180,27 +200,27 @@ const Address = ({contactUsRef}) => {
            
         <HoursContainer>
           <DaysColumn>
-            <Day>Monday</Day>
-            <Day>Tuesday</Day>
-            <Day>Wednesday</Day>
-            <Day>Thursday</Day>
-            <Day>Friday</Day>
-            <Day>Saturday</Day>
-            <Day>Sunday</Day>
+            <Day>M-F</Day>
+
+            <Day>Sat Sun</Day>
+
           </DaysColumn>
           <HoursColumn>
             <Hours>5 AM - 10 PM</Hours>
-            <Hours>5 AM - 10 PM</Hours>
-            <Hours>5 AM - 10 PM</Hours>
-            <Hours>5 AM - 10 PM</Hours>
-            <Hours>5 AM - 10 PM</Hours>
             <Hours>5 AM - 8 PM</Hours>
-            <Hours>5 AM - 8 PM</Hours>
+
           </HoursColumn>
         </HoursContainer>
         <StaffedText>Staffed Hours</StaffedText>
-        <Hours>M-F 8 AM-10 PM</Hours>
+        <Hours>M-F 8  AM-10 PM</Hours>
         <Hours>Sat Sun 8 AM - 8 PM</Hours>
+        <ContactButton onClick={openContactUsModal}> Contact Us </ContactButton>
+        <ContactUsModal 
+        isContactUsModalOpen={isContactUsModalOpen} 
+        closeContactUsModal={closeContactUsModal}
+        handleContactModalSubmit={handleContactModalSubmit}
+        formRef={formRef}
+        />
       </FlexContainer>
       <RightContainer>
       <StyledMapContainer ref={mapContainerRef} />

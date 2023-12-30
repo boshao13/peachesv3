@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import asset from "./images/peachesbloom.png"
+import asset from "./images/missionstatement.png"
 const Header = styled.img`
 width: 35vw;
-margin-top: -50px;
+
 
 @media (max-width: 768px) {
     width:80vw;
@@ -12,6 +12,7 @@ margin-top: -50px;
 `;
 
 const MissionStatementContainer = styled.div`
+
 background-color: rgba(255, 255, 255, 0); // Semi-transparent white
   padding: 20px; /* Padding around the content */
   font-family: 'Oswald', sans-serif;
@@ -21,16 +22,14 @@ background-color: rgba(255, 255, 255, 0); // Semi-transparent white
   margin: 20px; /* Add margin for spacing */
   text-align: center;
   @media (max-width: 768px) {
-    padding: 15px; /* Adjust padding for smaller screens */
-    border-radius: 10px; /* Adjust border radius for smaller screens */
-    margin: 10px; /* Adjust margin for spacing on smaller screens */
+
 
   }
 `;
 
 const MissionStatementText = styled.p`
 
-
+  margin-top:50px;
   font-size: 1em; /* Font size */
   color: white; /* Text color */
   max-width: 800px; /* Maximum width for the text */
@@ -39,7 +38,8 @@ const MissionStatementText = styled.p`
   text-align: left; /* Center-align the text */
 
   @media (max-width: 768px) {
-    font-size: 12px; /* Adjust font size for smaller screens */
+
+    font-size: 15px; /* Adjust font size for smaller screens */
   }
 `;
 

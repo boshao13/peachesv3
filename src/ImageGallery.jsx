@@ -72,15 +72,14 @@ const ImageGallery = () => {
       },
       {
         title: 'Kids Care',
-        images: [require('./images/stockgym4.jpeg') , require('./images/stockgym1.avif'), 
+        images: [require('./images/kids.png') , require('./images/stockgym1.avif'), 
         require('./images/stockgym2.jpeg'),require('./images/stockgym3.avif'),require('./images/stockgym5.jpeg'),
         require('./images/stockgym6.jpeg')]
       },
       {
-        title: 'Sauna',
-        images: [require('./images/stockgym4.jpeg') , require('./images/stockgym1.avif'), 
-        require('./images/stockgym2.jpeg'),require('./images/stockgym3.avif'),require('./images/stockgym5.jpeg'),
-        require('./images/stockgym6.jpeg')]
+        title: 'Cold Plunge',
+        images: [require('./images/coldplunge.png') , require('./images/coldplunge2.png'), 
+        require('./images/coldplunge3.png')]
       },
       {
         title: 'Peachy Bar',
@@ -89,10 +88,8 @@ const ImageGallery = () => {
         require('./images/stockgym6.jpeg')]
       },
       {
-        title: 'Cold Plunge',
-        images: [require('./images/stockgym4.jpeg') , require('./images/stockgym1.avif'), 
-        require('./images/stockgym2.jpeg'),require('./images/stockgym3.avif'),require('./images/stockgym5.jpeg'),
-        require('./images/stockgym6.jpeg')]
+        title: 'Sauna',
+        images: [require('./images/sauna.png') , require('./images/sauna2.png'),require('./images/sauna3.png')]
       },
     ];
 
