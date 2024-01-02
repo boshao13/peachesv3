@@ -130,14 +130,17 @@ const ImageGallery = () => {
                 key={imgIndex}
                 className="photo"
                 style={{ backgroundImage: `url(${image})` }}
-              />
+              >
+                <Title>{photo.title}</Title> {/* Title included in each photo */}
+              </div>
             ))}
-            <Title>{photo.title}</Title>
           </PhotoCard>
         );
       })}
     </PhotoGrid>
   );
 };
+
+
 
 export default ImageGallery;
