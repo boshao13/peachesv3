@@ -23,7 +23,7 @@ const PhotoCard = styled.div`
   overflow: hidden;
   border-radius: 10px; 
   font-family: 'Oswald', sans-serif;
-  border: 2px solid #CD6E57;
+  border: 3px solid #D56F52;
 
   transition: none; 
 
@@ -32,7 +32,7 @@ const PhotoCard = styled.div`
   }
 
   @media (max-width: 768px) {
-    width: 95vw;
+    width: 90vw;
   }
 `;
 
@@ -40,7 +40,7 @@ const Title = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.4);
   color: white;
   text-align: center;
   padding: 10px 0;
@@ -57,12 +57,7 @@ const ImageGallery = () => {
     const cardsRef = useRef([]);
   
     const photos = [
-      {
-        title: 'Peaches Lounge',
-        images: [require('./images/stockgym4.jpeg') , require('./images/stockgym1.avif'), 
-        require('./images/stockgym2.jpeg'),require('./images/stockgym3.avif'),require('./images/stockgym5.jpeg'),
-        require('./images/stockgym6.jpeg')]
-      },
+
       // ... [5 more objects for each card with an array of up to 5 images]
       {
         title: 'Gym',
@@ -71,64 +66,34 @@ const ImageGallery = () => {
         require('./images/stockgym6.jpeg')]
       },
       {
+        title: 'Classes',
+        images: [require('./images/classespic2.jpg') , require('./images/classespic.jpg'), 
+        require('./images/classespic3.jpg')]
+      },
+      {
         title: 'Kids Care',
-        images: [require('./images/kids.png') , require('./images/stockgym1.avif'), 
+        images: [require('./images/kidscare4.jpg') , require('./images/stockgym1.avif'), 
         require('./images/stockgym2.jpeg'),require('./images/stockgym3.avif'),require('./images/stockgym5.jpeg'),
         require('./images/stockgym6.jpeg')]
       },
       {
         title: 'Cold Plunge',
-        images: [require('./images/coldplunge.png') , require('./images/coldplunge2.png'), 
-        require('./images/coldplunge3.png')]
+        images: [require('./images/coldplunge3.png') , require('./images/coldplunge2.png'), 
+        require('./images/coldplunge.png')]
       },
       {
         title: 'Peachy Bar',
-        images: [require('./images/stockgym4.jpeg') , require('./images/stockgym1.avif'), 
-        require('./images/stockgym2.jpeg'),require('./images/stockgym3.avif'),require('./images/stockgym5.jpeg'),
-        require('./images/stockgym6.jpeg')]
+        images: [require('./images/peachybar.jpg') , require('./images/peachybar2.jpg'), 
+        require('./images/peachybar3.jpg')]
       },
       {
         title: 'Sauna',
-        images: [require('./images/sauna.png') , require('./images/sauna2.png'),require('./images/sauna3.png')]
+        images: [require('./images/sauna2.png') , require('./images/sauna.png'),require('./images/sauna3.png')]
       },
+
+
     ];
 
-//   useEffect(() => {
-//     const isNotMobile = window.innerWidth > 768;
-
-//     if (isNotMobile) {
-//       const observer = new IntersectionObserver(
-//         (entries) => {
-//           entries.forEach((entry) => {
-//             if (entry.isIntersecting) {
-//               entry.target.classList.add("show");
-//               entry.target.classList.remove("hidden");
-//               observer.unobserve(entry.target); // Stop observing once it's shown
-//             }
-//           });
-//         },
-//         { threshold: 0.1 }
-//       );
-
-//       cardsRef.current.forEach((card) => {
-//         if (card) {
-//           observer.observe(card);
-//         }
-//       });
-
-//       return () => {
-//         observer.disconnect();
-//       };
-//     } else {
-//       // For mobile, directly show all elements
-//       cardsRef.current.forEach((card) => {
-//         if (card) {
-//           card.classList.add("show");
-//           card.classList.remove("hidden");
-//         }
-//       });
-//     }
-//   }, []);
 
 
   const handlePhotoChange = (cardIndex, direction) => {

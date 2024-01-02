@@ -33,7 +33,7 @@ const HeaderContainer = styled.header`
 
   @media (max-width: 768px) {
   
-   height: ${({ isOpen }) => isOpen ? '30vh' : '28px'};
+   height: ${({ isOpen }) => isOpen ? '285px' : '28px'};
    transition: height 0.7s ease-in-out;
   }
 `;
@@ -112,9 +112,9 @@ const Nav = styled.nav`
     right: 0; 
     background-color: transparent;
     overflow: hidden;
-    gap: 20px;
+    gap: 14px;
  
-    height: ${({ isOpen }) => isOpen ? '25vh' : '0'};
+    height: ${({ isOpen }) => isOpen ? '280px' : '0'};
     opacity: ${({ isOpen }) => isOpen ? 1 : 0}; // Control opacity
     transition: height 0.7s ease-in-out, opacity 0.7s ease-in-out;
     width: 100%;
@@ -145,6 +145,9 @@ const NavLink = styled.a`
   margin-bottom: 4px;
   &:hover ${LeafIcon} {
     opacity: 1;
+  }
+  @media (max-width: 768px) {
+    font-size: 17px;
   }
 `;
 
@@ -205,6 +208,7 @@ const Header = ({  contactUsRef }) => {
       top: document.documentElement.scrollHeight,
       behavior: 'smooth'
     });
+    setIsOpen(false);
   };
 
   const navigateToKids = () => {

@@ -14,6 +14,7 @@ import Modal from 'react-modal';
 import { useHeaderContext } from './HeaderContext';
 import { useLocation } from 'react-router-dom';
 
+
 Modal.setAppElement('#root');
 
 const MainContent = styled.main`
@@ -36,9 +37,10 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 //#9dbbaa
-//#D56F52
+//#D56F52 dark peach
 //#FACCB5
 //#4E7A51 dark green
+//#f5a882;
 
 
 
@@ -55,9 +57,12 @@ const App = () => {
 
       // Contact Us Modal
       const [isContactUsModalOpen, setContactUsModalOpen] = useState(false);
-
       const form = useRef();
       const formRef = useRef();
+      const newsletterFormRef = useRef();
+
+        // newsletter
+        const [newsletterData, setnewsletterData] = useState('');
       useEffect(() => {
         if (location.hash === '#contact-us-section' && contactUsRef.current) {
           const yOffset = contactUsRef.current.getBoundingClientRect().top + window.pageYOffset - 80;
@@ -67,7 +72,7 @@ const App = () => {
           window.scrollTo({ top: yOffset, behavior: 'smooth' });
         }
       }, [location.hash, contactUsRef, preEnrollmentRef]);
-      
+
       useEffect(() => {
         const body = document.body;
         if (modalIsOpen || isContactUsModalOpen) {
@@ -149,6 +154,22 @@ const App = () => {
                }
              );
               }
+              function handleNewsLetterSubmit(event) {
+                event.preventDefault();
+                emailjs
+                  .sendForm("service_3ykzhp7", "template_2q0mhqd", newsletterFormRef.current, "gk157tFkxTFBmQWBQ")
+                  .then(
+                    (response) => {
+                      setnewsletterData({ email: '' }); // Reset the email input in newsletterData
+                      newsletterFormRef.current.reset(); // Reset the form
+                      console.log("Email sent successfully:", response);
+                    },
+                    (error) => {
+                      console.error("Error sending email:", error);
+                      // Handle error gracefully
+                    }
+                  );
+              }
 
 
   return (
@@ -165,6 +186,7 @@ const App = () => {
             <ParallaxImage />
             <MissionStatement/>
             <ImageGallery/>
+
             <PreEnrollment 
             preEnrollmentRef={preEnrollmentRef}
             form={form} 
@@ -182,7 +204,12 @@ const App = () => {
             />
 
             <FAQ/>
-            <Footer/>
+            <Footer
+            newsletterFormRef={newsletterFormRef}
+            handleNewsLetterSubmit={handleNewsLetterSubmit}
+            newsletterData={newsletterData}
+            setnewsletterData={setnewsletterData}
+            />
             </MainContent>
     </>
   );

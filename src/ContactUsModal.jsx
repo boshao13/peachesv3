@@ -31,7 +31,7 @@ const CustomModal = styled(Modal)`
 
   @media (max-width: 768px) {
     width: 80vw; // Adjusted width for mobile
-    height: 40vh; // Height adjusted to maintain aspect ratio
+    height: 350px; // Height adjusted to maintain aspect ratio
   }
 `;
 
@@ -75,6 +75,9 @@ const FormField = styled.input`
     outline: none;
     border-color: #FACCB5; // Light peach border on focus
   }
+  @media (max-width: 768px) {
+width:70vw;
+}
 `;
 
 const SubmitButton = styled.button`
@@ -100,6 +103,9 @@ const TextAreaField = styled.textarea`
     outline: none;
     border-color: #FACCB5; // Light peach border on focus
   }
+  @media (max-width: 768px) {
+    width:70vw;
+    }
 `;
 
 const ContactUsModal = ({ handleContactModalSubmit, openContactUsModal, closeContactUsModal, formRef , isContactUsModalOpen}) => {

@@ -101,7 +101,7 @@ const SubscribeButton = styled.button`
 
 `;
 
-const Footer = () => {
+const Footer = ({newsletterFormRef, handleNewsLetterSubmit, newsletterData, setnewsletterData}) => {
     return (
       <FooterContainer>
               <LinksAndSignupContainer>
@@ -120,9 +120,18 @@ const Footer = () => {
         {/* </UtilitiesContainer> */}
         <NewsletterContainer>
           <NewsletterTitle>Sign up for our Newsletter</NewsletterTitle>
-          <NewsletterForm>
-            <EmailInput type="email" placeholder="Enter your email" />
-            <SubscribeButton>Subscribe</SubscribeButton>
+          <NewsletterForm ref={newsletterFormRef}>
+          <EmailInput
+              type="email"
+              placeholder="Enter your email"
+              name="user_email"
+              onChange={(e) => {
+                // Update newsletterData with the value from the input
+                setnewsletterData({ ...newsletterData, email: e.target.value });
+                console.log(newsletterData, "data is");
+              }}
+            />
+            <SubscribeButton onClick={handleNewsLetterSubmit}>Subscribe</SubscribeButton>
           </NewsletterForm>
         </NewsletterContainer>
         </LinksAndSignupContainer>

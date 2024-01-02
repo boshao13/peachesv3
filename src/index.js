@@ -4,9 +4,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import KidsCare from './KidsCare';
+import Classes from './Classes';
 import { HeaderProvider } from './HeaderContext'; // Import the provider
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import PreEnrollment from './PreEnrollment';
+import DayPasses from './DayPasses';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,14 @@ const router = createBrowserRouter([
   {
     path: "/kidscare",
     element: <KidsCare />,
+  },
+  {
+    path: "/classes",
+    element: <Classes />,
+  },
+  {
+    path: "/daypass",
+    element: <DayPasses />,
   },
 ]);
 

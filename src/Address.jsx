@@ -16,11 +16,17 @@ const FlexContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 350px;
-  margin-top: -60px;
+  border-radius: 10px;
 
   @media (min-width: 768px) {
     flex-direction: column;
     align-items: flex-start;
+
+  }
+  @media (max-width: 768px) {
+    padding:10px;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
+    width:85vw;
   }
 `;
 
@@ -36,14 +42,15 @@ const MapWrapper = styled.div`
     justify-content: center;
     align-items: flex-start;
     margin-top: 50px;
-    margin-bottom: 50px;
+
   }
 `;
 
 const StyledMapContainer = styled.div`
   width: 300px;
   height: 300px;
-  border: 2px solid #CD6E57;
+  border: 4px solid #D56F52;
+  //#D56F52;
   border-radius: 20px;
   margin-bottom: 10px; // Space between map and button
 
@@ -65,46 +72,50 @@ align-items: center;
 `;
 
 const HeaderImage = styled.img`
-  max-width: 300px; // Ensure the image is responsive
+  max-width: 350px; // Ensure the image is responsive
   height: auto; // Maintain aspect ratio
+  width: 300px; // Ensure the image is responsive
   margin-bottom: -50px;
-
+  margin-top: -10px;
+]
   @media (max-width: 768px) {
-    width: 90vw; // Adjusted width for mobile
+    width: 100vw; // Adjusted width for mobile
     height: auto; // Height adjusted to maintain aspect ratio
-    margin-bottom: -50px;
+  
+
   }
 `;
 const DirectionsButton = styled.a`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: #CD6E57; // Adjust color as needed
+  background-color: #D56F52; // Adjust color as needed
   color: white;
   padding: 10px 15px;
   border-radius: 20px;
   text-decoration: none;
   font-size: 14px;
-
+  width: 80px;
   cursor: pointer;
 
   &:hover {
     background-color: #B55C44; // Darken on hover
   }
+
 `;
 const ContactButton = styled.a`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: #CD6E57; // Adjust color as needed
+  background-color: #D56F52; // Adjust color as needed
   color: white;
   padding: 10px 15px;
   border-radius: 20px;
   text-decoration: none;
   font-size: 14px;
-  margin-top: 10px;
+  margin-top: 20px;
   cursor: pointer;
-
+  width: 80px;
   &:hover {
     background-color: #B55C44; // Darken on hover
   }
@@ -112,8 +123,9 @@ const ContactButton = styled.a`
 const AddressText = styled.p`
   color: white;
   text-align: center;
-  margin-top: 0px; // Adjust spacing as needed
+  margin-top:55px;
 `;
+
 const StaffedText = styled.p`
   color: white;
   text-align: center;
@@ -166,7 +178,7 @@ const Address = ({handleContactModalSubmit, contactUsRef, openContactUsModal, is
         container: mapContainerRef.current,
         style: 'mapbox://styles/peachesgym/clqea736d005p01of0tvtg9g8',
         center: [-106.536046, 35.115047],
-        zoom: 16,
+        zoom: 14,
         pitch: 60
       });
 
@@ -193,12 +205,14 @@ const Address = ({handleContactModalSubmit, contactUsRef, openContactUsModal, is
 
   return (
     <MapWrapper ref={contactUsRef} id="contact-us-section">
+   
       <FlexContainer>
         <HeaderImage src={headerImage} alt="Come Train With Us!" />
         <AddressText>2801 Eubank Blvd, Albuquerque NM, 87110</AddressText>
-        <AddressText>(505) 555-1234 </AddressText>
-           
+        {/* <Phone>(505) 555-1234 </Phone> */}
+        <StaffedText>Operating Hours</StaffedText>
         <HoursContainer>
+        
           <DaysColumn>
             <Day>M-F</Day>
 
@@ -212,8 +226,20 @@ const Address = ({handleContactModalSubmit, contactUsRef, openContactUsModal, is
           </HoursColumn>
         </HoursContainer>
         <StaffedText>Staffed Hours</StaffedText>
-        <Hours>M-F 8  AM-10 PM</Hours>
-        <Hours>Sat Sun 8 AM - 8 PM</Hours>
+        <HoursContainer>
+          <DaysColumn>
+            <Day>M-F</Day>
+
+            <Day>Sat Sun</Day>
+
+          </DaysColumn>
+          <HoursColumn>
+            <Hours>8 AM - 10 PM</Hours>
+            <Hours>8 AM - 8 PM</Hours>
+
+          </HoursColumn>
+        </HoursContainer>
+  
         <ContactButton onClick={openContactUsModal}> Contact Us </ContactButton>
         <ContactUsModal 
         isContactUsModalOpen={isContactUsModalOpen} 

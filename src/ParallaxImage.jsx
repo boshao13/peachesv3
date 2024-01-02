@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Parallax } from 'react-parallax';
-import parallaxImage from './images/mainphoto.png';
+import parallaxImage from './images/mainimage.jpg';
 import Slogan from './Slogan';
 
 
@@ -27,7 +27,7 @@ const ParallaxContainer = styled.div`
     left: 0;
     width: 100%;
     height: 100px; // Adjust as needed
-    background: linear-gradient(transparent, #FACCB5); // Replace #backgroundColor with your background color
+    background: linear-gradient(transparent, #f5a882); // Replace #backgroundColor with your background color
   }
 `;
 //#D56F52
@@ -42,7 +42,7 @@ const ParallaxImage = () => {
 };
 
     return (
-        <Parallax bgImage={parallaxImage} strength={100} bgImageStyle={bgImageStyle}>
+        <Parallax bgImage={parallaxImage} strength={120} bgImageStyle={bgImageStyle}>
             
             <ParallaxContainer>
 

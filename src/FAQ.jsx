@@ -7,6 +7,7 @@ const Container = styled.div`
   margin: 0 auto;
   padding: 20px;
   margin-bottom: 50px;
+  font-family: oswald;
   
 `;
 const HeaderContainer = styled.div`
@@ -16,8 +17,8 @@ align-items:center;
   
 `;
 const Header = styled.img`
-width: 30vw;
-
+width:380px;
+margin-bottom:20px;
 display:flex;
 align-items:center;
 
@@ -36,6 +37,7 @@ const Question = styled.h3`
   outline: none;
   transition: background-color 0.3s ease;
   border-radius: 5px;
+
   font-size: 15px;
   color: white;
   margin-bottom: 3px;
@@ -57,6 +59,7 @@ const Answer = styled.div`
   border-radius: 5px;
   color: white;
   font-size: 13px;
+
   max-height: ${props => props.maxHeight}px;
 `;
 
