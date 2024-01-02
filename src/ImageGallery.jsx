@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 
 const PhotoGrid = styled.div`
@@ -6,33 +6,42 @@ const PhotoGrid = styled.div`
   flex-wrap: wrap;
   gap: 15px;
   justify-content: center;
-  margin: 20px auto; // Centering the grid
-  width: 60%; // Occupying 60% of the screen width]]
+  margin: 20px auto;
+  width: 60%;
   @media (max-width: 768px) {
-    width: 100%; // Full width for mobile
+    width: 100%;
   }
 `;
 
 const PhotoCard = styled.div`
-  background-image: url(${props => props.image}) ;
-  background-size: cover;
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
   position: relative;
-  width: calc(45% - 7.5px); // accounting for gap
-  height: 300px; // Adjust as needed
+  width: calc(45% - 7.5px);
+  height: 350px;
   cursor: pointer;
   overflow: hidden;
-  border-radius: 10px; 
+  border-radius: 10px;
   font-family: 'Oswald', sans-serif;
   border: 3px solid #D56F52;
 
-  transition: none; 
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
-  &:hover {
-    opacity: 0.9;
+  .photo {
+    flex: 0 0 auto;
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: start;
+    background-size: cover;
+    background-position: center;
   }
 
   @media (max-width: 768px) {
     width: 90vw;
+    height: 300px;
   }
 `;
 
@@ -46,14 +55,9 @@ const Title = styled.div`
   padding: 10px 0;
   font-size: 1em;
   font-weight: bold;
-  transition: transform 0.3s ease-in-out;
-
-  PhotoCard:hover & {
-    transform: translateY(-100%);
-  }
 `;
 const ImageGallery = () => {
-    const [currentPhotoIndex, setCurrentPhotoIndex] = useState(new Array(6).fill(0));
+
     const cardsRef = useRef([]);
   
     const photos = [
@@ -96,40 +100,38 @@ const ImageGallery = () => {
 
 
 
-  const handlePhotoChange = (cardIndex, direction) => {
-    setCurrentPhotoIndex(prev => {
-      const newIndexes = [...prev];
-      if (direction === 'right') {
-        newIndexes[cardIndex] = (prev[cardIndex] + 1) % photos[cardIndex].images.length;
-      } else {
-        newIndexes[cardIndex] = (prev[cardIndex] - 1 + photos[cardIndex].images.length) % photos[cardIndex].images.length;
-      }
-      return newIndexes;
-    });
-  };
 
   const handleClick = (e, index) => {
     const rect = e.target.getBoundingClientRect();
     const x = e.clientX - rect.left;
-    if (x < rect.width / 2) {
-      handlePhotoChange(index, 'left');
-    } else {
-      handlePhotoChange(index, 'right');
+    const card = cardsRef.current[index];
+
+    if (card) {
+      const scrollAmount = card.clientWidth;
+      if (x < rect.width / 2) {
+        card.scrollLeft -= scrollAmount;
+      } else {
+        card.scrollLeft += scrollAmount;
+      }
     }
   };
 
   return (
     <PhotoGrid>
       {photos.map((photo, index) => {
-        // console.log("Image URL for card", index, ": ", photo.images[currentPhotoIndex[index]]); // Debugging line
         return (
           <PhotoCard
             ref={(el) => (cardsRef.current[index] = el)}
-            className="show"
             key={index}
-            image={photo.images[currentPhotoIndex[index]]}
             onClick={(e) => handleClick(e, index)}
           >
+            {photo.images.map((image, imgIndex) => (
+              <div
+                key={imgIndex}
+                className="photo"
+                style={{ backgroundImage: `url(${image})` }}
+              />
+            ))}
             <Title>{photo.title}</Title>
           </PhotoCard>
         );
