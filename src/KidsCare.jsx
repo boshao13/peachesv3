@@ -15,7 +15,7 @@ const IntroText = styled.div`
   margin: 20px auto;
   border-radius: 8px;
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
-  max-width: 760px; /* Adjust based on your design preference */
+  max-width: 650px; /* Adjust based on your design preference */
   text-align: left;
   font-family: oswald;
 
@@ -38,6 +38,7 @@ const BackgroundImage = styled.div`
 
 const KidsCareContainer = styled.div`
   text-align: center;
+
   @media (max-width: 768px) {
     width: 100%;
   }
@@ -56,7 +57,7 @@ const ImageHeader = styled.img`
 
 const CarouselContainer = styled.div`
   width: 100%; /* Full width of the container */
-  max-width: 300px; /* Max width to show one image at a time */
+  max-width: 700px; /* Max width to show one image at a time */
   overflow: hidden;
   position: relative;
   margin: auto; /* Center the carousel */

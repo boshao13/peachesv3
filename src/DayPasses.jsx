@@ -53,7 +53,7 @@ const DayPassCard = styled.div`
   background-color: #fff; /* Card background color */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Card shadow */
   border-radius: 15px;
-  height: 250px;
+  height: 280px;
   text-align: center;
   margin-bottom: 20px; /* Spacing between cards */
   border: 4px solid white; /* Brown border */
@@ -86,10 +86,18 @@ const DayPassTitle = styled.h2`
 const DayPassPrice = styled.p`
   font-size: 40px;
   margin-top:5px;
+  @media (max-width: 768px) {
+    font-size: 30px;
+  }
 `;
 
 const DayPassDescription = styled.p`
   font-size: 19px;
+  @media (max-width: 768px) {
+    font-size: 15px;
+    margin-top:-15px;
+  }
+  
 `;
 
 const DayPasses = () => {
@@ -102,12 +110,18 @@ const DayPasses = () => {
         <DayPassCard>
           <DayPassTitle>Standard Day Pass</DayPassTitle>
           <DayPassPrice>$15</DayPassPrice>
-          <DayPassDescription>Access to gym facilities</DayPassDescription>
+          <DayPassDescription>Includes:<br/>
+24 Hour Unlimited Gym Use</DayPassDescription>
         </DayPassCard>
         <DayPassCard>
           <DayPassTitle>Premium Day Pass</DayPassTitle>
           <DayPassPrice>$25</DayPassPrice>
-          <DayPassDescription>Access to gym and all other amenities</DayPassDescription>
+          <DayPassDescription>Includes:<br/>
+24 Hour Unlimited Gym Use<br/>
+Sauna<br/>
+Cold Plunge<br/>
+Classes<br/>
+</DayPassDescription>
         </DayPassCard>
       </DayPassesFlexContainer>
     </DayPassesContainer>
