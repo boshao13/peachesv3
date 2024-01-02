@@ -22,7 +22,7 @@ const HeaderContainer = styled.header`
   position: fixed;
   top: 0;
   left: 50%;
-  height:10px;
+  height:14px;
   transform: translateX(-50%);
   z-index: 1000;
   width: 80vw;

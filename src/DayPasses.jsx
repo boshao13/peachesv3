@@ -67,7 +67,7 @@ const DayPassCard = styled.div`
   @media (min-width: 768px) {
     width: 30vw;
     margin: 20px;
-    height: 300px;
+    height: 380px;
   }
 
   transition: transform 0.2s ease-in-out; /* Hover effect */

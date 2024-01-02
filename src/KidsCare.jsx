@@ -105,9 +105,7 @@ const CarouselArrow = styled.div`
 
 
 const KidsCare = () => {
-  const images = [require('./images/stockgym4.jpeg'), require('./images/stockgym1.avif'), 
-                  require('./images/stockgym2.jpeg'), require('./images/stockgym3.avif'), 
-                  require('./images/stockgym5.jpeg'), require('./images/stockgym6.jpeg')];
+  const images = [require('./images/kidscare4.jpg')];
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToPrevious = () => {
