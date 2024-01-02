@@ -71,14 +71,12 @@ const ImageGallery = () => {
       },
       {
         title: 'Classes',
-        images: [require('./images/classespic2.jpg') , require('./images/classespic.jpg'), 
-        require('./images/classespic3.jpg')]
+        images: [require('./images/classes1.jpg') , require('./images/classes2.jpg'), 
+        require('./images/classes3.jpg')]
       },
       {
         title: 'Kids Care',
-        images: [require('./images/kidscare4.jpg') , require('./images/stockgym1.avif'), 
-        require('./images/stockgym2.jpeg'),require('./images/stockgym3.avif'),require('./images/stockgym5.jpeg'),
-        require('./images/stockgym6.jpeg')]
+        images: [require('./images/kidscare4.jpg') , require('./images/kidscare2.jpg')]
       },
       {
         title: 'Cold Plunge',
