@@ -9,6 +9,7 @@ import Slogan from './Slogan';
 const ParallaxContainer = styled.div`
   position: relative;
   height: 100vh; // Default height for larger screens
+  backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px); // Added for Safari support
 
   @media (max-width: 768px) {
