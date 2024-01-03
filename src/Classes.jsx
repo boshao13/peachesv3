@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import Header from './Header';
 import comingsoon from './images/comingsoon.png'
 import background from './images/background.png'
+import Footer from './Footer';
 const scroll = keyframes`
   0% {
     transform: translateX(0%);
@@ -48,13 +49,15 @@ const CarouselContainer = styled.div`
   width: 80vw; /* Fixed width */
   overflow: hidden;
   position: relative;
-  margin: auto; /* Center the carousel */
-  border: 5px solid #5B3B18; /* Dark brown border */
+
+  margin-bottom:530px;
   border-radius: 10px; /* Rounded corners */
+  
   background-color: #D56F52; /* White background */
   @media (max-width: 768px) {
     width: 90vw;
     margin-top: 100px;
+    margin-bottom:200px;
   }
 `;
 
@@ -90,15 +93,16 @@ const Classes = () => {
           <h2>Pricing and Hours</h2>
           <p>Information about pricing and hours of availability goes here.</p>
         </InfoBox> */}
-        {/* <CarouselContainer>
-          <CarouselSlider>
+        <CarouselContainer>
+          {/* <CarouselSlider>
 
             {images.concat(images).map((image, index) => (
               <CarouselImage key={index} src={image} alt={`Carousel Image ${index + 1}`} />
             ))}
-          </CarouselSlider>
-        </CarouselContainer> */}
+          </CarouselSlider> */}
+        </CarouselContainer> 
       </ClassesContainer>
+      <Footer/>
     </>
   );
 };

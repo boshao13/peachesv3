@@ -33,7 +33,7 @@ const HeaderContainer = styled.header`
 
   @media (max-width: 768px) {
   
-   height: ${({ isOpen }) => isOpen ? '285px' : '28px'};
+   height: ${({ isOpen }) => isOpen ? '310px' : '28px'};
    transition: height 0.7s ease-in-out;
   }
 `;
@@ -112,9 +112,9 @@ const Nav = styled.nav`
     right: 0; 
     background-color: transparent;
     overflow: hidden;
-    gap: 14px;
+    gap: 12px;
  
-    height: ${({ isOpen }) => isOpen ? '280px' : '0'};
+    height: ${({ isOpen }) => isOpen ? '300px' : '0'};
     opacity: ${({ isOpen }) => isOpen ? 1 : 0}; // Control opacity
     transition: height 0.7s ease-in-out, opacity 0.7s ease-in-out;
     width: 100%;
@@ -220,6 +220,7 @@ const Header = ({  contactUsRef }) => {
     setIsOpen(!isOpen);
   };
 
+
   return (
     <HeaderWrapper>
       <HeaderContainer isOpen={isOpen}>
@@ -232,11 +233,15 @@ const Header = ({  contactUsRef }) => {
           </MobileIcon>
         </TopBar>
         <Nav isOpen={isOpen}>
+          <NavLink onClick={scrollToTop}>
+            Home
+            <LeafIcon icon={faLeaf} />
+          </NavLink>
           <NavLink href="daypass">
             Day Pass
             <LeafIcon icon={faLeaf} />
           </NavLink>
-          <NavLink  onClick={navigateToKids}>
+          <NavLink onClick={navigateToKids}>
             Kids Care
             <LeafIcon icon={faLeaf} />
           </NavLink>

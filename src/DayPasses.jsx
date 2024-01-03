@@ -4,6 +4,7 @@ import Header from './Header';
 import daypasses from './images/daypasses.png';
 import peachasset from './images/peachasset.png'
 import blurredBackground from './images/mainphoto.png';
+import Footer from './Footer';
 const DayPassesContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -102,6 +103,7 @@ const DayPassDescription = styled.p`
 
 const DayPasses = () => {
   return (
+    <>
     <DayPassesContainer>
       <Header />
       <HeaderImage src={daypasses} alt="Header Image" />
@@ -125,6 +127,8 @@ Classes<br/>
         </DayPassCard>
       </DayPassesFlexContainer>
     </DayPassesContainer>
+    <Footer/>
+  </>
   );
 };
 

@@ -6,6 +6,7 @@ import PreModal from './PreModal';
 import blurredBackground from './images/background4.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import Footer from './Footer';
 
 const IntroText = styled.div`
 
@@ -63,7 +64,7 @@ const CarouselContainer = styled.div`
   margin: auto; /* Center the carousel */
   border: 4px solid #D56F52; 
   border-radius: 10px; /* Rounded corners */
-
+  margin-bottom:150px;
   @media (max-width: 768px) {
     max-width: 90vw;
   }
@@ -142,6 +143,7 @@ const KidsCare = () => {
         </CarouselContainer>
       </KidsCareContainer>
       <PreModal />
+      <Footer/>
     </>
   );
 };
