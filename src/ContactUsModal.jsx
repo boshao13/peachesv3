@@ -2,7 +2,8 @@ import React from 'react';
 import {styled, keyframes} from 'styled-components';
 import Modal from 'react-modal';
 import modalheader from "./images/contactus1.png"
-import emailjs from 'emailjs-com';
+import thankyou from './images/thankyou.png'
+
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -11,6 +12,22 @@ const fadeIn = keyframes`
     opacity: 1;
   }
 `;
+const ThankYouHeader = styled.img`
+  max-width: 300px;
+  margin-top: 20px; // Adjust as needed
+  @media (max-width: 768px) {
+    width: 70vw;
+    height: auto;
+  }
+`;
+
+const ThankYouMessage = styled.div`
+  font-size: 1em;
+  font-family: oswald;
+  color: white;
+  text-align: center;
+  margin-top: 20px; // Adjust as needed to center the message
+`;
 
 const CustomModal = styled(Modal)`
   position: absolute;
@@ -18,20 +35,20 @@ const CustomModal = styled(Modal)`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 400px;
+  height: 350px; // Fixed height
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content:center; // Center everything in the modal
-  background: #D56F52; // Light peach background
+  justify-content: center; // Center content vertically
+  align-items: center; // Center content horizontally
+  background: #D56F52;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   outline: none;
   animation: ${fadeIn} 1s ease-in-out;
-
   @media (max-width: 768px) {
-    width: 80vw; // Adjusted width for mobile
-    height: 350px; // Height adjusted to maintain aspect ratio
+    width: 80vw; 
+    height: 350px;
   }
 `;
 
@@ -108,7 +125,7 @@ const TextAreaField = styled.textarea`
     }
 `;
 
-const ContactUsModal = ({ handleContactModalSubmit, openContactUsModal, closeContactUsModal, formRef , isContactUsModalOpen}) => {
+const ContactUsModal = ({ isSubmitted, handleContactModalSubmit, openContactUsModal, closeContactUsModal, formRef , isContactUsModalOpen}) => {
     
   return (
       <CustomModal   
@@ -116,6 +133,13 @@ const ContactUsModal = ({ handleContactModalSubmit, openContactUsModal, closeCon
         onRequestClose={closeContactUsModal} 
         overlayClassName="custom-overlay">
       <CloseButton onClick={closeContactUsModal}>X</CloseButton>
+      {isSubmitted ? (
+        <>
+          <ThankYouHeader src={thankyou} alt="Thank You" />
+          <ThankYouMessage>We will get back to you shortly!</ThankYouMessage>
+        </>
+      ) : (
+        <>
       <ModalHeading src={modalheader}/>
       <Form ref={formRef} >
       <FormField type="text" placeholder="Name" name="user_name"/>
@@ -125,6 +149,8 @@ const ContactUsModal = ({ handleContactModalSubmit, openContactUsModal, closeCon
       <SubmitButton  onClick={handleContactModalSubmit}
       type="submit">Submit</SubmitButton>
       </Form>
+      </>
+      )}
     </CustomModal>
   );
 };

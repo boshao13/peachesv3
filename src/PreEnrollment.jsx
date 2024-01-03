@@ -16,6 +16,7 @@ const Title = styled.img`
   @media (max-width: 768px) {
     width: 80vw;
     margin-bottom:-10px;
+    margin-top:30px;
     max-width: 300px; // Ensure the image is responsive
   }
 `;
@@ -99,7 +100,7 @@ const CheckmarkIcon = styled(FontAwesomeIcon).attrs({
 
 
 
-const PreEnrollment = ({preEnrollmentRef, handleModalSubmit, openModal, modalIsOpen, setModalIsOpen, form }) => {
+const PreEnrollment = ({setIsSubmitted, preEnrollmentRef, handleModalSubmit, openModal, modalIsOpen, setModalIsOpen, form, isSubmitted }) => {
     const launchDate = new Date('2024-02-01');
 
       return (
@@ -115,7 +116,7 @@ const PreEnrollment = ({preEnrollmentRef, handleModalSubmit, openModal, modalIsO
           <EnrollmentButton onClick={openModal}>
             Pre Enroll Now! <CheckmarkIcon />
           </EnrollmentButton>
-          <PreModal form={form} handleModalSubmit={handleModalSubmit} isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} />
+          <PreModal setIsSubmitted={setIsSubmitted} isSubmitted={isSubmitted} form={form} handleModalSubmit={handleModalSubmit} isOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
         </PreEnrollmentSection>
         </PreContainer>
       );

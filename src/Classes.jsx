@@ -19,6 +19,9 @@ const BackgroundImage = styled.div`
   right: 0;
   bottom: 0;
   background-image: url(${background}); /* Set the background image */
+  background-size: cover; /* Cover the entire area */
+  background-repeat: no-repeat; /* Prevent repeating the image */
+  background-position: center; /* Center the image */
   filter: blur(10px); /* Adjust the blur amount as needed */
   z-index: -1; /* Place it behind the content */
 `;

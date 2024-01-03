@@ -79,9 +79,9 @@ const HeaderImage = styled.img`
   margin-top: -10px;
 ]
   @media (max-width: 768px) {
-    width: 100vw; // Adjusted width for mobile
-    height: auto; // Height adjusted to maintain aspect ratio
-  
+    width: 100vw; 
+    height: auto; 
+    margin-top: 30px;
 
   }
 `;
@@ -116,6 +116,9 @@ const ContactButton = styled.a`
   margin-top: 20px;
   cursor: pointer;
   width: 80px;
+  @media (max-width: 768px) {
+   margin-bottom:10px;
+  }
   &:hover {
     background-color: #B55C44; // Darken on hover
   }
@@ -165,7 +168,7 @@ const Hours = styled.p`
   margin: 0; // Remove default margins
 `;
 
-const Address = ({handleContactModalSubmit, contactUsRef, openContactUsModal, isContactUsModalOpen, closeContactUsModal, formRef}) => {
+const Address = ({isSubmitted={isSubmitted}, handleContactModalSubmit, contactUsRef, openContactUsModal, isContactUsModalOpen, closeContactUsModal, formRef}) => {
 
 
   const mapContainerRef = useRef(null);
@@ -246,6 +249,7 @@ const Address = ({handleContactModalSubmit, contactUsRef, openContactUsModal, is
         closeContactUsModal={closeContactUsModal}
         handleContactModalSubmit={handleContactModalSubmit}
         formRef={formRef}
+        isSubmitted={isSubmitted}
         />
       </FlexContainer>
       <RightContainer>

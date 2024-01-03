@@ -53,6 +53,9 @@ const App = () => {
     const preEnrollmentRef = useRef(null);
     // header and pre modal open
     const { isOpen, setIsOpen, openModal, modalIsOpen, setModalIsOpen } = useHeaderContext();
+    // state for thank you message on modal
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
 
 
       // Contact Us Modal
@@ -100,15 +103,17 @@ const App = () => {
       function closeModal() {
         setModalIsOpen(false);
       }
-      //pre modal
+
+      //pre enroll modal
          function handleModalSubmit(event) {
          event.preventDefault();
+         setIsSubmitted(true)
          emailjs
           .sendForm("service_3ykzhp7", "template_8c53d6n", form.current, "gk157tFkxTFBmQWBQ")
           .then(
             (response) => {
-              console.log("Email sent successfully:", response);
-              closeModal();
+              console.log("Email sent successfully34:", response);
+              // closeModal();
             },
             (error) => {
               console.error("Error sending email:", error);
@@ -116,8 +121,9 @@ const App = () => {
             }
           );
  
-          closeModal();
+
           }
+
           useEffect(() => {
             if (isOpen) {
               document.body.classList.add('is-blurred');
@@ -131,12 +137,12 @@ const App = () => {
          
           function openContactUsModal() {
             setContactUsModalOpen(true);
-            console.log("clicked")
 
           }
         
           function closeContactUsModal() {
             setContactUsModalOpen(false);
+            setIsSubmitted(false)
           }
 
           function handleContactModalSubmit(event) {
@@ -146,13 +152,14 @@ const App = () => {
              .then(
                (response) => {
                  console.log("Email sent successfully:", response);
-                  closeContactUsModal()
+                 setIsSubmitted(true)
                },
                (error) => {
                  console.error("Error sending email:", error);
                  // Handle error gracefully
                }
              );
+             //NEWSLETTER FORM
               }
               function handleNewsLetterSubmit(event) {
                 event.preventDefault();
@@ -193,7 +200,9 @@ const App = () => {
             handleModalSubmit={handleModalSubmit} 
             setModalIsOpen={setModalIsOpen} 
             openModal={openModal} 
-            modalIsOpen={modalIsOpen}/>
+            modalIsOpen={modalIsOpen}
+            isSubmitted={isSubmitted}
+            setIsSubmitted={setIsSubmitted}/>
             <Address  
             openContactUsModal={openContactUsModal}
             closeContactUsModal={closeContactUsModal}
@@ -201,6 +210,8 @@ const App = () => {
             handleContactModalSubmit={handleContactModalSubmit}
             formRef={formRef}
             contactUsRef={contactUsRef}
+            isSubmitted={isSubmitted}
+
             />
 
             <FAQ/>

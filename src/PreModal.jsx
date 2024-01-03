@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import {styled, keyframes} from 'styled-components';
 import Modal from 'react-modal';
 import modalheader from "./images/modaltitle.png"
+import thankyou from './images/thankyou.png'
+const ThankYouHeader = styled.img`
+  max-width: 300px;
+  margin-top: 45px; // Adjust as needed
+  @media (max-width: 768px) {
+    width: 70vw;
+
+  }
+`;
+
+const ThankYouMessage = styled.div`
+  font-size: 1em;
+  font-family: oswald;
+  color: white;
+  text-align: center;
+  margin-top: 20px; // Adjust as needed to center the message
+`;
 
 const fadeIn = keyframes`
   from {
@@ -27,9 +45,11 @@ const CustomModal = styled(Modal)`
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   outline: none;
   animation: ${fadeIn} 1s ease-in-out;
+  height: 300px; // Set a fixed height
+
   @media (max-width: 768px) {
     width: 80vw; // Adjusted width for mobile
-    height: auto; // Height adjusted to maintain aspect ratio
+
   }
 `;
 
@@ -86,20 +106,31 @@ const SubmitButton = styled.button`
   }
 `;
 
-const PreModal = ({ isOpen, onRequestClose, handleModalSubmit, form }) => {
+const PreModal = ({  setModalIsOpen, setIsSubmitted, isSubmitted, isOpen, onRequestClose, handleModalSubmit, form }) => {
+
+  const handleClose = () => {
+    setIsSubmitted(false);
+    setModalIsOpen(false);
+  }
   return (
     <CustomModal isOpen={isOpen} onRequestClose={onRequestClose} overlayClassName="custom-overlay">
-      <CloseButton onClick={onRequestClose}>X</CloseButton>
-      <ModalHeading src={modalheader}/>
-      
-      <Form ref={form} >
-  
-  <FormField type="text" placeholder="Name" name="user_name"/>
-  <FormField type="tel" placeholder="Phone Number" name="user_phone" />
-  <FormField type="email" placeholder="Email" name="user_email" />
-
-        <SubmitButton onClick={handleModalSubmit} type="submit">Submit</SubmitButton>
-      </Form>
+      <CloseButton onClick={handleClose}>X</CloseButton>
+      {isSubmitted ? (
+        <>
+          <ThankYouHeader src={thankyou} alt="Thank You" />
+          <ThankYouMessage>You will get an email confirmation shortly!</ThankYouMessage>
+        </>
+      ) : (
+        <>
+          <ModalHeading src={modalheader}/>
+          <Form ref={form}>
+            <FormField type="text" placeholder="Name" name="user_name"/>
+            <FormField type="tel" placeholder="Phone Number" name="user_phone" />
+            <FormField type="email" placeholder="Email" name="user_email" />
+            <SubmitButton onClick={handleModalSubmit} type="submit">Submit</SubmitButton>
+          </Form>
+        </>
+      )}
     </CustomModal>
   );
 };
