@@ -62,7 +62,7 @@ const Logo1 = styled.img`
   height: auto;
   margin-bottom: 5px;
   margin-left: -10px;
-
+  cursor: pointer; // Add cursor pointer
   @media (max-width: 768px) {
   display:none;
    }
@@ -74,6 +74,7 @@ const Logo2 = styled.img`
   height: auto;
   margin-bottom: 5px;
   margin-left: -10px;
+  cursor: pointer; // Add cursor pointer
   @media (max-width: 768px) {
     display:block;
      }
@@ -93,7 +94,7 @@ const BookTourButton = styled.a`
   align-self: center;
   font-family: 'lato';
   margin-left: 5px;
-
+  cursor: pointer; // Add cursor pointer
   @media (max-width: 768px) {
     display: block; // Show only on mobile
   }
@@ -143,6 +144,7 @@ const NavLink = styled.a`
   position: relative;
   margin-top: 3px;
   margin-bottom: 4px;
+  cursor: pointer; // Add cursor pointer
   &:hover ${LeafIcon} {
     opacity: 1;
   }
