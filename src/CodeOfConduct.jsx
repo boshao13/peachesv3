@@ -28,7 +28,8 @@ const RulesList = styled.ul`
   max-width: 900px;
   text-align: left;
   font-family: Oswald;
-  background-color: #f5a882;
+  background-color: rgba(55, 55, 55, 0.8); // Dark grey semi-transparent
+
   list-style: none; // Remove default list style
 
 
@@ -85,7 +86,8 @@ const IntroText = styled.div`
   max-width: 900px; /* Adjust based on your design preference */
   text-align: left;
   font-family: oswald;
-  background-color: #f5a882;
+  background-color: rgba(55, 55, 55, 0.8); // Dark grey semi-transparent
+
 
 
   @media (max-width: 768px) {
