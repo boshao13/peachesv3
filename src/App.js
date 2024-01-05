@@ -13,6 +13,7 @@ import { styled, createGlobalStyle } from 'styled-components';
 import Modal from 'react-modal';
 import { useHeaderContext } from './HeaderContext';
 import { useLocation } from 'react-router-dom';
+import { faQ } from '@fortawesome/free-solid-svg-icons';
 
 
 Modal.setAppElement('#root');
@@ -51,6 +52,7 @@ const App = () => {
     const location = useLocation();
     const contactUsRef = useRef(null);
     const preEnrollmentRef = useRef(null);
+    const faqRef= useRef(null)
     // header and pre modal open
     const { isOpen, setIsOpen, openModal, modalIsOpen, setModalIsOpen } = useHeaderContext();
     // state for thank you message on modal
@@ -72,6 +74,9 @@ const App = () => {
           window.scrollTo({ top: yOffset, behavior: 'smooth' });
         } else if (location.hash === '#pre-enrollment-section' && preEnrollmentRef.current) {
           const yOffset = preEnrollmentRef.current.getBoundingClientRect().top + window.pageYOffset - 80;
+          window.scrollTo({ top: yOffset, behavior: 'smooth' });
+        } else if (location.hash === '#faq' && faqRef.current) {
+          const yOffset = faqRef.current.getBoundingClientRect().top + window.pageYOffset - 200;
           window.scrollTo({ top: yOffset, behavior: 'smooth' });
         }
       }, [location.hash, contactUsRef, preEnrollmentRef]);
@@ -97,12 +102,6 @@ const App = () => {
           elementsToBlur.forEach(el => el.classList.remove('blur-background'));
         }
       }, [modalIsOpen, isOpen, isContactUsModalOpen]);
-      // pre enrollment modal 
-
-    
-      function closeModal() {
-        setModalIsOpen(false);
-      }
 
       //pre enroll modal
          function handleModalSubmit(event) {
@@ -214,7 +213,8 @@ const App = () => {
 
             />
 
-            <FAQ/>
+            <FAQ
+            faqRef={faqRef}/>
             <Footer
             newsletterFormRef={newsletterFormRef}
             handleNewsLetterSubmit={handleNewsLetterSubmit}

@@ -33,7 +33,7 @@ const HeaderContainer = styled.header`
 
   @media (max-width: 768px) {
   
-   height: ${({ isOpen }) => isOpen ? '310px' : '28px'};
+   height: ${({ isOpen }) => isOpen ? '325px' : '28px'};
    transition: height 0.7s ease-in-out;
   }
 `;
@@ -147,7 +147,7 @@ const NavLink = styled.a`
     opacity: 1;
   }
   @media (max-width: 768px) {
-    font-size: 17px;
+    font-size: 15px;
   }
 `;
 
@@ -204,11 +204,14 @@ const Header = ({  contactUsRef }) => {
   };
 
   const scrollToBottom = () => {
-    window.scrollTo({
-      top: document.documentElement.scrollHeight,
-      behavior: 'smooth'
-    });
-    setIsOpen(false);
+    if (window.location.pathname !== "/" && window.location.pathname !== "/home") {
+      navigate('/#faq');
+      setIsOpen(false);
+    } else if (contactUsRef.current) {
+      const yOffset = contactUsRef.current.getBoundingClientRect().top + window.pageYOffset +800;
+      window.scrollTo({ top: yOffset, behavior: 'smooth' });
+      setIsOpen(false);
+    }
   };
 
   const navigateToKids = () => {
@@ -255,6 +258,10 @@ const Header = ({  contactUsRef }) => {
           </NavLink>
           <NavLink onClick={scrollToBottom}>
             FAQ
+            <LeafIcon icon={faLeaf} />
+          </NavLink>
+          <NavLink href="codeofconduct">
+            Code of Conduct
             <LeafIcon icon={faLeaf} />
           </NavLink>
         </Nav>

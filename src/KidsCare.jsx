@@ -11,12 +11,12 @@ import Footer from './Footer';
 const IntroText = styled.div`
 
   color: white; 
-  font-size: 1em;
+  font-size: 20px;
   padding: 20px;
   margin: 20px auto;
   border-radius: 8px;
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
-  max-width: 650px; /* Adjust based on your design preference */
+  max-width: 670px; /* Adjust based on your design preference */
   text-align: left;
   font-family: oswald;
 
@@ -42,9 +42,11 @@ const BackgroundImage = styled.div`
 
 const KidsCareContainer = styled.div`
   text-align: center;
-
+  height:91vh;
   @media (max-width: 768px) {
     width: 100%;
+    height:100vh;
+
   }
 `;
 
@@ -65,11 +67,13 @@ const CarouselContainer = styled.div`
   overflow: hidden;
   position: relative;
   margin: auto; /* Center the carousel */
+
   border: 4px solid #D56F52; 
   border-radius: 10px; /* Rounded corners */
-  margin-bottom:150px;
+  margin-bottom:200px;
   @media (max-width: 768px) {
     max-width: 90vw;
+
   }
 `;
 
@@ -128,7 +132,7 @@ const KidsCare = () => {
         <ImageHeader src={kidscare} alt="Kids Care Header" />
         <IntroText> 
         <p>
-            Embrace your fitness journey with confidence while we take care of your little ones. Our Kids Care service offers a playful haven for your children, allowing you to focus on achieving your wellness goals. For an additional $15 a month, delight in the freedom to work out, knowing your kids are enjoying their time just a hop, skip, and a jump away. Step into our women-focused gym where we empower you to prioritize yourself, as we nurture your children with fun and engaging activities.
+            Embrace your fitness journey with confidence while we take care of your little ones. For an additional $15 a month, and $5 for any additional child! Delight in the freedom to work out, knowing your kids are enjoying their time just a hop, skip, and a jump away. Step into our women-focused gym where we empower you to prioritize yourself, as we nurture your children with fun and engaging activities.
         </p> 
         </IntroText>
         <CarouselContainer>

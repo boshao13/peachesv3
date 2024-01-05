@@ -2,8 +2,8 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import logo from './images/peacheslogo4.png'; // Import your logo
 import wheregoodthings from "./images/wheregoodthingsare.png"
-import growing from "./images/growing.png"
-import thriving from "./images/thriving.png"
+import growing from "./images/growing1.png"
+import thriving from "./images/thriving2.png"
 import happening from "./images/happening.png"
 
 const Happening = styled.img`

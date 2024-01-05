@@ -72,11 +72,12 @@ const faqs = [
     { question: "Is the gym equipped with amenities specific to women's needs?", answer: "Yes, we provide amenities like private changing rooms, secure lockers, women-specific fitness equipment, and a lounge area for relaxation and socializing. Our goal is to make your gym experience as comfortable and convenient as possible." },
     { question: "Are there any membership packages available at Peaches?", answer: "We offer a range of membership options to suit different needs and budgets, including monthly, quarterly, and annual plans. Each membership comes with access to all gym amenities and classes."
 },    { question: "How do I sign up for classes at Peaches?", answer: "You can sign up for classes through our website, mobile app, or in person at the gym. We recommend booking in advance to secure your spot."
-}
+},
+
 ];
 
 
-const FAQ = () => {
+const FAQ = ({faqRef}) => {
   const [openQuestion, setOpenQuestion] = useState(null);
   const [heights, setHeights] = useState([]);
   const answerRefs = useRef([]);
@@ -92,7 +93,7 @@ const FAQ = () => {
   };
 
   return (
-    <Container>
+    <Container ref={faqRef} id="faq">
         <HeaderContainer>
       <Header src={faq}/>
       </HeaderContainer>

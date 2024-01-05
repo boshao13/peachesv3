@@ -7,6 +7,10 @@ const FooterContainer = styled.footer`
   text-align: center;
   padding: 10px; // Reduced padding
   font-size: 8px; // Smaller font size
+  height:9vh;
+  @media (max-width: 768px) {
+    height:15vh;
+  }
 
 `;
 const LinksAndSignupContainer = styled.div`

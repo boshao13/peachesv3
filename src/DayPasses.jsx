@@ -14,6 +14,7 @@ const DayPassesContainer = styled.div`
   padding: 20px;
   font-family: oswald;
   position: relative; /* Add relative positioning */
+
 `;
 
 const BackgroundImage = styled.div`
@@ -37,6 +38,8 @@ const HeaderImage = styled.img`
   margin-bottom: 20px; /* Spacing between header image and cards */
   @media (max-width: 768px) {
     width:100vw;
+   
+      margin-top: 100px;
   }
 `;
 
@@ -79,11 +82,22 @@ const DayPassCard = styled.div`
     transform: translateY(-5px); /* Move card slightly upward on hover */
   }
 `;
+const StandardContainer = styled.div`
+margin-top:80px;
+@media (max-width: 768px) {
+  margin-top:60px;
+
+}
+`;
 
 const DayPassTitle = styled.h2`
   font-size: 24px;
   margin-bottom: 0px;
-  margin-top:40px;
+  margin-top:50px;
+  @media (max-width: 768px) {
+    margin-top:40px;
+  
+  }
 
 `;
 
@@ -112,12 +126,16 @@ const DayPasses = () => {
       <HeaderImage src={daypasses} alt="Header Image" />
       <BackgroundImage /> {/* Add the BackgroundImage component */}
       <DayPassesFlexContainer>
+       
         <DayPassCard>
+        <StandardContainer>
           <DayPassTitle>Standard Day Pass</DayPassTitle>
           <DayPassPrice>$15</DayPassPrice>
           <DayPassDescription>Includes:<br/>
 24 Hour Unlimited Gym Use</DayPassDescription>
+</StandardContainer>
         </DayPassCard>
+     
         <DayPassCard>
           <DayPassTitle>Premium Day Pass</DayPassTitle>
           <DayPassPrice>$25</DayPassPrice>
