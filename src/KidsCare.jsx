@@ -132,7 +132,7 @@ const KidsCare = () => {
         <ImageHeader src={kidscare} alt="Kids Care Header" />
         <IntroText> 
         <p>
-            Embrace your fitness journey with confidence while we take care of your little ones. For an additional $15 a month, and $5 for any additional child! Delight in the freedom to work out, knowing your kids are enjoying their time just a hop, skip, and a jump away. Step into our women-focused gym where we empower you to prioritize yourself, as we nurture your children with fun and engaging activities.
+            Embrace your fitness journey with confidence while we take care of your little ones. For only $15 a month, and $5 for each additional child, delight in the freedom to work out, knowing your kids are enjoying their time just a hop, skip, and a jump away. Step into our women-focused gym where we empower you to prioritize yourself, as we nurture your children with fun and engaging activities.
         </p> 
         </IntroText>
         <CarouselContainer>

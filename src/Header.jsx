@@ -33,7 +33,7 @@ const HeaderContainer = styled.header`
 
   @media (max-width: 768px) {
   
-   height: ${({ isOpen }) => isOpen ? '325px' : '28px'};
+   height: ${({ isOpen }) => isOpen ? '328px' : '28px'};
    transition: height 0.7s ease-in-out;
   }
 `;

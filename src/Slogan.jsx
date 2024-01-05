@@ -2,9 +2,9 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import logo from './images/peacheslogo4.png'; // Import your logo
 import wheregoodthings from "./images/wheregoodthingsare.png"
-import growing from "./images/growing1.png"
+import growing from "./images/growing2.png"
 import thriving from "./images/thriving2.png"
-import happening from "./images/happening.png"
+import happening from "./images/happening1.png"
 
 const Happening = styled.img`
   width: 200px;
