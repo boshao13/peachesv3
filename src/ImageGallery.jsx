@@ -96,6 +96,10 @@ const ImageGallery = () => {
         title: 'Exclusive Booty Builder® Equipment',
         images: [require('./images/bootybuilder3.png') , require('./images/bootybuilder.png'),require('./images/bootybuilder2.png')]
       },
+      {
+        title: 'Peaches Lounge',
+        images: [require('./images/lounge3.jpeg') , require('./images/lounge2.jpg'),require('./images/lounge.jpeg')]
+      }
 
 
     ];
