@@ -28,7 +28,7 @@ const RulesList = styled.ul`
   max-width: 900px;
   text-align: left;
   font-family: Oswald;
-  background-color: rgba(55, 55, 55, 0.8); // Dark grey semi-transparent
+  background-color: rgba(245, 128, 73, 0.6); // Semi-transparent #a65935
 
   list-style: none; // Remove default list style
 
@@ -86,7 +86,8 @@ const IntroText = styled.div`
   max-width: 900px; /* Adjust based on your design preference */
   text-align: left;
   font-family: oswald;
-  background-color: rgba(55, 55, 55, 0.8); // Dark grey semi-transparent
+  background-color: rgba(245, 128, 73, 0.6); // Semi-transparent #a65935
+
 
 
 
@@ -110,9 +111,9 @@ const CodeOfConduct = () => {
             <li>Personal Space and Respect: All members must maintain a respectful distance from others, honoring personal space at all times.</li>
             <li>Advice and Safety: While unsolicited advice is discouraged, intervention is permitted if equipment is being misused in a manner that poses a safety risk.</li>
             <li>Respectful Behavior: Any form of staring, unwanted physical contact, catcalling, or making unsolicited comments about the bodies of other members is strictly forbidden.</li>
-            <li>Privacy and Personal Boundaries: Members must refrain from requesting personal contact information without clear mutual interest.</li>
+            <li>Privacy and Personal Boundaries: Members must refrain from requesting personal contact information, such as phone numbers, or proposing social engagements, including dates, without clear mutual interest.</li>
             <li>Conduct and Movement within the Facility: Following a member around the gym in a manner that could cause discomfort to others is not permitted.</li>
-            <li>Headphone Rule: Members wearing headphones shall only be approached in urgent situations or for essential safety communications.</li>
+            <li>Headphone Rule: Members wearing headphones/earbuds shall only be approached by staff or other members in urgent situations or for essential safety communications; otherwise, interactions will be limited to non-intrusive gestures, such as a friendly wave from the front desk.</li>
           </RulesList>
           <BackgroundImage/>
         </ClassesContainer>

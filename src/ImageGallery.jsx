@@ -92,6 +92,10 @@ const ImageGallery = () => {
         title: 'Sauna',
         images: [require('./images/sauna2.png') , require('./images/sauna.png'),require('./images/sauna3.png')]
       },
+      {
+        title: 'Exclusive Booty Builder® Equipment',
+        images: [require('./images/bootybuilder3.png') , require('./images/bootybuilder.png'),require('./images/bootybuilder2.png')]
+      },
 
 
     ];

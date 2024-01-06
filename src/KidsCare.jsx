@@ -19,11 +19,18 @@ const IntroText = styled.div`
   max-width: 670px; /* Adjust based on your design preference */
   text-align: left;
   font-family: oswald;
-
+  background-color: rgba(245, 128, 73, 0.6); // Semi-transparent #a65935
 
   @media (max-width: 768px) {
     width: 80vw;
   }
+`;
+
+const RootContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; // Space content and footer
+  min-height: 100vh; // Full viewport height
 `;
 
 const BackgroundImage = styled.div`
@@ -125,7 +132,7 @@ const KidsCare = () => {
   };
 
   return (
-    <>
+    <RootContainer>
       <Header />
       <KidsCareContainer>
         <BackgroundImage />
@@ -136,7 +143,7 @@ const KidsCare = () => {
         </p> 
         </IntroText>
         <CarouselContainer>
-          <CarouselSlider currentIndex={currentIndex}>
+          <CarouselSlider currentIndex={currentIndex}> n
             {images.map((image, index) => (
               <CarouselImage key={index} src={image} alt={`Carousel Image ${index + 1}`} />
             ))}
@@ -151,7 +158,7 @@ const KidsCare = () => {
       </KidsCareContainer>
       <PreModal />
       <Footer/>
-    </>
+    </RootContainer>
   );
 };
 

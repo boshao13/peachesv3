@@ -32,7 +32,7 @@ const MissionStatementContainer = styled.div`
 const MissionStatementText = styled.p`
 
   margin-top:50px;
-  font-size: 1em; /* Font size */
+  font-size: 20px; /* Font size */
   color: white; /* Text color */
   max-width: 800px; /* Maximum width for the text */
   margin: 0 auto; /* Center-align the text horizontally */

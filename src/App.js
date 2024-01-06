@@ -23,6 +23,13 @@ transition: filter 0.3s ease-in-out;
 `;
 
 
+const RootContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; // Space content and footer
+  min-height: 100vh; // Full viewport height
+`;
+
 const GlobalStyle = createGlobalStyle`
   .blur {
     filter: blur(5px);
@@ -54,7 +61,7 @@ const App = () => {
     const preEnrollmentRef = useRef(null);
     const faqRef= useRef(null)
     // header and pre modal open
-    const { isOpen, setIsOpen, openModal, modalIsOpen, setModalIsOpen } = useHeaderContext();
+    const { newsletterFormRef, newsletterData, setnewsletterData, handleNewsLetterSubmit, isOpen, setIsOpen, openModal, modalIsOpen, setModalIsOpen } = useHeaderContext();
     // state for thank you message on modal
     const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -64,10 +71,7 @@ const App = () => {
       const [isContactUsModalOpen, setContactUsModalOpen] = useState(false);
       const form = useRef();
       const formRef = useRef();
-      const newsletterFormRef = useRef();
 
-        // newsletter
-        const [newsletterData, setnewsletterData] = useState('');
       useEffect(() => {
         if (location.hash === '#contact-us-section' && contactUsRef.current) {
           const yOffset = contactUsRef.current.getBoundingClientRect().top + window.pageYOffset - 80;
@@ -160,28 +164,13 @@ const App = () => {
              );
              //NEWSLETTER FORM
               }
-              function handleNewsLetterSubmit(event) {
-                event.preventDefault();
-                emailjs
-                  .sendForm("service_3ykzhp7", "template_2q0mhqd", newsletterFormRef.current, "gk157tFkxTFBmQWBQ")
-                  .then(
-                    (response) => {
-                      setnewsletterData({ email: '' }); // Reset the email input in newsletterData
-                      newsletterFormRef.current.reset(); // Reset the form
-                      console.log("Email sent successfully:", response);
-                    },
-                    (error) => {
-                      console.error("Error sending email:", error);
-                      // Handle error gracefully
-                    }
-                  );
-              }
+
 
 
   return (
     <>
      <GlobalStyle/>
-
+    <RootContainer>
             <Header contactUsRef={contactUsRef} 
             openModal={openModal} 
             modalIsOpen={modalIsOpen} 
@@ -222,6 +211,7 @@ const App = () => {
             setnewsletterData={setnewsletterData}
             />
             </MainContent>
+            </RootContainer>
     </>
   );
 };

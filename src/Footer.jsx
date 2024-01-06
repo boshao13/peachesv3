@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-////#D56F52
+import { useHeaderContext } from './HeaderContext';
 
 const FooterContainer = styled.footer`
   background-color: #D56F52;
@@ -13,6 +13,15 @@ const FooterContainer = styled.footer`
   }
 
 `;
+const EmailInput = styled.input`
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  // additional styles ...
+`;
+
+
 const LinksAndSignupContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -87,13 +96,7 @@ const NewsletterForm = styled.form`
   }
 `;
 
-const EmailInput = styled.input`
-  padding: 5px; // Reduced padding
-  border: none;
-  border-radius: 5px;
-  outline: none;
 
-`;
 
 const SubscribeButton = styled.button`
   background-color: #faccb5;
@@ -105,7 +108,10 @@ const SubscribeButton = styled.button`
 
 `;
 
-const Footer = ({newsletterFormRef, handleNewsLetterSubmit, newsletterData, setnewsletterData}) => {
+const Footer = () => {
+
+  const { newsletterFormRef, newsletterData, setnewsletterData, handleNewsLetterSubmit} = useHeaderContext();
+
     return (
       <FooterContainer>
               <LinksAndSignupContainer>
@@ -129,11 +135,13 @@ const Footer = ({newsletterFormRef, handleNewsLetterSubmit, newsletterData, setn
               type="email"
               placeholder="Enter your email"
               name="user_email"
+              value={newsletterData}
               onChange={(e) => {
                 // Update newsletterData with the value from the input
                 setnewsletterData({ ...newsletterData, email: e.target.value });
                 console.log(newsletterData, "data is");
               }}
+              required
             />
             <SubscribeButton onClick={handleNewsLetterSubmit}>Subscribe</SubscribeButton>
           </NewsletterForm>

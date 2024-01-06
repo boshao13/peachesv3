@@ -118,9 +118,17 @@ const DayPassDescription = styled.p`
   
 `;
 
+const RootContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; // Space content and footer
+  min-height: 100vh; // Full viewport height
+`;
+
+
 const DayPasses = () => {
   return (
-    <>
+    <RootContainer>
     <DayPassesContainer>
       <Header />
       <HeaderImage src={daypasses} alt="Header Image" />
@@ -149,7 +157,7 @@ Classes<br/>
       </DayPassesFlexContainer>
     </DayPassesContainer>
     <Footer/>
-  </>
+  </RootContainer>
   );
 };
 

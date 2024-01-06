@@ -4,6 +4,17 @@ import Header from './Header';
 import comingsoon from './images/comingsoon.png'
 import background from './images/background.png'
 import Footer from './Footer';
+
+
+
+const RootContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; // Space content and footer
+  min-height: 100vh; // Full viewport height
+`;
+
+
 const scroll = keyframes`
   0% {
     transform: translateX(0%);
@@ -87,7 +98,9 @@ const Classes = () => {
   ];
 
   return (
-    <>
+<RootContainer>
+
+
       <Header />
       <ClassesContainer>
         <ImageHeader src={comingsoon} />
@@ -106,7 +119,7 @@ const Classes = () => {
         </CarouselContainer> 
       </ClassesContainer>
       <Footer/>
-    </>
+      </RootContainer>
   );
 };
 
