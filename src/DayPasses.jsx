@@ -15,22 +15,24 @@ const DayPassesContainer = styled.div`
   font-family: oswald;
   position: relative; /* Add relative positioning */
 
+  @media (max-width: 768px) {
+    margin-bottom:100px;
+  }
 `;
 
 const BackgroundImage = styled.div`
-  position: absolute;
+  position: fixed; // Changed to fixed for consistent cover
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url(${blurredBackground}); /* Set the background image */
-  background-size: cover; /* Cover the entire area */
-  background-repeat: no-repeat; /* Prevent repeating the image */
-  background-position: center; /* Center the image */
-  filter: blur(10px); /* Adjust the blur amount as needed */
-  z-index: -1; /* Place it behind the content */
+  background-image: url(${blurredBackground});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: blur(10px);
+  z-index: -1;
 `;
-
 
 const HeaderImage = styled.img`
   width: 500px; /* Adjust the width as needed */
@@ -52,6 +54,7 @@ const DayPassesFlexContainer = styled.div`
   @media (min-width: 768px) {
     flex-direction: row; /* Side-by-side layout on web */
     justify-content: space-between; /* Add space between cards */
+    
   }
 `;
 

@@ -2,14 +2,19 @@ import styled from 'styled-components';
 import { useHeaderContext } from './HeaderContext';
 
 const FooterContainer = styled.footer`
+display: flex; // Add flex display
+flex-direction: column; // Set direction to column
+align-items: center; // Center items horizontally
+justify-content: center; // Center items vertically
   background-color: #D56F52;
   color: white;
   text-align: center;
   padding: 10px; // Reduced padding
   font-size: 8px; // Smaller font size
   height:9vh;
+  
   @media (max-width: 768px) {
-    height:15vh;
+    height:170px;
   }
 
 `;

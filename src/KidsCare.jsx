@@ -26,34 +26,36 @@ const IntroText = styled.div`
   }
 `;
 
-const RootContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; // Space content and footer
-  min-height: 100vh; // Full viewport height
-`;
 
 const BackgroundImage = styled.div`
-  position: absolute;
+  position: fixed; // Changed to fixed for consistent cover
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url(${blurredBackground}); /* Set the background image */
-  background-size: cover; /* Cover the entire area */
-  background-repeat: no-repeat; /* Prevent repeating the image */
-  background-position: center; /* Center the image */
-  filter: blur(10px); /* Adjust the blur amount as needed */
-  z-index: -1; /* Place it behind the content */
+  background-image: url(${blurredBackground});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: blur(10px);
+  z-index: -1;
+`;
+const RootContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh; // Ensure the container fills the viewport height
 `;
 
 const KidsCareContainer = styled.div`
   text-align: center;
-  height:91vh;
+  flex-grow: 1; // Allows the container to expand to fill available space
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; // Distributes space between children
+  height: 100%;
   @media (max-width: 768px) {
     width: 100%;
-    height:100vh;
-
   }
 `;
 
@@ -65,22 +67,27 @@ const ImageHeader = styled.img`
     margin-top: 100px;
   }
 `;
-
-
+const SubContainer = styled.div`
+  margin-bottom: 20px; // Adjust this margin as needed
+  @media (max-height: 500px) {
+    margin-bottom: 40px; // Increase margin for shorter screens
+  }
+`;
 
 const CarouselContainer = styled.div`
-  width: 100%; /* Full width of the container */
-  max-width: 700px; /* Max width to show one image at a time */
+  width: 100%;
+  max-width: 700px;
   overflow: hidden;
   position: relative;
-  margin: auto; /* Center the carousel */
-
-  border: 4px solid #D56F52; 
-  border-radius: 10px; /* Rounded corners */
-  margin-bottom:200px;
+  margin: auto;
+  border: 4px solid #D56F52;
+  border-radius: 10px;
+  margin-bottom: 20px; // Adjust for spacing between carousel and footer
   @media (max-width: 768px) {
     max-width: 90vw;
-
+  }
+  @media (max-height: 500px) {
+    margin-bottom: 40px; // Increase margin for shorter screens
   }
 `;
 
@@ -133,9 +140,13 @@ const KidsCare = () => {
 
   return (
     <RootContainer>
+              <BackgroundImage />
       <Header />
       <KidsCareContainer>
-        <BackgroundImage />
+
+        <SubContainer>
+
+    
         <ImageHeader src={kidscare} alt="Kids Care Header" />
         <IntroText> 
         <p>
@@ -143,7 +154,7 @@ const KidsCare = () => {
         </p> 
         </IntroText>
         <CarouselContainer>
-          <CarouselSlider currentIndex={currentIndex}> n
+          <CarouselSlider currentIndex={currentIndex}> 
             {images.map((image, index) => (
               <CarouselImage key={index} src={image} alt={`Carousel Image ${index + 1}`} />
             ))}
@@ -155,7 +166,9 @@ const KidsCare = () => {
             <FontAwesomeIcon icon={faChevronRight} size="2x" />
           </CarouselArrow>
         </CarouselContainer>
+        </SubContainer>
       </KidsCareContainer>
+      
       <PreModal />
       <Footer/>
     </RootContainer>
