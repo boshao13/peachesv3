@@ -51,8 +51,8 @@ const Answer = styled.div`
   overflow: hidden;
   padding-left: 10px;
   padding-right: 5px;
-  padding-top:3px;
-  padding-bottom:2px;
+  padding-top:4px;
+  padding-bottom:4px;
   transition: max-height 0.7s ease;
 //   background-color: #9dbbaa;
   background-color: #4E7A51;
