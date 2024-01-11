@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { useHeaderContext } from './HeaderContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 const FooterContainer = styled.footer`
 display: flex; // Add flex display
@@ -11,19 +13,40 @@ justify-content: center; // Center items vertically
   text-align: center;
   padding: 10px; // Reduced padding
   font-size: 8px; // Smaller font size
-  height:9vh;
+  height:200px;
   
   @media (max-width: 768px) {
-    height:170px;
+    height:200px;
   }
 
 `;
+const SocialMediaContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px; // Adjust as needed
+  font-family: 'Oswald', sans-serif; // Oswald font
+
+  .icon {
+    margin-left: 10px;
+    color: white; // White icon color
+    font-size: 28px; // Bigger icon size
+    &:hover {
+      color: #FACCB5;
+    }
+  }
+`;
+
 const EmailInput = styled.input`
   padding: 5px;
   border: none;
   border-radius: 5px;
   outline: none;
   // additional styles ...
+`;
+const FollowUs = styled.h1`
+font-size:20px;
+margin-right:20px;
 `;
 
 
@@ -119,6 +142,15 @@ const Footer = () => {
 
     return (
       <FooterContainer>
+    <SocialMediaContainer>
+      <FollowUs>Follow Us!</FollowUs>
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+        <FontAwesomeIcon icon={faFacebook} className="icon" />
+      </a>
+      <a href="https://www.instagram.com/peachesfitnessclub/" target="_blank" rel="noopener noreferrer">
+        <FontAwesomeIcon icon={faInstagram} className="icon" />
+      </a>
+    </SocialMediaContainer>
               <LinksAndSignupContainer>
 
         {/* <UtilitiesContainer> */}

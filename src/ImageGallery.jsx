@@ -62,7 +62,7 @@ const PhotoCard = styled.div`
       bottom: 0;
       left: 0;
       right: 0;
-      height: 50px; // Grey overlay height
+      height: 45px; // Grey overlay height
       background-color: rgba(0, 0, 0, 0.4); // Grey overlay
       z-index: 1;
     }
@@ -96,7 +96,7 @@ const DotsContainer = styled.div`
 `;
 const Title = styled.div`
   position: absolute;
-  bottom: 10px; // Adjusted to avoid overlapping with dots
+  bottom: 6px; // Adjusted to avoid overlapping with dots
   width: 100%;
 
   color: white;
