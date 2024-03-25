@@ -16,7 +16,7 @@ justify-content: center; // Center items vertically
   height:200px;
   
   @media (max-width: 768px) {
-    height:200px;
+    height:250px;
   }
 
 `;
@@ -31,9 +31,14 @@ const SocialMediaContainer = styled.div`
     margin-left: 10px;
     color: white; // White icon color
     font-size: 28px; // Bigger icon size
+
     &:hover {
       color: #FACCB5;
     }
+  }
+  @media (max-width: 768px) {
+    margin-top:5px;
+
   }
 `;
 
@@ -65,6 +70,7 @@ const FooterText = styled.p`
   margin: 0;
   padding: 0;
   line-height: 1.5; // Adjust for better readability
+  margin-bottom:10px;
 `;
 
 const UtilitiesContainer = styled.div`
@@ -90,7 +96,11 @@ const UtilityColumn = styled.div`
 const UtilityLink = styled.a`
   color: white;
   text-decoration: none;
+  font-size: 10px;
   margin-bottom: 5px; // Reduced margin
+  @media (max-width: 768px) {
+  font-size: 12px;
+  }
 `;
 
 const NewsletterContainer = styled.div`
@@ -138,7 +148,7 @@ const SubscribeButton = styled.button`
 
 const Footer = () => {
 
-  const { newsletterFormRef, newsletterData, setnewsletterData, handleNewsLetterSubmit} = useHeaderContext();
+  const { handleCareerSubmit, newsletterFormRef, newsletterData, setnewsletterData, handleNewsLetterSubmit} = useHeaderContext();
 
     return (
       <FooterContainer>
@@ -153,7 +163,8 @@ const Footer = () => {
     </SocialMediaContainer>
               <LinksAndSignupContainer>
 
-        {/* <UtilitiesContainer> */}
+        <UtilitiesContainer> 
+        <UtilityLink href="/careers">Careers</UtilityLink> {/* Add this line */}
           {/* <UtilityColumn> */}
             {/* <UtilityLink href="#">Link 1</UtilityLink>
             <UtilityLink href="#">Link 2</UtilityLink>
@@ -164,7 +175,7 @@ const Footer = () => {
             <UtilityLink href="#">Link 4</UtilityLink>
             Add more utility links as needed */}
           {/* </UtilityColumn> */}
-        {/* </UtilitiesContainer> */}
+        </UtilitiesContainer>
         <NewsletterContainer>
           <NewsletterTitle>Sign up for our Newsletter</NewsletterTitle>
           <NewsletterForm ref={newsletterFormRef}>

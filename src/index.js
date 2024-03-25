@@ -8,6 +8,7 @@ import Classes from './Classes';
 import { HeaderProvider } from './HeaderContext'; // Import the provider
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import DayPasses from './DayPasses';
+import Careers from './Careers'; 
 import CodeOfConduct from './CodeOfConduct';
 
 const router = createBrowserRouter([
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "/codeofconduct",
     element: <CodeOfConduct/>,
+  },
+  {
+    path: "/careers", // Add this new route
+    element: <Careers />, // Corresponding component to render
   },
 ]);
 

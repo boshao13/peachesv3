@@ -165,8 +165,21 @@ const App = () => {
              //NEWSLETTER FORM
               }
 
-
-
+              const handleCareerSubmit = (event) => {
+                event.preventDefault();
+                emailjs.sendForm("service_3ykzhp7", "template_9ntam3d", formRef.current, "gk157tFkxTFBmQWBQ")
+                  .then(
+                    (response) => {
+                      console.log("Email sent successfully:", response);
+                      setIsSubmitted(true); // Update the state to reflect submission success
+                    },
+                    (error) => {
+                      console.error("Error sending email:", error);
+                      // Optionally, handle the error state here (e.g., show an error message)
+                    }
+                  );
+              };
+            
   return (
     <>
      <GlobalStyle/>

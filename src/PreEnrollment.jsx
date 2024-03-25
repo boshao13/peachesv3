@@ -6,7 +6,7 @@ import CountdownTimer from './CountdownTimer.jsx';
 import title from "./images/preenrollment.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import welaunch from './images/welaunch.png'
+import welaunch from './images/april.png'
 
 
 const Title = styled.img`
