@@ -1,8 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { FiMenu } from 'react-icons/fi'; 
-import { IoMdClose } from 'react-icons/io'; // Importing Close icon
-import logo from './images/logo.png'
+import { IoMdClose } from 'react-icons/io';
+import logo from './images/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLeaf } from '@fortawesome/free-solid-svg-icons';
 import { useHeaderContext } from './HeaderContext';
@@ -14,31 +14,29 @@ const HeaderWrapper = styled.div`
   width: 100%;
 `;
 
-
 const HeaderContainer = styled.header`
   background-color: #D56F52;
- 
   border-radius: 0 0 10px 10px;
   position: fixed;
   top: 0;
   left: 50%;
-  height:14px;
+  height: 14px;
   transform: translateX(-50%);
   z-index: 1000;
   width: 80vw;
   padding: 10px 20px;
-  display: flex; // Added for flex layout
-  justify-content: space-between; // Space out the logo and navigation
-  align-items: center; // Vertically center items
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   @media (max-width: 768px) {
-  
-   height: ${({ isOpen }) => isOpen ? '333px' : '28px'};
-   transition: height 0.7s ease-in-out;
+    height: ${({ isOpen }) => (isOpen ? '333px' : '28px')};
+    transition: height 0.7s ease-in-out;
   }
 `;
+
 const TopBar = styled.div`
-display:none;
+  display: none;
   @media (max-width: 768px) {
     display: flex;
     justify-content: space-between;
@@ -53,8 +51,7 @@ display:none;
     width: 80vw;
   }
 
-  border-bottom: ${({ isOpen }) => isOpen ? 'none' : 'border-bottom: 3px solid #4e7a51'};
-
+  border-bottom: ${({ isOpen }) => (isOpen ? 'none' : 'border-bottom: 3px solid #4e7a51')};
 `;
 
 const Logo1 = styled.img`
@@ -62,31 +59,30 @@ const Logo1 = styled.img`
   height: auto;
   margin-bottom: 5px;
   margin-left: -10px;
-  cursor: pointer; // Add cursor pointer
-  @media (max-width: 768px) {
-  display:none;
-   }
+  cursor: pointer;
 
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
+
 const Logo2 = styled.img`
-  display:none;
+  display: none;
   width: 25px;
   height: auto;
   margin-bottom: 5px;
   margin-left: -10px;
-  cursor: pointer; // Add cursor pointer
-  @media (max-width: 768px) {
-    display:block;
-     }
-  
+  cursor: pointer;
 
+  @media (max-width: 768px) {
+    display: block;
+  }
 `;
 
 const BookTourButton = styled.a`
-  display: none; // Hidden by default
-  background: linear-gradient(90deg, #faccb5, #fab39d); // Gradient background
-
-  color: white; // Text color
+  display: none;
+  background: linear-gradient(90deg, #faccb5, #fab39d);
+  color: white;
   padding: 7px 14px;
   border-radius: 7px;
   text-decoration: none;
@@ -94,9 +90,10 @@ const BookTourButton = styled.a`
   align-self: center;
   font-family: 'lato';
   margin-left: 5px;
-  cursor: pointer; // Add cursor pointer
+  cursor: pointer;
+
   @media (max-width: 768px) {
-    display: block; // Show only on mobile
+    display: block;
   }
 `;
 
@@ -114,18 +111,13 @@ const Nav = styled.nav`
     background-color: transparent;
     overflow: hidden;
     gap: 12px;
- 
-    height: ${({ isOpen }) => isOpen ? '300px' : '0'};
-    opacity: ${({ isOpen }) => isOpen ? 1 : 0}; // Control opacity
+    height: ${({ isOpen }) => (isOpen ? '300px' : '0')};
+    opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
     transition: height 0.7s ease-in-out, opacity 0.7s ease-in-out;
     width: 100%;
-    // display: ${({ isOpen }) => isOpen ? 'flex' : 'none'};
-
-   
-  
-
   }
 `;
+
 const LeafIcon = styled(FontAwesomeIcon)`
   position: absolute;
   top: -5px;
@@ -144,10 +136,12 @@ const NavLink = styled.a`
   position: relative;
   margin-top: 3px;
   margin-bottom: 4px;
-  cursor: pointer; // Add cursor pointer
+  cursor: pointer;
+
   &:hover ${LeafIcon} {
     opacity: 1;
   }
+
   @media (max-width: 768px) {
     font-size: 15px;
   }
@@ -161,9 +155,10 @@ const MobileIcon = styled.div`
     display: block;
   }
 `;
-const Header = ({  contactUsRef }) => {
+
+const Header = ({ contactUsRef, preEnrollmentRef }) => {
   const navigate = useNavigate();
-  const { isOpen, setIsOpen, openModal } = useHeaderContext();
+  const { isOpen, setIsOpen } = useHeaderContext();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -173,12 +168,10 @@ const Header = ({  contactUsRef }) => {
     if (window.location.pathname !== "/" && window.location.pathname !== "/home") {
       navigate('/');
     } else {
-      // If already on the homepage
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
       });
-      // Replace the current URL without the hash
       window.history.replaceState(null, null, ' ');
     }
     setIsOpen(false);
@@ -199,8 +192,9 @@ const Header = ({  contactUsRef }) => {
     if (window.location.pathname !== "/" && window.location.pathname !== "/home") {
       navigate('/#pre-enrollment-section');
       setIsOpen(false);
-    } else if (contactUsRef.current) {
-      openModal();
+    } else if (preEnrollmentRef.current) {
+      const yOffset = preEnrollmentRef.current.getBoundingClientRect().top + window.pageYOffset - 80;
+      window.scrollTo({ top: yOffset, behavior: 'smooth' });
       setIsOpen(false);
     }
   };
@@ -209,8 +203,8 @@ const Header = ({  contactUsRef }) => {
     if (window.location.pathname !== "/" && window.location.pathname !== "/home") {
       navigate('/#faq');
       setIsOpen(false);
-    } else if (contactUsRef.current) {
-      const yOffset = contactUsRef.current.getBoundingClientRect().top + window.pageYOffset +800;
+    } else {
+      const yOffset = document.body.scrollHeight - window.innerHeight;
       window.scrollTo({ top: yOffset, behavior: 'smooth' });
       setIsOpen(false);
     }
@@ -226,14 +220,13 @@ const Header = ({  contactUsRef }) => {
     setIsOpen(!isOpen);
   };
 
-
   return (
     <HeaderWrapper>
       <HeaderContainer isOpen={isOpen}>
         <Logo1 src={logo} alt="Peaches Gym Logo" onClick={scrollToTop} />
         <TopBar>
           <Logo2 src={logo} alt="Peaches Gym Logo" onClick={scrollToTop} />
-          <BookTourButton onClick={scrollToPre}>Pre-Enroll</BookTourButton>
+          <BookTourButton onClick={scrollToPre}>Sign Up Today!</BookTourButton>
           <MobileIcon onClick={toggleMenu}>
             {isOpen ? <IoMdClose size="1.5em" /> : <FiMenu size="1.5em" />}
           </MobileIcon>

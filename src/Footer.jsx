@@ -2,7 +2,17 @@ import styled from 'styled-components';
 import { useHeaderContext } from './HeaderContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import React, { useState } from 'react';
+import ReactModal from 'react-modal';
 
+
+ReactModal.setAppElement('#root'); // Correctly bind the root element
+
+const ModalContent = styled.div`
+  padding: 20px;
+  max-width: 500px;
+  line-height: 1.5;
+`;
 const FooterContainer = styled.footer`
 display: flex; // Add flex display
 flex-direction: column; // Set direction to column
@@ -96,10 +106,10 @@ const UtilityColumn = styled.div`
 const UtilityLink = styled.a`
   color: white;
   text-decoration: none;
-  font-size: 10px;
+  font-size: 15px;
   margin-bottom: 5px; // Reduced margin
   @media (max-width: 768px) {
-  font-size: 12px;
+  font-size: 15px;
   }
 `;
 
@@ -145,64 +155,86 @@ const SubscribeButton = styled.button`
   cursor: pointer;
 
 `;
-
 const Footer = () => {
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
 
+  // Open and close handlers for Privacy Policy modal
+  const openPrivacyModal = () => setIsPrivacyModalOpen(true);
+  const closePrivacyModal = () => setIsPrivacyModalOpen(false);
+
+  // Open and close handlers for Terms of Service modal
+  const openTermsModal = () => setIsTermsModalOpen(true);
+  const closeTermsModal = () => setIsTermsModalOpen(false);
   const { handleCareerSubmit, newsletterFormRef, newsletterData, setnewsletterData, handleNewsLetterSubmit} = useHeaderContext();
 
-    return (
-      <FooterContainer>
-    <SocialMediaContainer>
-      <FollowUs>Follow Us!</FollowUs>
-      <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
-        <FontAwesomeIcon icon={faFacebook} className="icon" />
-      </a>
-      <a href="https://www.instagram.com/peachesfitnessclub/" target="_blank" rel="noopener noreferrer">
-        <FontAwesomeIcon icon={faInstagram} className="icon" />
-      </a>
-    </SocialMediaContainer>
-              <LinksAndSignupContainer>
-
-        <UtilitiesContainer> 
-        <UtilityLink href="/careers">Careers</UtilityLink> {/* Add this line */}
-          {/* <UtilityColumn> */}
-            {/* <UtilityLink href="#">Link 1</UtilityLink>
-            <UtilityLink href="#">Link 2</UtilityLink>
-            Add more utility links as needed */}
-          {/* </UtilityColumn>
-          <UtilityColumn> */}
-            {/* <UtilityLink href="#">Link 3</UtilityLink>
-            <UtilityLink href="#">Link 4</UtilityLink>
-            Add more utility links as needed */}
-          {/* </UtilityColumn> */}
-        </UtilitiesContainer>
+  return (
+    <FooterContainer>
+      <SocialMediaContainer>
+        <FollowUs>Follow Us!</FollowUs>
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+          <FontAwesomeIcon icon={faFacebook} className="icon" />
+        </a>
+        <a href="https://www.instagram.com/peachesfitnessclub/" target="_blank" rel="noopener noreferrer">
+          <FontAwesomeIcon icon={faInstagram} className="icon" />
+        </a>
+      </SocialMediaContainer>
+      <LinksAndSignupContainer>
         <NewsletterContainer>
           <NewsletterTitle>Sign up for our Newsletter</NewsletterTitle>
           <NewsletterForm ref={newsletterFormRef}>
-          <EmailInput
-              type="email"
-              placeholder="Enter your email"
-              name="user_email"
-              value={newsletterData}
-              onChange={(e) => {
-                // Update newsletterData with the value from the input
-                setnewsletterData({ ...newsletterData, email: e.target.value });
-                console.log(newsletterData, "data is");
-              }}
-              required
-            />
-            <SubscribeButton onClick={handleNewsLetterSubmit}>Subscribe</SubscribeButton>
+            <EmailInput
+                type="email"
+                placeholder="Enter your email"
+                name="user_email"
+                value={newsletterData}
+                onChange={(e) => {
+                  setnewsletterData({ ...newsletterData, email: e.target.value });
+                  console.log(newsletterData, "data is");
+                }}
+                required
+              />
+              <SubscribeButton onClick={handleNewsLetterSubmit}>Subscribe</SubscribeButton>
           </NewsletterForm>
         </NewsletterContainer>
-        </LinksAndSignupContainer>
-        <FooterText> Our services are available to all members of the public regardless of race, gender or sexual orientation.<br/>
+      </LinksAndSignupContainer>
+      <FooterText>
+        Our services are available to all members of the public regardless of race, gender, or sexual orientation.<br/>
         &copy; {new Date().getFullYear()} Peaches Gym. All rights reserved.
       </FooterText>
       <FooterText>
-        Terms of Service | Privacy Policy
+        <UtilityLink href="/careers">Careers |</UtilityLink>
+        <UtilityLink onClick={openPrivacyModal}> Privacy Policy |</UtilityLink> 
+        <UtilityLink onClick={openTermsModal}> Terms of Service</UtilityLink>
       </FooterText>
-      </FooterContainer>
-    );
-  };
-  
-  export default Footer;
+      
+      <ReactModal
+        isOpen={isPrivacyModalOpen}
+        onRequestClose={closePrivacyModal}
+        contentLabel="Privacy Policy"
+      >
+        <ModalContent>
+          <h2>Privacy Policy</h2>
+          <p>Your privacy is important to us. It is Peaches Gym's policy to respect your privacy regarding any information we may collect from you across our website, http://peachesfitnessclub.com, and other sites we own and operate.</p>
+          <p>We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.</p>
+          <button onClick={closePrivacyModal}>Close</button>
+        </ModalContent>
+      </ReactModal>
+
+      <ReactModal
+        isOpen={isTermsModalOpen}
+        onRequestClose={closeTermsModal}
+        contentLabel="Terms of Service"
+      >
+        <ModalContent>
+          <h2>Terms of Service</h2>
+          <p>Welcome to Peaches Gym! These terms and conditions outline the rules and regulations for the use of Peaches Gym's Website, located at http://peachesfitnessclub.com.</p>
+          <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use Peaches Gym if you do not agree to take all of the terms and conditions stated on this page.</p>
+          <button onClick={closeTermsModal}>Close</button>
+        </ModalContent>
+      </ReactModal>
+    </FooterContainer>
+  );
+};
+
+export default Footer;

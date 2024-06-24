@@ -1,25 +1,23 @@
-
-
 import styled from 'styled-components';
 import PreModal from './PreModal';
 import CountdownTimer from './CountdownTimer.jsx';
-import title from "./images/preenrollment.png"
+import title from "./images/signuptoday.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import welaunch from './images/april.png'
 
 
 const Title = styled.img`
-  width: 25vw;
+  width: 40vw;
   height: auto;
  
   @media (max-width: 768px) {
-    width: 80vw;
-    margin-bottom:-10px;
-    margin-top:30px;
-    max-width: 300px; // Ensure the image is responsive
+    width: 85vw;
+    margin-bottom: 40px;
+    margin-top: 30px;
+    max-width: 350px; // Ensure the image is responsive
   }
 `;
+
 const PreEnrollmentSection = styled.section`
   display: flex;
   flex-direction: column;
@@ -37,6 +35,7 @@ const PreEnrollmentSection = styled.section`
     height: 50vh; // Adjust the height
   }
 `;
+
 const PreContainer = styled.div`
   @media (max-width: 768px) {
     border-radius: 10px;
@@ -53,25 +52,21 @@ const PreContainer = styled.div`
   margin-right: auto; // Set right margin to auto for non-mobile view
 `;
 
-
-
 const Subheading = styled.h2`
   font-size: 1.5em;
   color: white;
-
+  margin-bottom: 20px;
 `;
-// Styled components
+
 const Launch = styled.img`
+  width: 200px;
+  margin-bottom: 20px;
+  
+  @media (max-width: 768px) {
+    width: 55vw;
+  }
+`;
 
-width:200px;
-margin-bottom: 20px;
-@media (max-width: 768px) {
-  width: 55vw;
-
-}
-
-
-`
 const EnrollmentButton = styled.button`
   background-color: #D56F52;
   color: white;
@@ -81,7 +76,7 @@ const EnrollmentButton = styled.button`
   border: 2px solid white;
   font-size: 1em;
   cursor: pointer;
-  margin-top: 0px;
+  margin-top: 20px;
   font-family: oswald;
   transition: transform 0.2s ease; // Button click transition
 
@@ -91,34 +86,32 @@ const EnrollmentButton = styled.button`
 `;
 
 const CheckmarkIcon = styled(FontAwesomeIcon).attrs({
-    icon: faCheck,
-  })`
-    margin-left: 8px; // Adjust spacing between icon and text
-    
-  `;
-  
+  icon: faCheck,
+})`
+  margin-left: 8px; // Adjust spacing between icon and text
+`;
 
+const PreEnrollment = ({ setIsSubmitted, preEnrollmentRef, handleModalSubmit, openModal, modalIsOpen, setModalIsOpen, form, isSubmitted }) => {
+  const launchDate = new Date('2024-02-01');
 
+  const handleGlofoxClick = () => {
+    window.location.href = 'https://app.glofox.com/portal/#/branch/65d38d833aabb0e6490203b0/memberships';
+  };
 
-const PreEnrollment = ({setIsSubmitted, preEnrollmentRef, handleModalSubmit, openModal, modalIsOpen, setModalIsOpen, form, isSubmitted }) => {
-    const launchDate = new Date('2024-02-01');
-
-      return (
-        <PreContainer>
-        <PreEnrollmentSection ref={preEnrollmentRef} id="pre-enrollment-section">
-          <Title src={title} />
-          <Subheading>We Launch</Subheading>
-          {/* <div >
-            <CountdownTimer targetDate={launchDate} />
-          </div> */}
-          <Launch src={welaunch}/>
-    
-          <EnrollmentButton onClick={openModal}>
-            Pre Enroll Now! <CheckmarkIcon />
-          </EnrollmentButton>
-          <PreModal setIsSubmitted={setIsSubmitted} isSubmitted={isSubmitted} form={form} handleModalSubmit={handleModalSubmit} isOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
-        </PreEnrollmentSection>
-        </PreContainer>
-      );
+  return (
+    <PreContainer>
+      <PreEnrollmentSection ref={preEnrollmentRef} id="pre-enrollment-section">
+        <Title src={title} />
+        <Subheading>
+          Grand Opening Special Membership Rate Available For<br />A Limited Time! Click The Link Below!
+        </Subheading>
+        <EnrollmentButton onClick={handleGlofoxClick}>
+          GloFox Registration<CheckmarkIcon />
+        </EnrollmentButton>
+        <PreModal setIsSubmitted={setIsSubmitted} isSubmitted={isSubmitted} form={form} handleModalSubmit={handleModalSubmit} isOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
+      </PreEnrollmentSection>
+    </PreContainer>
+  );
 }
+
 export default PreEnrollment;

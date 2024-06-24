@@ -12,7 +12,7 @@ const RootContainer = styled.div`
   min-height: 100vh;
 `;
 const ImageHeader = styled.img`
-  width: 50vw;
+  width: 30vw;
   margin-top: 40px;
   @media (max-width: 768px) {
     width: 70vw;
@@ -35,6 +35,7 @@ const FormContainer = styled.div`
   max-width: 500px;
   position: relative;
   margin-bottom: 20px;
+  margin-top:20px;
 `;
 
 const StyledForm = styled.form`
@@ -63,13 +64,14 @@ const Input = styled.input`
 
 const TextArea = styled.textarea`
   width: 300px;
+  min-height: 100px; // Set a minimum height
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #D56F52;
   border-radius: 5px;
-  resize: vertical;
-  font-family: 'Arial', sans-serif; // Set the font to match other inputs
-  font-size: 14px; // Match the font size of other input fields if needed
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  resize: none; // Prevent manual resizing
   &:focus {
     outline: none;
     border-color: #FACCB5;
@@ -81,7 +83,7 @@ const TextArea = styled.textarea`
 
 
 const Select = styled.select`
-  width: 300px; // Match other input fields
+  width: 320px; // Match other input fields
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #D56F52;
@@ -96,7 +98,22 @@ const Select = styled.select`
     width: 75vw; // Ensure consistency on smaller screens
   }
 `;
-
+const OverEighteenSelect = styled.select`
+  width: 320px; // Match other input fields
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #D56F52;
+  border-radius: 5px;
+  background-color: white;
+  box-sizing: border-box; // This ensures padding is included in the width
+  &:focus {
+    outline: none;
+    border-color: #FACCB5;
+  }
+  @media (max-width: 768px) {
+    width: 75vw; // Ensure consistency on smaller screens
+  }
+`;
 
 const Button = styled.button`
   padding: 10px 20px;
@@ -117,7 +134,40 @@ const ThankYouMessage = styled.div`
   border-radius: 10px; // Optional: rounded corners
   font-size: 1.2em; // Larger font size
   text-align: center; // Center the text
+  margin-top: 20px;
 `;
+
+const MailButton = styled.a`
+  display: inline-block; // To apply padding and margins correctly
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #FAb39d;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none; // Remove underline from link
+  &:hover {
+    background-color: #FACCB5;
+  }
+  margin-top: 20px; // Add some space from the form above
+`;
+const OptionalHeader = styled.h3`
+  color: white; // Use white color to match your form's theme
+  font-size: 18px; // Adjust font size as needed
+  text-align: center; // Center the header text
+  margin-top: 30px; // Add some space above the header
+  margin-bottom: 10px; // Space before the mail button
+`;
+
+// If not already centered by FormContainer, add this container for the mail button
+const MailButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; // Take the full width to center content
+`;
+
 
 const Careers = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -136,7 +186,10 @@ const Careers = () => {
         }
       );
   };
-
+  const adjustTextAreaHeight = (event) => {
+    event.target.style.height = "inherit"; // Reset height to calculate new height correctly
+    event.target.style.height = `${event.target.scrollHeight}px`; // Set new height based on content
+  };
   return (
     <RootContainer>
       <Header  />
@@ -145,21 +198,43 @@ const Careers = () => {
         <FormContainer>
           {!isSubmitted ? (
             <StyledForm ref={formRef} onSubmit={handleCareerSubmit}>
-              <Input type="text" name="name" placeholder="Name" required />
-              <Input type="email" name="email" placeholder="Email" required />
-              <Input type="text" name="phone" placeholder="Phone Number" required />
-              <Input type="text" name="address" placeholder="Address" required />
-              <TextArea name="experience" placeholder="Relevant Work Experience" required></TextArea>
-              <Input type="number" name="age" placeholder="Age" required />
-              <Select name="gender" required>
-                <option value="">Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Non-Binary</option>
-              </Select>
-              {/* Note: Handling file uploads requires additional logic */}
-              <Button type="submit">Submit Application</Button>
-            </StyledForm>
+  <Input type="text" name="name" placeholder="Name" required />
+  <Input type="email" name="email" placeholder="Email" required />
+  <Input type="text" name="phone" placeholder="Phone Number" required />
+  <Input type="text" name="address" placeholder="Address" required />
+  <TextArea
+  name="education"
+  placeholder="Education"
+  required
+  onInput={adjustTextAreaHeight} // Adjust height as user types
+></TextArea>
+<TextArea
+  name="experience"
+  placeholder="Relevant Work Experience"
+  required
+  onInput={adjustTextAreaHeight} // Adjust height as user types
+></TextArea>
+  <OverEighteenSelect name="overEighteen" required>
+    <option value="">Are you over 18?</option>
+    <option value="yes">Yes</option>
+    <option value="no">No</option>
+  </OverEighteenSelect>
+  <Select name="gender" required>
+    <option value="">Gender</option>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+    <option value="other">Non-Binary</option>
+    <option value="noanswer">Prefer Not To Answer</option>
+  </Select>
+  <Select name="position" required>
+    <option value="">Position Desired</option>
+    <option value="Front Desk">Front Desk</option>
+    <option value="Child Care Provider">Child Care Provider</option>
+    <option value="Personal Trainer">Personal Trainer</option>
+    <option value="Group Instuctor">Group Instuctor</option>
+  </Select>
+  <Button type="submit">Submit Application</Button>
+</StyledForm>
           ) : (
             <ThankYouMessage>
             Your application has been submitted. Thank you!
@@ -168,7 +243,16 @@ const Careers = () => {
           )}
         </FormContainer>
       </CareersContainer>
-     
+
+      <FormContainer>
+    <MailButtonContainer> {/* Use the new container to wrap the header and button */}
+      <OptionalHeader>Or Email Us Your Resume Below</OptionalHeader>
+      <MailButton href="mailto:peachesfitnessclub@gmail.com?subject=New Applicant &body=Please attach your resume and any additional information! We will get back to you shortly!">
+        Email
+      </MailButton>
+    </MailButtonContainer>
+  </FormContainer>
+
 
       <Footer />
     </RootContainer>
