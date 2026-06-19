@@ -24,12 +24,11 @@ export const trainers: Trainer[] = [
     slug: "katie",
     name: "Katie",
     title: "Personal Trainer",
-    // Placeholder until the owner provides Katie's headshot + bio (spec §13).
-    photo: img("/images/brand/peachasset.png", 800, 1000, "Katie — photo coming soon"),
+    photo: img("/images/trainers/katie.webp", 788, 1400, "Katie, personal trainer at Peaches"),
+    // TODO: replace with Katie's real bio once provided by the owner.
     bio: [
-      "Bio coming soon — Katie is one of our newest trainers. Check back shortly to learn more about her approach, specialties, and what she loves about coaching at Peaches.",
+      "Meet Katie, one of our personal trainers at Peaches. Her full bio is on the way — check back soon to learn about her approach and what she loves about coaching here.",
     ],
     specializations: [],
-    placeholder: true,
   },
 ];

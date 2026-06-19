@@ -45,11 +45,16 @@ export function MapEmbed({ className = "" }: { className?: string }) {
 
           const marker = document.createElement("img");
           marker.src = "/images/brand/logo3.png";
-          marker.width = 28;
-          marker.height = 28;
+          marker.width = 48;
+          marker.height = 48;
           marker.alt = "Peaches Fitness Club";
-          marker.style.borderRadius = "9999px";
-          new mapboxgl.Marker({ element: marker }).setLngLat([geo.lng, geo.lat]).addTo(map);
+          marker.style.width = "48px";
+          marker.style.height = "48px";
+          marker.style.filter = "drop-shadow(0 3px 6px rgba(0,0,0,0.35))";
+          marker.style.cursor = "pointer";
+          new mapboxgl.Marker({ element: marker, anchor: "bottom" })
+            .setLngLat([geo.lng, geo.lat])
+            .addTo(map);
 
           map.on("load", () => setStatus("ready"));
           map.on("error", () => setStatus("fallback"));
