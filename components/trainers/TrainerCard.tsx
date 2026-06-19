@@ -39,7 +39,7 @@ export function TrainerCard({ trainer }: { trainer: Trainer }) {
 
         {expanded && specializations.length > 0 ? (
           <div className="mt-4">
-            <p className="text-xs font-semibold uppercase tracking-widest text-charcoal/60">
+            <p className="text-xs font-semibold uppercase tracking-widest text-charcoal/80">
               Specializes in
             </p>
             <ul className="mt-2 space-y-1.5 text-sm text-charcoal/75">

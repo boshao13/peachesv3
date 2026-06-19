@@ -16,7 +16,7 @@ export default function NotFound() {
             Contact us
           </Button>
         </div>
-        <nav className="mt-8 flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-charcoal/60">
+        <nav className="mt-8 flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-charcoal/80">
           <Link href="/amenities" className="hover:text-coral-deep">Amenities</Link>
           <Link href="/classes" className="hover:text-coral-deep">Classes</Link>
           <Link href="/membership" className="hover:text-coral-deep">Membership</Link>

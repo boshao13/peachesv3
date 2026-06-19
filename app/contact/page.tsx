@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/PageHero";
 import { Section } from "@/components/ui/Section";
 import { ContactForm } from "@/components/forms/ContactForm";
+import { MapEmbed } from "@/components/map/MapEmbed";
 import { JsonLd, breadcrumbSchema } from "@/components/seo/JsonLd";
 import { pageMeta } from "@/lib/seo";
 import { site } from "@/content/site";
@@ -61,7 +62,7 @@ export default function ContactPage() {
 
             <div className="grid gap-6 sm:grid-cols-2">
               <div>
-                <h3 className="text-sm font-semibold uppercase tracking-widest text-charcoal/60">
+                <h3 className="text-sm font-semibold uppercase tracking-widest text-charcoal/80">
                   Access hours
                 </h3>
                 <ul className="mt-2 space-y-1 text-charcoal/80">
@@ -73,7 +74,7 @@ export default function ContactPage() {
                 </ul>
               </div>
               <div>
-                <h3 className="text-sm font-semibold uppercase tracking-widest text-charcoal/60">
+                <h3 className="text-sm font-semibold uppercase tracking-widest text-charcoal/80">
                   Staffed hours
                 </h3>
                 <ul className="mt-2 space-y-1 text-charcoal/80">
@@ -86,24 +87,9 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Map (Mapbox added in integrations slice) */}
-            <div
-              id="map"
-              className="min-h-[300px] overflow-hidden rounded-3xl ring-1 ring-charcoal/10"
-              data-map-slot
-            >
-              <a
-                href={directionsUrl(nap)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-full min-h-[300px] items-center justify-center bg-peach/40 text-center text-charcoal/70"
-              >
-                <span>
-                  📍 {formatAddress(nap)}
-                  <br />
-                  <span className="text-sm underline">Open in Google Maps</span>
-                </span>
-              </a>
+            {/* Branded Mapbox map (scroll-mounted; static fallback if no key) */}
+            <div id="map">
+              <MapEmbed />
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/PageHero";
 import { Section, SectionHeading } from "@/components/ui/Section";
-import { Button } from "@/components/ui/Button";
+import { GlofoxEmbed } from "@/components/glofox/GlofoxEmbed";
 import { JsonLd, breadcrumbSchema } from "@/components/seo/JsonLd";
 import { pageMeta } from "@/lib/seo";
 import { classes } from "@/content/classes";
@@ -45,10 +45,8 @@ export default function ClassesPage() {
           title="Book your spot"
           intro="View today's classes and reserve your place through our Glofox member portal."
         />
-        <div className="mt-8 text-center" data-glofox-schedule>
-          <Button href={site.glofox.scheduleUrl} external size="lg">
-            View schedule & book on Glofox
-          </Button>
+        <div className="mt-8">
+          <GlofoxEmbed scheduleUrl={site.glofox.scheduleUrl} />
         </div>
       </Section>
 

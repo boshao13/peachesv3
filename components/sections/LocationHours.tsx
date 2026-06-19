@@ -11,7 +11,7 @@ export function LocationHours({ mapSlot }: { mapSlot?: ReactNode }) {
       <SectionHeading eyebrow="Come train with us" title="Visit Peaches" align="center" />
       <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:items-stretch">
         <div className="flex flex-col justify-center">
-          <h3 className="text-sm font-semibold uppercase tracking-widest text-charcoal/60">
+          <h3 className="text-sm font-semibold uppercase tracking-widest text-charcoal/80">
             Location
           </h3>
           <a
@@ -25,7 +25,7 @@ export function LocationHours({ mapSlot }: { mapSlot?: ReactNode }) {
 
           <div className="mt-6 grid gap-6 sm:grid-cols-2">
             <div>
-              <h3 className="text-sm font-semibold uppercase tracking-widest text-charcoal/60">
+              <h3 className="text-sm font-semibold uppercase tracking-widest text-charcoal/80">
                 Access hours
               </h3>
               <ul className="mt-2 space-y-1 text-charcoal/80">
@@ -37,7 +37,7 @@ export function LocationHours({ mapSlot }: { mapSlot?: ReactNode }) {
               </ul>
             </div>
             <div>
-              <h3 className="text-sm font-semibold uppercase tracking-widest text-charcoal/60">
+              <h3 className="text-sm font-semibold uppercase tracking-widest text-charcoal/80">
                 Staffed hours
               </h3>
               <ul className="mt-2 space-y-1 text-charcoal/80">

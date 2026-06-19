@@ -11,7 +11,8 @@ export function Stat({ value, label }: { value: string; label: string }) {
   const suffix = match ? match[2] : "";
 
   const ref = useRef<HTMLDivElement>(null);
-  const [display, setDisplay] = useState<string>(target === null ? value : `0${suffix}`);
+  // SSR / no-JS shows the real value; count-up animates from 0 on scroll-into-view.
+  const [display, setDisplay] = useState<string>(value);
 
   useEffect(() => {
     if (target === null) {
@@ -64,7 +65,7 @@ export function Stat({ value, label }: { value: string; label: string }) {
       <div className="text-4xl sm:text-5xl font-semibold text-coral-deep tabular-nums">
         {display}
       </div>
-      <div className="mt-1 text-sm uppercase tracking-widest text-charcoal/60">{label}</div>
+      <div className="mt-1 text-sm uppercase tracking-widest text-charcoal/80">{label}</div>
     </div>
   );
 }

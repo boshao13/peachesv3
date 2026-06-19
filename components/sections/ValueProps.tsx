@@ -1,4 +1,5 @@
 import { Section, SectionHeading } from "@/components/ui/Section";
+import { Reveal } from "@/components/ui/Reveal";
 
 const values = [
   {
@@ -32,9 +33,10 @@ export function ValueProps() {
         intro="We built Peaches so women in Albuquerque have a place to train that's safe, supportive and seriously well-equipped."
       />
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {values.map((v) => (
-          <div
+        {values.map((v, i) => (
+          <Reveal
             key={v.title}
+            delay={i * 0.08}
             className="rounded-2xl bg-white/80 p-6 ring-1 ring-charcoal/5 shadow-[var(--shadow-card)] transition-transform hover:-translate-y-1"
           >
             <div className="text-3xl" aria-hidden>
@@ -42,7 +44,7 @@ export function ValueProps() {
             </div>
             <h3 className="mt-3 text-xl font-semibold">{v.title}</h3>
             <p className="mt-2 text-charcoal/75 leading-relaxed">{v.body}</p>
-          </div>
+          </Reveal>
         ))}
       </div>
     </Section>

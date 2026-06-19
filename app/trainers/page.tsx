@@ -29,7 +29,7 @@ export default function TrainersPage() {
             <TrainerCard key={t.slug} trainer={t} />
           ))}
         </div>
-        <p className="mt-10 text-center text-charcoal/60">
+        <p className="mt-10 text-center text-charcoal/80">
           Interested in personal training?{" "}
           <a href="/contact" className="font-semibold text-coral-deep hover:text-coral-dark">
             Get in touch

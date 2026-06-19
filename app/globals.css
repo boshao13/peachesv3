@@ -43,49 +43,52 @@
 }
 
 /* ---------------------------------------------------------------------------
-   Base — elegant defaults (spec §5 aesthetic principles)
+   Base — elegant defaults (spec §5 aesthetic principles).
+   MUST live in @layer base so Tailwind utilities (e.g. text-white on link
+   buttons) still win over these element rules.
 --------------------------------------------------------------------------- */
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--cream);
+    color: var(--charcoal);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  ::selection {
+    background: var(--peach);
+    color: var(--charcoal);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--coral-deep);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
 }
 
-body {
-  background-color: var(--cream);
-  color: var(--charcoal);
-  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-
-h1, h2, h3, h4 {
-  font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
-  line-height: 1.1;
-  letter-spacing: -0.01em;
-  text-wrap: balance;
-}
-
-/* Script accent — use sparingly via .font-display */
+/* Script accent — use sparingly via .script */
 .script {
   font-family: var(--font-display), cursive;
   letter-spacing: 0;
-}
-
-::selection {
-  background: var(--peach);
-  color: var(--charcoal);
-}
-
-a {
-  color: inherit;
-}
-
-/* Visible focus for keyboard users (a11y) */
-:focus-visible {
-  outline: 2px solid var(--coral-deep);
-  outline-offset: 2px;
-  border-radius: 2px;
 }
 
 /* Respect reduced motion globally as a safety net */

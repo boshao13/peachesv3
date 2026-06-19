@@ -26,7 +26,7 @@ export default function TermsPage() {
           Content on this site is provided for general information and may change without notice.
           Pricing and schedules are confirmed in person or through our member portal.
         </p>
-        <p className="text-sm text-charcoal/60">
+        <p className="text-sm text-charcoal/80">
           The club owner will replace this with finalized legal copy before launch.
         </p>
       </div>

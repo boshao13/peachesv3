@@ -27,7 +27,7 @@ export default function PrivacyPage() {
           </a>
           . You may request deletion of your information at any time by contacting us.
         </p>
-        <p className="text-sm text-charcoal/60">
+        <p className="text-sm text-charcoal/80">
           The club owner will replace this with finalized legal copy before launch.
         </p>
       </div>

@@ -21,7 +21,7 @@ export default function CareersPage() {
 
       <Section tone="cream" containerSize="narrow">
         <CareersForm />
-        <p className="mt-8 text-center text-sm text-charcoal/60">
+        <p className="mt-8 text-center text-sm text-charcoal/80">
           Prefer email? Send your resume to{" "}
           <a
             href={`mailto:${site.nap.email}?subject=New%20Applicant`}

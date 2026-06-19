@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Container } from "./Container";
+import { Reveal } from "./Reveal";
 
 type Tone = "cream" | "cream-2" | "peach" | "charcoal" | "white";
 
@@ -45,12 +46,12 @@ export function SectionHeading({
 }) {
   const alignment = align === "center" ? "text-center mx-auto" : "text-left";
   return (
-    <div className={`${alignment} max-w-2xl ${align === "center" ? "" : ""}`}>
+    <Reveal className={`${alignment} max-w-2xl`}>
       {eyebrow ? (
         <p className="script text-2xl text-coral-deep mb-1">{eyebrow}</p>
       ) : null}
       <h2 className="text-3xl sm:text-4xl font-semibold uppercase tracking-wide">{title}</h2>
       {intro ? <p className="mt-4 text-charcoal/75 text-lg">{intro}</p> : null}
-    </div>
+    </Reveal>
   );
 }

@@ -37,8 +37,8 @@ export function Header() {
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-cream/90 backdrop-blur-md shadow-[0_2px_20px_-12px_rgba(43,38,34,0.35)]"
-          : "bg-cream/60 backdrop-blur-sm"
+          ? "bg-cream/95 backdrop-blur-md shadow-[0_2px_20px_-12px_rgba(43,38,34,0.35)]"
+          : "bg-cream/85 backdrop-blur-sm"
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 sm:px-8">
@@ -67,7 +67,7 @@ export function Header() {
                 <Link
                   href={l.href}
                   className={`text-sm font-medium uppercase tracking-wide transition-colors hover:text-coral-deep ${
-                    active ? "text-coral-deep" : "text-charcoal/80"
+                    active ? "text-coral-deep" : "text-charcoal"
                   }`}
                 >
                   {l.label}
