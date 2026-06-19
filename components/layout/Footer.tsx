@@ -2,6 +2,7 @@ import Link from "next/link";
 import { site } from "@/content/site";
 import { primaryNav, secondaryNav } from "@/content/nav";
 import { formatAddress, directionsUrl } from "@/lib/nap";
+import { IconInstagram } from "@/components/ui/icons";
 import { NewsletterForm } from "./NewsletterForm";
 
 export function Footer() {
@@ -78,7 +79,7 @@ export function Footer() {
               rel="noopener noreferrer"
               className="mt-4 inline-flex items-center gap-2 text-sm text-cream/80 hover:text-peach"
             >
-              <span aria-hidden>📸</span> @peachesfitnessclub
+              <IconInstagram className="h-5 w-5" /> @peachesfitnessclub
             </a>
           </div>
         </div>

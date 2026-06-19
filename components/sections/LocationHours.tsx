@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
+import { IconMapPin } from "@/components/ui/icons";
 import { site } from "@/content/site";
 import { formatAddress, directionsUrl } from "@/lib/nap";
 
@@ -66,10 +67,11 @@ export function LocationHours({ mapSlot }: { mapSlot?: ReactNode }) {
               href={directionsUrl(nap)}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-full min-h-[320px] items-center justify-center bg-peach/40 text-center text-charcoal/70"
+              className="flex h-full min-h-[320px] flex-col items-center justify-center gap-2 bg-peach/40 text-center text-charcoal/80"
             >
+              <IconMapPin className="h-7 w-7 text-coral-deep" />
               <span>
-                📍 {nap.city}, {nap.state}
+                {nap.city}, {nap.state}
                 <br />
                 <span className="text-sm underline">Open in Google Maps</span>
               </span>

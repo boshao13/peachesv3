@@ -17,6 +17,7 @@
   --sage: #4e7a51;
   --cream-2: #fdf1e7; /* subtle alternating section bg */
 
+  --header-h: 4.5rem; /* fixed header height — hero subtracts this from 100svh */
   --radius: 0.75rem;
   --radius-lg: 1.25rem;
   --shadow-soft: 0 10px 30px -12px rgba(43, 38, 34, 0.18);

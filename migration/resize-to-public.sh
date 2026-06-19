@@ -45,4 +45,18 @@ cp "$SRC/logo3.png" "$DEST/brand/logo3.png"
 cp "$SRC/peachasset.png" "$DEST/brand/peachasset.png"
 resize "$SRC/mainbackground.webp" "$DEST/brand/mainbackground.webp" 2400
 
+# Trim the transparent padding around the wordmark so it sizes tightly in the hero.
+# Requires Pillow (pip install --break-system-packages Pillow); skipped if unavailable.
+LOGO="$DEST/brand/MAINLOGO.png" python3 - <<'PY' 2>/dev/null && echo "  brand/MAINLOGO.png trimmed" || echo "  (skipped MAINLOGO trim — Pillow not installed)"
+import os
+from PIL import Image, ImageOps
+p = os.environ["LOGO"]
+im = Image.open(p).convert("RGBA")
+bbox = im.getbbox()
+if bbox:
+    im = im.crop(bbox)
+    pad = int(max(im.size) * 0.04)
+    ImageOps.expand(im, border=pad, fill=(0, 0, 0, 0)).save(p)
+PY
+
 echo "Done. Files in public/images: $(find "$DEST" -type f | wc -l | tr -d ' ')"

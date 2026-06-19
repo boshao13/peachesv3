@@ -5,6 +5,7 @@ import type { Stat } from "./types";
 export const stats: Stat[] = [
   { value: "12+", label: "Premium amenities" },
   { value: "4", label: "Group class formats" },
-  { value: "5AM–10PM", label: "Weekday access" },
+  { value: "5AM–10PM", label: "Weekday hours" },
+  { value: "5AM–8PM", label: "Weekend hours" },
   { value: "Est. 2024", label: "Locally owned" },
 ];

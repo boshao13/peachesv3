@@ -6,7 +6,7 @@ import { site } from "@/content/site";
 
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden">
+    <section className="relative isolate flex min-h-[calc(100svh-var(--header-h))] items-start overflow-hidden">
       {/* Background image — preloaded (LCP) */}
       <Image
         src="/images/brand/mainbackground.webp"
@@ -22,19 +22,19 @@ export function Hero() {
         className="absolute inset-0 bg-gradient-to-b from-charcoal/70 via-charcoal/50 to-charcoal/75"
       />
 
-      <Container className="relative z-10 flex min-h-[90vh] flex-col items-center justify-center py-24 text-center text-cream">
+      <Container className="relative z-10 flex flex-col items-center pt-[clamp(1.5rem,6vh,5rem)] pb-16 text-center text-cream">
         {/* Original brand logo (wordmark) */}
         <Image
           src="/images/brand/MAINLOGO.png"
           alt="Peaches Fitness Club"
-          width={460}
-          height={460}
+          width={664}
+          height={546}
           priority
-          className="w-56 sm:w-72 h-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.35)]"
+          className="w-64 sm:w-80 lg:w-96 h-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.35)]"
         />
 
         {/* Animated brand slogan — word swap (decorative; sr-only full phrase below) */}
-        <p className="script -mt-2 text-3xl sm:text-5xl text-peach">
+        <p className="script mt-3 text-3xl sm:text-5xl text-peach">
           Where good things are{" "}
           <span aria-hidden="true">
             <RotatingWord

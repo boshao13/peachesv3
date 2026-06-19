@@ -4,6 +4,7 @@ import { PageHero } from "@/components/sections/PageHero";
 import { Section } from "@/components/ui/Section";
 import { MembershipCTA } from "@/components/sections/MembershipCTA";
 import { JsonLd, breadcrumbSchema } from "@/components/seo/JsonLd";
+import { IconPeach } from "@/components/ui/icons";
 import { pageMeta } from "@/lib/seo";
 import { amenities } from "@/content/amenities";
 
@@ -46,8 +47,8 @@ export default function AmenitiesPage() {
                     />
                   </div>
                 ) : (
-                  <div className="flex aspect-[4/3] items-center justify-center rounded-3xl bg-peach/40 text-5xl">
-                    <span aria-hidden>🍑</span>
+                  <div className="flex aspect-[4/3] items-center justify-center rounded-3xl bg-peach/40">
+                    <IconPeach className="h-16 w-16 text-coral/70" />
                   </div>
                 )}
                 <div>

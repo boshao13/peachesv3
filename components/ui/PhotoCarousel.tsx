@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import type { ImgRef } from "@/content/types";
+import { IconChevronLeft, IconChevronRight } from "@/components/ui/icons";
 
 // Scroll-snap carousel with prev/next + dots, keyboard accessible.
 // single image → no controls; empty → renders nothing (spec Appendix B).
@@ -69,7 +70,7 @@ export function PhotoCarousel({ images }: { images: ImgRef[] }) {
             onClick={() => go(active - 1)}
             className="absolute left-3 top-1/2 -translate-y-1/2 grid h-10 w-10 place-items-center rounded-full bg-cream/85 text-charcoal shadow-md backdrop-blur hover:bg-cream"
           >
-            ‹
+            <IconChevronLeft className="h-5 w-5" />
           </button>
           <button
             type="button"
@@ -77,7 +78,7 @@ export function PhotoCarousel({ images }: { images: ImgRef[] }) {
             onClick={() => go(active + 1)}
             className="absolute right-3 top-1/2 -translate-y-1/2 grid h-10 w-10 place-items-center rounded-full bg-cream/85 text-charcoal shadow-md backdrop-blur hover:bg-cream"
           >
-            ›
+            <IconChevronRight className="h-5 w-5" />
           </button>
           <div className="mt-4 flex justify-center gap-2">
             {images.map((im, i) => (

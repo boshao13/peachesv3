@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { FaqItem } from "@/content/types";
+import { IconPlus } from "@/components/ui/icons";
 
 export function Accordion({ items }: { items: FaqItem[] }) {
   const [open, setOpen] = useState<number | null>(0);
@@ -22,14 +23,11 @@ export function Accordion({ items }: { items: FaqItem[] }) {
                 className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left"
               >
                 <span className="font-medium text-charcoal">{item.q}</span>
-                <span
-                  aria-hidden
-                  className={`shrink-0 text-coral-deep transition-transform duration-300 ${
+                <IconPlus
+                  className={`h-5 w-5 shrink-0 text-coral-deep transition-transform duration-300 ${
                     isOpen ? "rotate-45" : ""
                   }`}
-                >
-                  ＋
-                </span>
+                />
               </button>
             </h3>
             <div

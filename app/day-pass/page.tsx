@@ -3,6 +3,7 @@ import { PageHero } from "@/components/sections/PageHero";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { JsonLd, breadcrumbSchema } from "@/components/seo/JsonLd";
+import { IconCheck } from "@/components/ui/icons";
 import { pageMeta } from "@/lib/seo";
 import { dayPasses } from "@/content/dayPasses";
 import { site } from "@/content/site";
@@ -38,10 +39,8 @@ export default function DayPassPage() {
               <p className="mt-2 text-5xl font-semibold text-coral-deep">{d.price}</p>
               <ul className="mt-6 flex-1 space-y-2 text-charcoal/80">
                 {d.includes.map((f) => (
-                  <li key={f} className="flex justify-center gap-2">
-                    <span aria-hidden className="text-sage">
-                      ✓
-                    </span>
+                  <li key={f} className="flex items-center justify-center gap-2">
+                    <IconCheck className="h-4 w-4 shrink-0 text-sage" />
                     {f}
                   </li>
                 ))}

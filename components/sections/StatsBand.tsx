@@ -7,7 +7,7 @@ export function StatsBand() {
   return (
     <section className="bg-peach/40 py-14">
       <Container>
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-y-8 gap-x-6 sm:grid-cols-3 lg:grid-cols-5">
           {stats.map((s) => (
             <Stat key={s.label} value={s.value} label={s.label} />
           ))}

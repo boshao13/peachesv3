@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { site } from "@/content/site";
 import { formatAddress, directionsUrl } from "@/lib/nap";
+import { IconMapPin } from "@/components/ui/icons";
 
 // Branded Mapbox GL map (spec §11): dynamically imported, client-only, mounted on
 // scroll-into-view. No API key OR load failure → static fallback + Get Directions.
@@ -76,10 +77,11 @@ export function MapEmbed({ className = "" }: { className?: string }) {
           href={directionsUrl(site.nap)}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex h-full min-h-[320px] items-center justify-center bg-peach/40 text-center text-charcoal/75"
+          className="flex h-full min-h-[320px] flex-col items-center justify-center gap-2 bg-peach/40 text-center text-charcoal/80"
         >
+          <IconMapPin className="h-7 w-7 text-coral-deep" />
           <span>
-            📍 {formatAddress(site.nap)}
+            {formatAddress(site.nap)}
             <br />
             <span className="text-sm font-semibold underline">Get directions</span>
           </span>

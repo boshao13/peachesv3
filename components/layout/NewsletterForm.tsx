@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { IconPeach } from "@/components/ui/icons";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -28,8 +29,9 @@ export function NewsletterForm() {
 
   if (status === "success") {
     return (
-      <p className="text-sm text-cream/90" role="status">
-        You&apos;re subscribed — thanks for joining the Peaches community! 🍑
+      <p className="flex items-center gap-2 text-sm text-cream/90" role="status">
+        <IconPeach className="h-4 w-4 text-peach" />
+        You&apos;re subscribed — thanks for joining the Peaches community!
       </p>
     );
   }

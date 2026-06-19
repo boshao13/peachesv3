@@ -41,11 +41,11 @@ export function Header() {
           : "bg-cream/85 backdrop-blur-sm"
       }`}
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 sm:px-8">
+      <nav className="mx-auto flex h-[var(--header-h)] max-w-6xl items-center justify-between px-5 sm:px-8">
         <Link
           href="/"
           aria-label="Peaches Fitness Club — home"
-          className={`flex items-center gap-2 transition-all ${scrolled ? "py-2" : "py-3"}`}
+          className="flex items-center gap-2"
         >
           <Image
             src="/images/brand/logo.png"

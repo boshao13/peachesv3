@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import type { Trainer } from "@/content/types";
 import { Card } from "@/components/ui/Card";
+import { IconArrowRight } from "@/components/ui/icons";
 
 export function TrainerCard({ trainer }: { trainer: Trainer }) {
   const [expanded, setExpanded] = useState(false);
@@ -44,10 +45,8 @@ export function TrainerCard({ trainer }: { trainer: Trainer }) {
             </p>
             <ul className="mt-2 space-y-1.5 text-sm text-charcoal/75">
               {specializations.map((s) => (
-                <li key={s} className="flex gap-2">
-                  <span aria-hidden className="text-coral-deep">
-                    ◗
-                  </span>
+                <li key={s} className="flex gap-2.5">
+                  <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-coral-deep" />
                   {s}
                 </li>
               ))}
@@ -64,9 +63,10 @@ export function TrainerCard({ trainer }: { trainer: Trainer }) {
             type="button"
             onClick={() => setExpanded((v) => !v)}
             aria-expanded={expanded}
-            className="mt-5 self-start text-sm font-semibold text-coral-deep hover:text-coral-dark"
+            className="mt-5 inline-flex items-center gap-1.5 self-start text-sm font-semibold text-coral-deep hover:text-coral-dark"
           >
-            {expanded ? "Show less" : "Read more →"}
+            {expanded ? "Show less" : "Read more"}
+            <IconArrowRight className={`h-4 w-4 transition-transform ${expanded ? "rotate-90" : ""}`} />
           </button>
         ) : null}
       </div>
