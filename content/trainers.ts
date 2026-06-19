@@ -22,13 +22,19 @@ export const trainers: Trainer[] = [
   },
   {
     slug: "katie",
-    name: "Katie",
-    title: "Personal Trainer",
-    photo: img("/images/trainers/katie.webp", 788, 1400, "Katie, personal trainer at Peaches"),
-    // TODO: replace with Katie's real bio once provided by the owner.
+    name: "Katie Smith",
+    title: "Personal Trainer · Nutrition & Group Fitness Coach",
+    photo: img("/images/trainers/katie.webp", 788, 1400, "Katie Smith, personal trainer at Peaches"),
     bio: [
-      "Meet Katie, one of our personal trainers at Peaches. Her full bio is on the way — check back soon to learn about her approach and what she loves about coaching here.",
+      "Katie Smith is a dedicated personal trainer, nutrition coach, and group fitness coach with over 25 years of experience in the fitness industry. She is passionate about helping women build confidence — both in the gym and in their own skin. Known for her discipline, strong work ethic, and supportive approach, Katie empowers her clients to grow stronger physically and mentally while embracing a balanced, sustainable lifestyle. She believes fitness should be both effective and enjoyable, and encourages her clients to work hard while still making room for fun.",
+      "Outside of coaching, she prioritizes time with her large family (including 5 kids), enjoys hiking, walking and dancing, and keeps a special tradition alive with her weekly “Sourdough Sunday.” She also loves traveling back to her home state of Oregon, where she reconnects with her roots and recharges for the work she loves.",
     ],
-    specializations: [],
+    specializations: [
+      "Personal training — 25+ years of experience",
+      "Nutrition coaching for a balanced, sustainable lifestyle",
+      "Group fitness instruction",
+      "Helping women build confidence, in the gym and beyond",
+      "Discipline, strong work ethic, and supportive coaching",
+    ],
   },
 ];
