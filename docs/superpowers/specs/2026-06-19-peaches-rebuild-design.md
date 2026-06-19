@@ -22,7 +22,7 @@ Peaches Fitness Club is a women-focused gym in Albuquerque, NM (opened June 2024
 
 1. **Page scope:** all live pages + all spec pages (full content coverage). See §4.
 2. **Booking/conversion:** keep **Glofox** — membership/class CTAs deep-link to the real portal; embed the live Glofox class-schedule iframe on `/classes` (lazy facade). Membership tier pricing as editable placeholders.
-3. **Brand/visual direction:** **keep the current look, cleaner** — retain the coral-peach palette and script/display accent type; rebuild clean, responsive, accessible, SEO-optimized. No rebrand. (Minor, accepted deviation: body type consolidates to Quicksand — see §5.2.)
+3. **Brand/visual direction:** **keep the current look, but elevate it to feel elegant** — retain the coral-peach identity while refining toward a premium, feminine-but-strong aesthetic: generous whitespace, refined Pacifico script accents + clean Quicksand body (§5.2), restrained motion, soft shadows, considered type scale and rhythm. Polished and editorial, never clichéd-pink or templated. No rebrand of the palette.
 4. **Map:** port the existing custom **Mapbox GL** map to `/contact`, dynamically imported, mounted on scroll-into-view, with a static fallback.
 5. **Trainer roster (2026-06-19):** Shelbie has left; **Katie** is the new trainer. Trainers page = **Kira** (existing, real assets in hand) + **Katie** (new, bio/photo owner-supplied). The stale `"Chantal"` label in the live bundle is disregarded.
 6. **Backend shape:** a single Route Handler `app/api/contact/route.ts` using a **zod discriminated union on `formType`** (`contact` | `careers` | `newsletter`). See §10.
@@ -76,6 +76,8 @@ Today's CRA has only **6 real routes**; most "pages" below are **net-new**, beca
 
 ## 5. Design System & Component Library
 
+**Aesthetic principles (elegance):** generous whitespace and a calm vertical rhythm (8px spacing scale); a clear, restrained type hierarchy (Pacifico script reserved for accents/wordmark, Quicksand for body, Oswald for headings); soft, low-spread shadows and gentle radii over hard borders; large, well-composed photography with subtle overlays for text legibility; coral used sparingly as an accent against cream so it reads premium, not loud; understated, slow motion (fades/parallax/staggered reveals) rather than flashy effects. Editorial and refined — never clichéd-pink or templated.
+
 ### 5.1 Design tokens (single source) + Tailwind v4 wiring
 - Raw tokens as CSS variables in `app/globals.css` `:root`; Tailwind v4 CSS-first via `@import "tailwindcss"` + `@theme inline { --color-coral: var(--coral); … }` so tokens expose CSS vars **and** generate utilities. PostCSS uses `@tailwindcss/postcss` (no v3 `tailwind.config.js`).
 - **Pinned palette + AA-safe role table** (hexes fixed; ratios pre-computed):
@@ -105,11 +107,12 @@ Today's CRA has only **6 real routes**; most "pages" below are **net-new**, beca
 
 ### 5.2 Fonts (`next/font/google`, self-hosted at build — no runtime CDN)
 - **What the live site actually renders (verified in `src`, not just the CDN link):** the CDN link in `public/index.html` loads **7 families** (Hammersmith One, Lato, Oswald:500, Pacifico, Quicksand:500, Sacramento, Vujahday Script), but several are loaded-not-used: **Pacifico is commented out** (`src/Slogan.jsx:89`), **Quicksand has zero `font-family` usages**. The faces genuinely on screen are **Oswald** (dominant display/heading/body, 13 declarations), **Lato** (App.css body), and **Vujahday Script** (cursive accent).
-- **⚠️ DECISION FOR OWNER (parity vs. re-skin) — see §13.11.** Two options:
-  - **(A) Parity (default):** `Oswald` → `--font-heading`/display; `Lato` → `--font-sans` body; `Vujahday Script` → `--font-display` script accent. Preserves the current look per §2.3.
-  - **(B) Refined re-skin:** `Pacifico` script accent + `Quicksand` body. Cleaner/softer but a deliberate change from what's on screen today.
-  This spec proceeds with **(A) parity** unless the owner picks (B). The losing set's families are dropped.
-- **Weights/usage** are pinned once the option is chosen (e.g. Oswald 500/600, Lato 400/700). Any "new" weights vs. the live single-weight loads are noted as rebuild additions.
+- **DECISION (owner, 2026-06-19): Option B — refined re-skin.** Pinned allow-list (3 families):
+  - `Pacifico` → `--font-display` (script accent: logo wordmark, slogan, section flourishes).
+  - `Quicksand` (400/500/700) → `--font-sans` (all body/UI).
+  - `Oswald` (500/600) → `--font-heading` (headings) — retained from the live look to anchor structure.
+  - **Dropped:** Lato, Sacramento, Hammersmith One, Vujahday Script. This is a deliberate, owner-approved change from the live faces (which lean Oswald/Lato/Vujahday); softer/cleaner per §2.3's "cleaner" intent.
+- **Weights** beyond the live single-weight CDN loads (Quicksand 400/700, Oswald 600) are intentional rebuild additions.
 - **Build note:** `next/font/google` fetches + self-hosts at **build time** (needs network during build; runtime has no CDN call). All chosen families expose CSS variables (`--font-display`/`--font-sans`/`--font-heading`) that are mapped into Tailwind `@theme` and set on `<body>`. For fully offline/reproducible builds, vendor `.woff2` via `next/font/local`.
 
 ### 5.3 Reusable components
@@ -240,7 +243,7 @@ Home "social proof" uses verifiable facts, never fabricated member counts. `stat
 
 **Non-blocking (build proceeds with placeholders/fallbacks):**
 5. Katie's bio + headshot. 6. Membership pricing ("Contact for pricing"). 7. `stats.ts` values. 8. Privacy/Terms real copy. 9. FAQ #5/#6 copy reconciliation (must precede production, feeds JSON-LD). 10. Trainer roster confirmation (Kira + Katie).
-11. **Font direction (§5.2): (A) parity [Oswald/Lato/Vujahday] — default — vs (B) re-skin [Pacifico/Quicksand].** Owner to confirm; affects the approved look.
+11. ~~Font direction~~ — **RESOLVED (owner): Option B re-skin** (Pacifico + Quicksand, Oswald headings). See §5.2.
 
 ---
 
