@@ -1,9 +1,23 @@
-// Temporary placeholder — replaced by the full Home in slice A2.
-export default function HomePlaceholder() {
+import { Hero } from "@/components/sections/Hero";
+import { ValueProps } from "@/components/sections/ValueProps";
+import { StatsBand } from "@/components/sections/StatsBand";
+import { AmenitiesPreview } from "@/components/sections/AmenitiesPreview";
+import { ClassesPreview } from "@/components/sections/ClassesPreview";
+import { TrainersPreview } from "@/components/sections/TrainersPreview";
+import { MembershipCTA } from "@/components/sections/MembershipCTA";
+import { LocationHours } from "@/components/sections/LocationHours";
+
+export default function HomePage() {
   return (
-    <section className="px-5 py-24 text-center">
-      <p className="script text-4xl text-coral-deep">Peaches Fitness Club</p>
-      <h1 className="mt-3 text-4xl font-semibold uppercase tracking-wide">Coming together soon</h1>
-    </section>
+    <>
+      <Hero />
+      <ValueProps />
+      <StatsBand />
+      <AmenitiesPreview />
+      <ClassesPreview />
+      <TrainersPreview />
+      <MembershipCTA />
+      <LocationHours />
+    </>
   );
 }
