@@ -22,3 +22,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# migration: bulky raw asset downloads (reproducible via migration/download-live-assets.sh)
+/migration/live-assets/
