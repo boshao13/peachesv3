@@ -39,24 +39,41 @@ resize "$SRC/kira.webp" "$DEST/trainers/kira.webp" 1600
 cp "$SRC/kiraheading.webp" "$DEST/trainers/kiraheading.webp"; echo "  $DEST/trainers/kiraheading.webp"
 
 mkdir -p "$DEST/brand"
-resize "$SRC/MAINLOGO.png" "$DEST/brand/MAINLOGO.png" 1200
 cp "$SRC/logo.png" "$DEST/brand/logo.png"
 cp "$SRC/logo3.png" "$DEST/brand/logo3.png"
 cp "$SRC/peachasset.png" "$DEST/brand/peachasset.png"
 resize "$SRC/mainbackground.webp" "$DEST/brand/mainbackground.webp" 2400
 
-# Trim the transparent padding around the wordmark so it sizes tightly in the hero.
+# Wordmark logo: remove the "NOW OPEN!" arc (gray text above the peach), crop tight, resize.
 # Requires Pillow (pip install --break-system-packages Pillow); skipped if unavailable.
-LOGO="$DEST/brand/MAINLOGO.png" python3 - <<'PY' 2>/dev/null && echo "  brand/MAINLOGO.png trimmed" || echo "  (skipped MAINLOGO trim — Pillow not installed)"
+SRCLOGO="$SRC/MAINLOGO.png" OUTLOGO="$DEST/brand/MAINLOGO.png" python3 - <<'PY' 2>/dev/null && echo "  brand/MAINLOGO.png (NOW OPEN removed)" || echo "  (skipped MAINLOGO clean — Pillow not installed; copying raw)"
 import os
-from PIL import Image, ImageOps
-p = os.environ["LOGO"]
-im = Image.open(p).convert("RGBA")
-bbox = im.getbbox()
-if bbox:
-    im = im.crop(bbox)
-    pad = int(max(im.size) * 0.04)
-    ImageOps.expand(im, border=pad, fill=(0, 0, 0, 0)).save(p)
+from PIL import Image
+im = Image.open(os.environ["SRCLOGO"]).convert("RGBA")
+W, H = im.size
+px = im.load()
+def colored(r, g, b, a):
+    return a >= 40 and (max(r, g, b) - min(r, g, b)) > 45 and max(r, g, b) > 60
+# top of the peach = first row with several saturated (coral/green) pixels
+peach_top = next(
+    (y for y in range(H) if sum(1 for x in range(0, W, 3) if colored(*px[x, y])) >= 4), 0
+)
+# erase everything above the peach (the bulk of the arc)
+for y in range(0, max(0, peach_top - 1)):
+    for x in range(W):
+        r, g, b, a = px[x, y]
+        if a: px[x, y] = (r, g, b, 0)
+# clear remaining GRAY arc tips in the narrow band just below (keep colored peach/leaf)
+for y in range(max(0, peach_top - 1), peach_top + 95):
+    for x in range(W):
+        r, g, b, a = px[x, y]
+        if a and not colored(r, g, b, a): px[x, y] = (r, g, b, 0)
+im = im.crop(im.getbbox())
+if max(im.size) > 1200:
+    s = 1200 / max(im.size)
+    im = im.resize((round(im.size[0] * s), round(im.size[1] * s)), Image.LANCZOS)
+im.save(os.environ["OUTLOGO"])
 PY
+[ -f "$DEST/brand/MAINLOGO.png" ] || resize "$SRC/MAINLOGO.png" "$DEST/brand/MAINLOGO.png" 1200
 
 echo "Done. Files in public/images: $(find "$DEST" -type f | wc -l | tr -d ' ')"

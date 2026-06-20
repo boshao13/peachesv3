@@ -58,12 +58,74 @@ bio + a headshot in `public/images/trainers/` and remove the placeholder flag.
 - **Design tokens** in `app/globals.css` (Tailwind v4 `@theme`); palette roles are AA-verified by a
   Vitest contrast test (`lib/__tests__/contrast.test.ts`).
 
-## Deploy (Vercel)
+## Deploy (Amazon EC2)
 
-1. Import the repo into Vercel (framework auto-detected as Next.js).
-2. Set all env vars above in Project Settings.
-3. Deploy. Legacy CRA slugs (`/daypass`, `/kidscare`, `/codeofconduct`) 308-redirect to the new
-   hyphenated routes automatically.
+Runs as a long-lived Node server (`next start`, port 3000) behind nginx. On the instance:
+
+```bash
+# 1. Prereqs (Amazon Linux 2023 example)
+sudo dnf install -y nodejs git nginx     # Node 20+; or use nvm
+
+# 2. Get the code
+git clone https://github.com/boshao13/peachesv3.git && cd peachesv3
+git checkout master                       # or your deploy branch
+npm ci
+
+# 3. Set env vars (see table above). IMPORTANT: NEXT_PUBLIC_* are inlined at BUILD
+#    time, so they must be present BEFORE `npm run build`. Put them in .env.production
+#    (or export them in the shell / systemd EnvironmentFile).
+cat > .env.production <<'ENV'
+NEXT_PUBLIC_SITE_URL=https://www.peachesfitnessclub.com
+NEXT_PUBLIC_MAPBOX_API_KEY=...        # rotated token
+RESEND_API_KEY=...
+UPSTASH_REDIS_REST_URL=...
+UPSTASH_REDIS_REST_TOKEN=...
+ENV
+
+# 4. Build + run
+npm run build
+npm run start            # serves on http://localhost:3000
+```
+
+**Keep it running** with a process manager so it survives crashes/reboots — e.g. **pm2**:
+
+```bash
+sudo npm i -g pm2
+pm2 start "npm run start" --name peaches
+pm2 save && pm2 startup     # follow the printed command to enable on boot
+```
+
+(Or a systemd unit running `npm run start` with `EnvironmentFile=/path/.env.production`.)
+
+**nginx reverse proxy** (`/etc/nginx/conf.d/peaches.conf`) → proxy `:80/:443` to `:3000`:
+
+```nginx
+server {
+  listen 80;
+  server_name www.peachesfitnessclub.com peachesfitnessclub.com;
+  location / {
+    proxy_pass http://127.0.0.1:3000;
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;   # required for rate limiting
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+  }
+}
+```
+
+Then add TLS with certbot (`sudo dnf install -y certbot python3-certbot-nginx && sudo certbot --nginx`),
+open ports **80/443** in the instance Security Group, and point DNS at the instance/Elastic IP.
+
+**Redeploys:** `git pull && npm ci && npm run build && pm2 restart peaches`.
+
+Legacy CRA slugs (`/daypass`, `/kidscare`, `/codeofconduct`) 308-redirect to the new hyphenated
+routes automatically (handled in `next.config.ts`).
+
+> The `X-Forwarded-For` header above is required for the forms' IP-based rate limiting to work behind
+> nginx. Also ensure `next build` runs on the server (or in CI) with the `NEXT_PUBLIC_*` vars set,
+> since they are baked into the client bundle at build time.
 
 ## Launch checklist (spec §13)
 
