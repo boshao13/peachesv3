@@ -123,6 +123,48 @@ open ports **80/443** in the instance Security Group, and point DNS at the insta
 Legacy CRA slugs (`/daypass`, `/kidscare`, `/codeofconduct`) 308-redirect to the new hyphenated
 routes automatically (handled in `next.config.ts`).
 
+## Backups & rollback
+
+Three layers, safest first:
+
+**1. Full-instance snapshot (do this before the first cutover).** Backs up the *entire* box —
+the current live site, configs, everything — and restores in minutes:
+
+```bash
+aws ec2 create-image --instance-id <INSTANCE_ID> \
+  --name "peaches-pre-cutover-$(date +%F-%H%M)" --no-reboot
+```
+
+Restore by launching a new instance from that AMI (or detach/attach the EBS snapshot) and
+repointing the Elastic IP/DNS.
+
+**2. Automatic per-deploy backups.** Use `scripts/deploy.sh` instead of building by hand — it
+**snapshots the current site first**, then builds, and only reloads if the build succeeds (so a
+bad build never takes the site down):
+
+```bash
+bash scripts/deploy.sh           # backup → git pull → npm ci → build → pm2 reload
+```
+
+Each run writes a timestamped `peaches-YYYYMMDD-HHMMSS.tar.gz` (built `.next` + `public` + source,
+plus the git SHA and nginx config) to `~/peaches-backups` (keeps the last 10; set `S3_BUCKET=s3://…`
+to also push offsite). You can also run it standalone any time: `bash scripts/backup-site.sh`.
+
+**3. One-command rollback.** Restore the previous site if something looks wrong:
+
+```bash
+bash scripts/rollback.sh                                   # restore the most recent backup
+bash scripts/rollback.sh ~/peaches-backups/peaches-XXXX.tar.gz   # or a specific one
+ls -1t ~/peaches-backups/peaches-*.tar.gz                  # list backups
+```
+
+Rollback restores the archived build (no rebuild), keeps your `.env*`, moves the bad copy aside as
+`peachesv3.broken-<ts>` for inspection, and reloads pm2. (Git-native alternative:
+`git checkout <previous-sha> && npm ci && npm run build && pm2 reload peaches`.)
+
+> All scripts are configurable via env vars (`APP_DIR`, `BRANCH`, `PM2_NAME`, `BACKUP_DIR`,
+> `KEEP`, `S3_BUCKET`) — see the header comment in each `scripts/*.sh`.
+
 > The `X-Forwarded-For` header above is required for the forms' IP-based rate limiting to work behind
 > nginx. Also ensure `next build` runs on the server (or in CI) with the `NEXT_PUBLIC_*` vars set,
 > since they are baked into the client bundle at build time.
