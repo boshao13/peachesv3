@@ -27,15 +27,18 @@ export function TrainerCard({ trainer }: { trainer: Trainer }) {
         ) : null}
       </div>
 
-      <div className="flex flex-1 flex-col p-6">
-        <h3 className="text-2xl font-semibold">{name}</h3>
-        <p className="script text-xl text-coral-deep -mt-1">{title}</p>
+      <div className="flex flex-1 flex-col p-7">
+        {/* name in the fancy script font */}
+        <h3 className="script text-3xl leading-tight text-coral-deep">{name}</h3>
+        {/* title in regular type */}
+        <p className="mt-1 text-sm font-medium uppercase tracking-wide text-charcoal/70">
+          {title}
+        </p>
 
-        <div className="mt-3 space-y-3 text-charcoal/75 leading-relaxed">
+        {/* description in regular font */}
+        <div className="mt-4 space-y-3 leading-relaxed text-charcoal/75">
           <p>{bio[0]}</p>
-          {expanded
-            ? bio.slice(1).map((p, i) => <p key={i}>{p}</p>)
-            : null}
+          {expanded ? bio.slice(1).map((p, i) => <p key={i}>{p}</p>) : null}
         </div>
 
         {expanded && specializations.length > 0 ? (
@@ -63,7 +66,7 @@ export function TrainerCard({ trainer }: { trainer: Trainer }) {
             type="button"
             onClick={() => setExpanded((v) => !v)}
             aria-expanded={expanded}
-            className="mt-5 inline-flex items-center gap-1.5 self-start text-sm font-semibold text-coral-deep hover:text-coral-dark"
+            className="mt-auto inline-flex items-center gap-1.5 self-start pt-6 text-sm font-semibold text-coral-deep hover:text-coral-dark"
           >
             {expanded ? "Show less" : "Read more"}
             <IconArrowRight className={`h-4 w-4 transition-transform ${expanded ? "rotate-90" : ""}`} />

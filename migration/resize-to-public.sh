@@ -76,4 +76,22 @@ im.save(os.environ["OUTLOGO"])
 PY
 [ -f "$DEST/brand/MAINLOGO.png" ] || resize "$SRC/MAINLOGO.png" "$DEST/brand/MAINLOGO.png" 1200
 
+# Dark wordmark for the light header: recolor the white text -> charcoal, keep peach + green leaf.
+IN="$DEST/brand/MAINLOGO.png" OUT="$DEST/brand/MAINLOGO-dark.png" python3 - <<'PY' 2>/dev/null && echo "  brand/MAINLOGO-dark.png" || echo "  (skipped dark logo — Pillow not installed)"
+import os
+from PIL import Image
+im = Image.open(os.environ["IN"]).convert("RGBA")
+px = im.load(); W,H = im.size; CH=(43,38,34)
+def keep(r,g,b,a):
+    if a < 40: return False
+    if (max(r,g,b)-min(r,g,b)) >= 25 and max(r,g,b) > 60: return True   # coral peach
+    if g >= r and g >= b and (g-min(r,g,b)) >= 12: return True          # sage leaf
+    return False
+for y in range(H):
+    for x in range(W):
+        r,g,b,a = px[x,y]
+        if a and not keep(r,g,b,a): px[x,y] = (CH[0],CH[1],CH[2],a)
+im.save(os.environ["OUT"])
+PY
+
 echo "Done. Files in public/images: $(find "$DEST" -type f | wc -l | tr -d ' ')"

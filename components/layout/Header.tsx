@@ -42,20 +42,28 @@ export function Header() {
       }`}
     >
       <nav className="mx-auto flex h-[var(--header-h)] max-w-6xl items-center justify-between px-5 sm:px-8">
-        <Link
-          href="/"
-          aria-label="Peaches Fitness Club — home"
-          className="flex items-center gap-2"
-        >
+        <Link href="/" aria-label="Peaches Fitness Club — home" className="flex items-center">
+          {/* desktop: full wordmark logo */}
           <Image
-            src="/images/brand/logo.png"
-            alt=""
-            width={44}
-            height={44}
-            className={`rounded-full transition-all ${scrolled ? "h-9 w-9" : "h-11 w-11"}`}
+            src="/images/brand/MAINLOGO-dark.png"
+            alt="Peaches Fitness Club"
+            width={1200}
+            height={655}
             priority
+            className={`hidden w-auto transition-all lg:block ${scrolled ? "h-11" : "h-12"}`}
           />
-          <span className="script text-2xl text-coral-deep leading-none">Peaches</span>
+          {/* mobile: compact peach mark + script */}
+          <span className="flex items-center gap-2 lg:hidden">
+            <Image
+              src="/images/brand/logo.png"
+              alt=""
+              width={44}
+              height={44}
+              className="h-9 w-9 rounded-full"
+              priority
+            />
+            <span className="script text-2xl leading-none text-coral-deep">Peaches</span>
+          </span>
         </Link>
 
         {/* desktop nav */}
