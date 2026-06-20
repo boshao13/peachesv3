@@ -22,7 +22,7 @@ export function Hero() {
         className="absolute inset-0 bg-gradient-to-b from-charcoal/70 via-charcoal/50 to-charcoal/75"
       />
 
-      <Container className="relative z-10 flex flex-col items-center pt-[clamp(1.5rem,6vh,5rem)] pb-16 text-center text-cream">
+      <Container className="relative z-10 flex flex-col items-center pt-[clamp(3rem,9vh,7rem)] pb-16 text-center text-cream">
         {/* Original brand logo (wordmark) */}
         <Image
           src="/images/brand/MAINLOGO.png"
