@@ -62,9 +62,21 @@ bio + a headshot in `public/images/trainers/` and remove the placeholder flag.
 
 Runs as a long-lived Node server (`next start`, port 3000) behind nginx. On the instance:
 
+> ⚠️ **First cutover is a migration, not a redeploy.** The box currently in production
+> (`ubuntu@ec2-18-225-92-153…`, **Ubuntu + nginx 1.18**) serves the *old CRA build as static
+> files straight off disk* (`root …; try_files …`). Switching to this Next.js app means nginx must
+> change from static-file serving to a **reverse proxy** (`proxy_pass http://127.0.0.1:3000`, the
+> block below) plus a pm2 Node process. **Before touching anything, run
+> [`scripts/precutover-snapshot.sh`](scripts/precutover-snapshot.sh) on the box** — it archives the
+> current nginx config + the served doc root so the old static site is fully restorable. The
+> per-deploy `backup-site.sh` only covers `~/peachesv3`, so it does *not* capture the current live site.
+
 ```bash
-# 1. Prereqs (Amazon Linux 2023 example)
-sudo dnf install -y nodejs git nginx     # Node 20+; or use nvm
+# 1. Prereqs
+#    Ubuntu (this instance): current Node via NodeSource, then:
+#       curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+#       sudo apt update && sudo apt install -y nodejs git nginx
+#    Amazon Linux 2023:  sudo dnf install -y nodejs git nginx   # Node 20+; or use nvm
 
 # 2. Get the code
 git clone https://github.com/boshao13/peachesv3.git && cd peachesv3
@@ -137,6 +149,17 @@ aws ec2 create-image --instance-id <INSTANCE_ID> \
 
 Restore by launching a new instance from that AMI (or detach/attach the EBS snapshot) and
 repointing the Elastic IP/DNS.
+
+**1b. File-level pre-cutover snapshot (no AWS access needed).** If you can't take an AMI, run
+this *on the box* — it discovers what nginx is actually serving and archives the served doc
+root(s) + the entire `/etc/nginx` so the **old static CRA site** is restorable even though it
+doesn't live in `~/peachesv3`:
+
+```bash
+bash scripts/precutover-snapshot.sh        # → ~/peaches-backups/precutover-<ts>.tar.gz
+```
+
+Restore = put the doc root back and `cp` the saved nginx confs, then `sudo nginx -t && sudo systemctl reload nginx`.
 
 **2. Automatic per-deploy backups.** Use `scripts/deploy.sh` instead of building by hand — it
 **snapshots the current site first**, then builds, and only reloads if the build succeeds (so a
