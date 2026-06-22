@@ -47,7 +47,9 @@ export default function AmenitiesPage() {
                     />
                   </div>
                 ) : (
-                  <div className="flex aspect-[4/3] items-center justify-center rounded-3xl bg-peach/40">
+                  // Empty decorative box: hidden on mobile (single-column grid — it would
+                  // just waste a full 4:3 of scroll), shown on lg to balance the 2-col layout.
+                  <div className="hidden aspect-[4/3] items-center justify-center rounded-3xl bg-peach/40 lg:flex">
                     <IconPeach className="h-16 w-16 text-coral/70" />
                   </div>
                 )}

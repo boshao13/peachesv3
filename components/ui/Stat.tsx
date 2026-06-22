@@ -5,7 +5,15 @@ import { useEffect, useRef, useState } from "react";
 // Animated count-up ONLY for values with a leading integer (e.g. "12+", "4").
 // Non-numeric values (e.g. "5AM–10PM", "Est. 2024") render static (spec §6.4).
 // Respects prefers-reduced-motion.
-export function Stat({ value, label }: { value: string; label: string }) {
+export function Stat({
+  value,
+  label,
+  className = "",
+}: {
+  value: string;
+  label: string;
+  className?: string;
+}) {
   const match = value.match(/^(\d+)(.*)$/s);
   const target = match ? parseInt(match[1], 10) : null;
   const suffix = match ? match[2] : "";
@@ -61,8 +69,8 @@ export function Stat({ value, label }: { value: string; label: string }) {
   }, [target, suffix, value]);
 
   return (
-    <div ref={ref} className="text-center">
-      <div className="text-4xl sm:text-5xl font-semibold text-coral-deep tabular-nums">
+    <div ref={ref} className={`text-center ${className}`}>
+      <div className="text-3xl sm:text-5xl font-semibold text-coral-deep tabular-nums">
         {display}
       </div>
       <div className="mt-1 text-sm uppercase tracking-widest text-charcoal/80">{label}</div>

@@ -32,7 +32,7 @@ export default function KidsCarePage() {
           </div>
           <div className="rounded-2xl bg-peach/40 px-6 py-4">
             <p className="text-3xl font-semibold text-coral-deep">{kidsCare.priceAdditional}</p>
-            <p className="text-sm text-charcoal/70">each additional child</p>
+            <p className="text-sm text-charcoal/70">per additional child</p>
           </div>
         </div>
       </Section>

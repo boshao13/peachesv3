@@ -121,7 +121,7 @@ export function Header() {
 
       {/* mobile menu */}
       {open ? (
-        <div className="lg:hidden border-t border-charcoal/10 bg-cream">
+        <div className="lg:hidden border-t border-charcoal/10 bg-cream max-h-[calc(100svh-var(--header-h))] overflow-y-auto overscroll-contain">
           <ul className="mx-auto max-w-6xl px-5 py-4">
             {[...primaryNav, ...secondaryNav].map((l) => (
               <li key={l.href}>

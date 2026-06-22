@@ -56,9 +56,35 @@ export function MapEmbed({ className = "" }: { className?: string }) {
             .setLngLat([geo.lng, geo.lat])
             .addTo(map);
 
-          map.on("load", () => setStatus("ready"));
-          map.on("error", () => setStatus("fallback"));
-          cleanup = () => map.remove();
+          // Safety net: if the map never fires `load` or `error` (blocked tiles,
+          // invalid/restricted token, CSP), don't sit on "Loading map…" forever —
+          // fall back to the address + Get Directions card.
+          let loadTimer: ReturnType<typeof setTimeout> | undefined = setTimeout(() => {
+            setStatus("fallback");
+            try {
+              map.remove();
+            } catch {
+              /* already gone */
+            }
+            cleanup = undefined;
+          }, 8000);
+          const clearLoadTimer = () => {
+            if (loadTimer) clearTimeout(loadTimer);
+            loadTimer = undefined;
+          };
+
+          map.on("load", () => {
+            clearLoadTimer();
+            setStatus("ready");
+          });
+          map.on("error", () => {
+            clearLoadTimer();
+            setStatus("fallback");
+          });
+          cleanup = () => {
+            clearLoadTimer();
+            map.remove();
+          };
         } catch {
           setStatus("fallback");
         }
