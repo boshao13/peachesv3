@@ -24,11 +24,11 @@ tests) · `npm run test:a11y` (Playwright + axe; builds & starts the app automat
 | Var | Required | Purpose |
 |-----|----------|---------|
 | `NEXT_PUBLIC_SITE_URL` | yes (prod) | Canonical/OG/sitemap base URL (no trailing slash) |
-| `RESEND_API_KEY` | yes (prod) | Sends contact/careers/newsletter emails via [Resend](https://resend.com) |
 | `NEXT_PUBLIC_MAPBOX_API_KEY` | optional | Branded Mapbox map on `/contact` (falls back to a static address + directions if unset) |
-| `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` | yes (prod) | Durable form rate limiting ([Upstash](https://upstash.com)). The API **fails loud** in production if missing; dev degrades to honeypot-only. |
 
-> ⚠️ **Security (spec §13.3):** the old CRA committed a Mapbox token to git history. **Rotate that token** and URL-restrict the new one to the production domain. Forms email is sent from a Resend test sender by default — set a verified domain sender in `lib/email.ts` before launch.
+> **Forms need no env keys.** Contact/careers/newsletter send via **EmailJS** client-side; the public account/service/template IDs live in `lib/emailjs.ts`.
+
+> ⚠️ **Security (spec §13.3):** the old CRA committed a Mapbox token to git history. **Rotate that token** and URL-restrict the new one to the production domain. For forms, keep the production domain in the EmailJS account's allowed-origins list.
 
 ## Editing content
 
@@ -53,8 +53,8 @@ bio + a headshot in `public/images/trainers/` and remove the placeholder flag.
   components.
 - **SEO:** per-route metadata + canonical/OG, `HealthClub`/`LocalBusiness` + `FAQPage` +
   `BreadcrumbList` JSON-LD, `app/sitemap.ts` / `app/robots.ts`, static OG image (`public/og.png`).
-- **Forms:** one `app/api/contact/route.ts` (zod discriminated union) → honeypot → Upstash rate
-  limit → Resend.
+- **Forms:** contact/careers/newsletter validate client-side (zod, `lib/schemas.ts`) with a honeypot,
+  then send via **EmailJS** from the browser (`lib/emailjs.ts`) — no server route or API keys.
 - **Design tokens** in `app/globals.css` (Tailwind v4 `@theme`); palette roles are AA-verified by a
   Vitest contrast test (`lib/__tests__/contrast.test.ts`).
 
@@ -89,10 +89,8 @@ npm ci
 cat > .env.production <<'ENV'
 NEXT_PUBLIC_SITE_URL=https://www.peachesfitnessclub.com
 NEXT_PUBLIC_MAPBOX_API_KEY=...        # rotated token
-RESEND_API_KEY=...
-UPSTASH_REDIS_REST_URL=...
-UPSTASH_REDIS_REST_TOKEN=...
 ENV
+# (Forms use EmailJS client-side — no server keys.)
 
 # 4. Build + run
 npm run build
@@ -197,8 +195,7 @@ Rollback restores the archived build (no rebuild), keeps your `.env*`, moves the
 - [ ] Confirm NAP (address/Suite/ZIP, phone) and update `content/site.ts`
 - [ ] Confirm/seed the Facebook page URL (then add to `site.socials.facebook` for JSON-LD `sameAs`)
 - [ ] Rotate + URL-restrict the Mapbox token; set `NEXT_PUBLIC_MAPBOX_API_KEY`
-- [ ] Configure Upstash in production
+- [ ] Confirm the EmailJS account's allowed-origins list includes the production domain
 - [ ] Add Katie's real bio + headshot
 - [ ] Confirm membership pricing (or keep "Contact for pricing")
 - [ ] Replace Privacy/Terms placeholder copy with finalized legal text
-- [ ] Set a verified Resend sender domain

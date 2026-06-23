@@ -12,6 +12,8 @@ import {
 } from "@/components/ui/FormControls";
 import { Button } from "@/components/ui/Button";
 import { GENDERS, POSITIONS } from "@/content/careers";
+import { contactBodySchema, fieldErrors } from "@/lib/schemas";
+import { sendEmail } from "@/lib/emailjs";
 
 export function CareersForm() {
   const [state, setState] = useState<SubmitState>("idle");
@@ -35,34 +37,41 @@ export function CareersForm() {
       position: String(fd.get("position") ?? ""),
       company: String(fd.get("company") ?? ""),
     };
-    setState("submitting");
     setErrors({});
     setTopError(undefined);
+
+    // Honeypot: silently "succeed", don't send.
+    if (payload.company) {
+      setState("success");
+      form.reset();
+      return;
+    }
+
+    const parsed = contactBodySchema.safeParse(payload);
+    if (!parsed.success) {
+      setErrors(fieldErrors(parsed.error));
+      setState("idle");
+      return;
+    }
+
+    setState("submitting");
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+      await sendEmail("careers", {
+        name: payload.name,
+        email: payload.email,
+        phone: payload.phone,
+        address: payload.address,
+        education: payload.education,
+        experience: payload.experience,
+        overEighteen: payload.overEighteen,
+        gender: payload.gender,
+        position: payload.position,
       });
-      if (res.ok) {
-        setState("success");
-        form.reset();
-        return;
-      }
-      const data = await res.json().catch(() => ({}));
-      if (res.status === 400 && data.errors) {
-        setErrors(data.errors);
-        setState("idle");
-      } else if (res.status === 429) {
-        setState("error");
-        setTopError("Too many attempts — please wait a few minutes and try again.");
-      } else {
-        setState("error");
-        setTopError("We couldn't submit your application. Please email us your resume directly.");
-      }
+      setState("success");
+      form.reset();
     } catch {
       setState("error");
-      setTopError("Network error. Please try again, or email us.");
+      setTopError("We couldn't submit your application. Please email us your resume directly.");
     }
   }
 

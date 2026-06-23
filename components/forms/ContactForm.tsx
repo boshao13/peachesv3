@@ -10,6 +10,8 @@ import {
   type SubmitState,
 } from "@/components/ui/FormControls";
 import { Button } from "@/components/ui/Button";
+import { contactBodySchema, fieldErrors } from "@/lib/schemas";
+import { sendEmail } from "@/lib/emailjs";
 
 // variant "full" = contact page (with message); "lead" = membership/join CTA (no message).
 export function ContactForm({ variant = "full" }: { variant?: "full" | "lead" }) {
@@ -29,34 +31,36 @@ export function ContactForm({ variant = "full" }: { variant?: "full" | "lead" })
       message: variant === "full" ? String(fd.get("message") ?? "") : undefined,
       company: String(fd.get("company") ?? ""),
     };
-    setState("submitting");
     setErrors({});
     setTopError(undefined);
+
+    // Honeypot: silently "succeed" (don't tip off bots), don't send.
+    if (payload.company) {
+      setState("success");
+      form.reset();
+      return;
+    }
+
+    const parsed = contactBodySchema.safeParse(payload);
+    if (!parsed.success) {
+      setErrors(fieldErrors(parsed.error));
+      setState("idle");
+      return;
+    }
+
+    setState("submitting");
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+      await sendEmail("contact", {
+        user_name: payload.name,
+        user_email: payload.email,
+        user_phone: payload.phone,
+        message: payload.message ?? "",
       });
-      if (res.ok) {
-        setState("success");
-        form.reset();
-        return;
-      }
-      const data = await res.json().catch(() => ({}));
-      if (res.status === 400 && data.errors) {
-        setErrors(data.errors);
-        setState("idle");
-      } else if (res.status === 429) {
-        setState("error");
-        setTopError("Too many attempts — please wait a few minutes and try again.");
-      } else {
-        setState("error");
-        setTopError("We couldn't send your message. Please call or email us directly.");
-      }
+      setState("success");
+      form.reset();
     } catch {
       setState("error");
-      setTopError("Network error. Please try again, or call us.");
+      setTopError("We couldn't send your message. Please call or email us directly.");
     }
   }
 

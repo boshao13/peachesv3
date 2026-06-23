@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { IconPeach } from "@/components/ui/icons";
+import { contactBodySchema } from "@/lib/schemas";
+import { sendEmail } from "@/lib/emailjs";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -13,15 +15,23 @@ export function NewsletterForm() {
     e.preventDefault();
     const form = e.currentTarget;
     const company = (form.elements.namedItem("company") as HTMLInputElement)?.value ?? "";
+
+    // Honeypot: silently "succeed", don't send.
+    if (company) {
+      setStatus("success");
+      setEmail("");
+      return;
+    }
+    if (!contactBodySchema.safeParse({ formType: "newsletter", email, company }).success) {
+      setStatus("error");
+      return;
+    }
+
     setStatus("submitting");
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ formType: "newsletter", email, company }),
-      });
-      setStatus(res.ok ? "success" : "error");
-      if (res.ok) setEmail("");
+      await sendEmail("newsletter", { user_email: email });
+      setStatus("success");
+      setEmail("");
     } catch {
       setStatus("error");
     }
