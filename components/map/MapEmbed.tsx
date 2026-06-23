@@ -40,6 +40,10 @@ export function MapEmbed({ className = "" }: { className?: string }) {
             zoom: site.mapbox.zoom,
             pitch: site.mapbox.pitch,
             attributionControl: true,
+            // Mobile: require two fingers to pan so the map doesn't trap page scroll.
+            cooperativeGestures: true,
+            // Don't bail on lower-power mobile GPUs.
+            failIfMajorPerformanceCaveat: false,
           });
           map.addControl(new mapboxgl.NavigationControl(), "top-right");
 
@@ -67,7 +71,7 @@ export function MapEmbed({ className = "" }: { className?: string }) {
               /* already gone */
             }
             cleanup = undefined;
-          }, 8000);
+          }, 20000);
           const clearLoadTimer = () => {
             if (loadTimer) clearTimeout(loadTimer);
             loadTimer = undefined;

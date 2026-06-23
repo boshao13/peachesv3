@@ -52,18 +52,15 @@ export function Header() {
             priority
             className={`hidden w-auto transition-all lg:block ${scrolled ? "h-11" : "h-12"}`}
           />
-          {/* mobile: compact peach mark + script */}
-          <span className="flex items-center gap-2 lg:hidden">
-            <Image
-              src="/images/brand/logo.png"
-              alt=""
-              width={44}
-              height={44}
-              className="h-9 w-9 rounded-full"
-              priority
-            />
-            <span className="script text-2xl leading-none text-coral-deep">Peaches</span>
-          </span>
+          {/* mobile: peach mark only */}
+          <Image
+            src="/images/brand/logo.png"
+            alt=""
+            width={44}
+            height={44}
+            className="h-10 w-10 rounded-full lg:hidden"
+            priority
+          />
         </Link>
 
         {/* desktop nav */}
@@ -91,32 +88,37 @@ export function Header() {
           </Button>
         </div>
 
-        {/* mobile toggle */}
-        <button
-          type="button"
-          className="lg:hidden inline-flex h-11 w-11 items-center justify-center rounded-full text-charcoal"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span className="relative block h-4 w-6">
-            <span
-              className={`absolute left-0 block h-0.5 w-6 bg-current transition-all ${
-                open ? "top-1.5 rotate-45" : "top-0"
-              }`}
-            />
-            <span
-              className={`absolute left-0 top-1.5 block h-0.5 w-6 bg-current transition-all ${
-                open ? "opacity-0" : "opacity-100"
-              }`}
-            />
-            <span
-              className={`absolute left-0 block h-0.5 w-6 bg-current transition-all ${
-                open ? "top-1.5 -rotate-45" : "top-3"
-              }`}
-            />
-          </span>
-        </button>
+        {/* mobile: Join Now + menu toggle */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <Button href={site.glofox.membershipsUrl} external size="md">
+            Join Now
+          </Button>
+          <button
+            type="button"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-charcoal"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span className="relative block h-4 w-6">
+              <span
+                className={`absolute left-0 block h-0.5 w-6 bg-current transition-all ${
+                  open ? "top-1.5 rotate-45" : "top-0"
+                }`}
+              />
+              <span
+                className={`absolute left-0 top-1.5 block h-0.5 w-6 bg-current transition-all ${
+                  open ? "opacity-0" : "opacity-100"
+                }`}
+              />
+              <span
+                className={`absolute left-0 block h-0.5 w-6 bg-current transition-all ${
+                  open ? "top-1.5 -rotate-45" : "top-3"
+                }`}
+              />
+            </span>
+          </button>
+        </div>
       </nav>
 
       {/* mobile menu */}
