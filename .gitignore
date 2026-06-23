@@ -1,24 +1,32 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
-/.pnp
-.pnp.js
 
-# testing
-/coverage
+# next
+/.next/
+/out/
+next-env.d.ts
 
 # production
 /build
 
-# misc
+# env — never commit secrets (see spec §13.3: rotate Mapbox token)
 .env
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env*.local
 
+# testing
+/coverage
+/playwright-report
+/test-results
+
+# misc
+.DS_Store
+*.pem
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# migration: bulky raw asset downloads (reproducible via migration/download-live-assets.sh)
+/migration/live-assets/
+
+# typescript build info
+*.tsbuildinfo

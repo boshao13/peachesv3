@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Design tokens — single source (spec §5.1). Raw values live here in :root;
+   @theme inline maps them to Tailwind utilities (text-coral, bg-cream, etc.).
+   Font CSS vars (--font-display/-sans/-heading) are attached to <html> by
+   next/font in app/layout.tsx (see lib/fonts.ts).
+--------------------------------------------------------------------------- */
+:root {
+  --cream: #fff8f0;
+  --charcoal: #2b2622;
+  --coral: #d56f52;
+  --coral-deep: #a8503a; /* AA-safe button fill w/ white text (5.42:1) */
+  --coral-dark: #b55c44; /* hover */
+  --peach: #faccb5;
+  --peach-2: #fab39d;
+  --sage: #4e7a51;
+  --cream-2: #fdf1e7; /* subtle alternating section bg */
+
+  --header-h: 4.5rem; /* fixed header height — hero subtracts this from 100svh */
+  --radius: 0.75rem;
+  --radius-lg: 1.25rem;
+  --shadow-soft: 0 10px 30px -12px rgba(43, 38, 34, 0.18);
+  --shadow-card: 0 4px 20px -8px rgba(43, 38, 34, 0.12);
+}
+
+@theme inline {
+  --color-cream: var(--cream);
+  --color-cream-2: var(--cream-2);
+  --color-charcoal: var(--charcoal);
+  --color-coral: var(--coral);
+  --color-coral-deep: var(--coral-deep);
+  --color-coral-dark: var(--coral-dark);
+  --color-peach: var(--peach);
+  --color-peach-2: var(--peach-2);
+  --color-sage: var(--sage);
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-heading: var(--font-heading);
+
+  --radius-DEFAULT: var(--radius);
+  --radius-lg: var(--radius-lg);
+}
+
+/* ---------------------------------------------------------------------------
+   Base — elegant defaults (spec §5 aesthetic principles).
+   MUST live in @layer base so Tailwind utilities (e.g. text-white on link
+   buttons) still win over these element rules.
+--------------------------------------------------------------------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--cream);
+    color: var(--charcoal);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  ::selection {
+    background: var(--peach);
+    color: var(--charcoal);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--coral-deep);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+/* Script accent — use sparingly via .script */
+.script {
+  font-family: var(--font-display), cursive;
+  letter-spacing: 0;
+}
+
+/* Respect reduced motion globally as a safety net */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
