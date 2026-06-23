@@ -7,6 +7,7 @@ import { TrainersPreview } from "@/components/sections/TrainersPreview";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { MembershipCTA } from "@/components/sections/MembershipCTA";
 import { LocationHours } from "@/components/sections/LocationHours";
+import { MapEmbed } from "@/components/map/MapEmbed";
 
 export default function HomePage() {
   return (
@@ -19,7 +20,7 @@ export default function HomePage() {
       <TrainersPreview />
       <FaqSection />
       <MembershipCTA />
-      <LocationHours />
+      <LocationHours mapSlot={<MapEmbed className="h-full" />} />
     </>
   );
 }
