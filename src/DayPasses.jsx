@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from './Header';
-import daypasses from './images/daypasses.png';
-import peachasset from './images/peachasset.png'
-import blurredBackground from './images/mainphoto.png';
+import Seo from './Seo';
+import daypasses from './images/opt/daypasses.webp';
+import peachasset from './images/opt/peachasset.webp'
+import blurredBackground from './images/opt/mainphoto.webp';
 import Footer from './Footer';
 const DayPassesContainer = styled.div`
   display: flex;
@@ -132,9 +133,15 @@ const RootContainer = styled.div`
 const DayPasses = () => {
   return (
     <RootContainer>
+    <Seo
+      path="/daypass"
+      title="Day Passes | Peaches Fitness Club — Albuquerque Women's Gym"
+      description="Try Peaches with a day pass: Standard $15 (24-hr gym access) or Premium $25 (gym, sauna, cold plunge & classes). No membership required."
+    />
     <DayPassesContainer>
       <Header />
-      <HeaderImage src={daypasses} alt="Header Image" />
+      <h1 className="sr-only">Gym Day Passes in Albuquerque — Peaches Fitness Club</h1>
+      <HeaderImage src={daypasses} alt="Peaches Fitness Club day passes" />
       <BackgroundImage /> {/* Add the BackgroundImage component */}
       <DayPassesFlexContainer>
        

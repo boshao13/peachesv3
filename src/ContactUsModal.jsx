@@ -1,8 +1,8 @@
 import React from 'react';
 import {styled, keyframes} from 'styled-components';
 import Modal from 'react-modal';
-import modalheader from "./images/contactus1.png"
-import thankyou from './images/thankyou.png'
+import modalheader from "./images/opt/contactus1.webp"
+import thankyou from './images/opt/thankyou.webp'
 
 const fadeIn = keyframes`
   from {

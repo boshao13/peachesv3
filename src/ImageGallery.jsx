@@ -53,9 +53,15 @@ const PhotoCard = styled.div`
     width: 100%;
     height: 100%;
     scroll-snap-align: start;
-    background-size: cover;
-    background-position: center;
     position: relative;
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
     &:after {
       content: '';
       position: absolute;
@@ -118,40 +124,40 @@ const ImageGallery = () => {
 
       {
         title: 'Gym',
-        images: [require('./images/stockgym4.jpeg') , require('./images/stockgym1.avif'), 
-        require('./images/stockgym2.jpeg'),require('./images/stockgym3.avif'),require('./images/stockgym5.jpeg'),
-        require('./images/stockgym6.jpeg')]
+        images: [require('./images/opt/stockgym4.webp') , require('./images/opt/stockgym1.webp'), 
+        require('./images/opt/stockgym2.webp'),require('./images/opt/stockgym3.webp'),require('./images/opt/stockgym5.webp'),
+        require('./images/opt/stockgym6.webp')]
       },
       {
         title: 'Classes',
-        images: [require('./images/classes1.jpg') , require('./images/classes2.jpg'), 
-        require('./images/classes3.jpg')]
+        images: [require('./images/opt/classes1.webp') , require('./images/opt/classes2.webp'), 
+        require('./images/opt/classes3.webp')]
       },
       {
         title: 'Kids Care',
-        images: [require('./images/kidscare4.jpg') , require('./images/kidscare2.jpg')]
+        images: [require('./images/opt/kidscare4.webp') , require('./images/opt/kidscare2.webp')]
       },
       {
         title: 'Cold Plunge',
-        images: [require('./images/coldplunge3.png') , require('./images/coldplunge2.png'), 
-        require('./images/coldplunge.png')]
+        images: [require('./images/opt/coldplunge3.webp') , require('./images/opt/coldplunge2.webp'), 
+        require('./images/opt/coldplunge.webp')]
       },
       {
         title: 'Peachy Bar',
-        images: [require('./images/peachybar.jpg') , require('./images/peachybar2.jpg'), 
-        require('./images/peachybar3.jpg')]
+        images: [require('./images/opt/peachybar.webp') , require('./images/opt/peachybar2.webp'), 
+        require('./images/opt/peachybar3.webp')]
       },
       {
         title: 'Sauna',
-        images: [require('./images/sauna2.png') , require('./images/sauna.png'),require('./images/sauna3.png')]
+        images: [require('./images/opt/sauna2.webp') , require('./images/opt/sauna.webp'),require('./images/opt/sauna3.webp')]
       },
       {
         title: 'Exclusive Booty Builder® Equipment',
-        images: [require('./images/bootybuilder3.png') , require('./images/bootybuilder.png'),require('./images/bootybuilder2.png')]
+        images: [require('./images/opt/bootybuilder3.webp') , require('./images/opt/bootybuilder.webp'),require('./images/opt/bootybuilder2.webp')]
       },
       {
         title: 'Peaches Lounge',
-        images: [require('./images/lounge3.jpeg') , require('./images/lounge2.jpg'),require('./images/lounge.jpeg')]
+        images: [require('./images/opt/lounge3.webp') , require('./images/opt/lounge2.webp'),require('./images/opt/lounge.webp')]
       }
 
     ];
@@ -220,14 +226,14 @@ return (
           onScroll={() => handleScroll(index)}
         >
           {photo.images.map((image, imgIndex) => (
-            <div
-              key={imgIndex}
-              className="photo"
-              style={{ backgroundImage: `url(${image})` }}
-            >
-
-                <Title>{photo.title}</Title>
-              
+            <div key={imgIndex} className="photo">
+              <img
+                src={image}
+                alt={`${photo.title} at Peaches Fitness Club, a women's gym in Albuquerque`}
+                loading="lazy"
+                decoding="async"
+              />
+              <Title>{photo.title}</Title>
             </div>
           ))}
         </PhotoCard>

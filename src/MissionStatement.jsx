@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import asset from "./images/missionstatement.png"
+import asset from "./images/opt/missionstatement.webp"
 const Header = styled.img`
 width: 35vw;
 

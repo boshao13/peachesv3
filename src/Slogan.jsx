@@ -1,10 +1,10 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import logo from './images/MAINLOGO.png'; // Import your logo
-import wheregoodthings from "./images/wheregoodthingsare.png"
-import growing from "./images/growing2.png"
-import thriving from "./images/thriving2.png"
-import happening from "./images/happening1.png"
+import logo from './images/opt/MAINLOGO.webp'; // Import your logo
+import wheregoodthings from "./images/opt/wheregoodthingsare.webp"
+import growing from "./images/opt/growing2.webp"
+import thriving from "./images/opt/thriving2.webp"
+import happening from "./images/opt/happening1.webp"
 
 const Happening = styled.img`
   width: 200px;

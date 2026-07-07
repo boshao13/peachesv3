@@ -2,24 +2,97 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="icon" href="/logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#D56F52" />
+    <meta name="robots" content="index, follow" />
+
+    <title>Peaches Fitness Club | Women's Gym in Albuquerque, NM</title>
     <meta
       name="description"
-      content="Offical Website For Peaches Fitness Club"
+      content="Peaches Fitness Club is Albuquerque's women-focused gym — group classes, sauna, cold plunge, kids care, day passes and month-to-month memberships. Judgment-free, no contracts. Join today."
     />
+    <link rel="canonical" href="https://peachesfitnessclub.com/" />
+
+    <!-- Open Graph / social share defaults (homepage). Per-route tags are set via react-helmet-async. -->
+    <!-- TODO: replace og:image with a branded 1200x630 image at /og-image.jpg for richer link previews. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Peaches Fitness Club" />
+    <meta property="og:title" content="Peaches Fitness Club | Women's Gym in Albuquerque, NM" />
+    <meta property="og:description" content="Albuquerque's women-focused gym — group classes, sauna, cold plunge, kids care and month-to-month memberships. Judgment-free, no contracts." />
+    <meta property="og:url" content="https://peachesfitnessclub.com/" />
+    <meta property="og:image" content="https://peachesfitnessclub.com/logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Peaches Fitness Club | Women's Gym in Albuquerque, NM" />
+    <meta name="twitter:description" content="Albuquerque's women-focused gym — classes, sauna, cold plunge, kids care and month-to-month memberships." />
+    <meta name="twitter:image" content="https://peachesfitnessclub.com/logo.png" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Lato&family=Oswald:wght@500&family=Pacifico&family=Quicksand:wght@500&family=Sacramento&family=Vujahday+Script&display=swap" rel="stylesheet">
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Oswald:wght@200;300;400;500;600;700&family=Pacifico&family=Vujahday+Script&display=swap" rel="stylesheet">
 
-    <script src="https://kit.fontawesome.com/a50809ce7c.js" crossorigin="anonymous"></script>
-    
-    <title>Peaches Fitness Club - Official Site</title>
+    <!-- Local business structured data (drives local-pack / knowledge-panel eligibility) -->
+    <!-- TODO: add "telephone" once a public number exists, and confirm the Eubank quadrant (NE) matches the Google Business Profile exactly. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["HealthClub", "ExerciseGym", "LocalBusiness"],
+          "@id": "https://peachesfitnessclub.com/#gym",
+          "name": "Peaches Fitness Club",
+          "description": "Women-focused fitness club in Albuquerque, NM with group classes, sauna, cold plunge, kids care, day passes and month-to-month memberships.",
+          "url": "https://peachesfitnessclub.com/",
+          "image": "https://peachesfitnessclub.com/logo.png",
+          "logo": "https://peachesfitnessclub.com/logo.png",
+          "priceRange": "$$",
+          "currenciesAccepted": "USD",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "2801 Eubank Blvd",
+            "addressLocality": "Albuquerque",
+            "addressRegion": "NM",
+            "postalCode": "87110",
+            "addressCountry": "US"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 35.115047,
+            "longitude": -106.536046
+          },
+          "hasMap": "https://www.google.com/maps/dir/?api=1&destination=2801+Eubank+Blvd,+Albuquerque+NM,+87110",
+          "sameAs": [
+            "https://www.instagram.com/peachesfitnessclub/"
+          ],
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              "opens": "05:00",
+              "closes": "22:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Saturday", "Sunday"],
+              "opens": "05:00",
+              "closes": "20:00"
+            }
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://peachesfitnessclub.com/#website",
+          "url": "https://peachesfitnessclub.com/",
+          "name": "Peaches Fitness Club",
+          "publisher": { "@id": "https://peachesfitnessclub.com/#gym" }
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
-    
+
     <div id="root"></div>
 
   </body>

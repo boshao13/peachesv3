@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Parallax } from 'react-parallax';
-import parallaxImage from './images/mainimage.jpg';
+import parallaxImage from './images/opt/mainimage.webp';
 import Slogan from './Slogan';
 
 

@@ -2,8 +2,9 @@ import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import Header from './Header';
 import Footer from './Footer';
+import Seo from './Seo';
 import emailjs from 'emailjs-com';
-import careers from './images/careers.png'
+import careers from './images/opt/careers.webp'
 
 const RootContainer = styled.div`
   display: flex;
@@ -192,9 +193,15 @@ const Careers = () => {
   };
   return (
     <RootContainer>
+      <Seo
+        path="/careers"
+        title="Careers | Join the Peaches Fitness Club Team in Albuquerque"
+        description="Now hiring front desk, childcare providers, personal trainers and group instructors at Peaches Fitness Club in Albuquerque. Apply online."
+      />
       <Header  />
       <CareersContainer>
-<ImageHeader src={careers}/>
+<h1 className="sr-only">Careers at Peaches Fitness Club — Albuquerque</h1>
+<ImageHeader src={careers} alt="Careers at Peaches Fitness Club"/>
         <FormContainer>
           {!isSubmitted ? (
             <StyledForm ref={formRef} onSubmit={handleCareerSubmit}>

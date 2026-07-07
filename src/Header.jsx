@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { FiMenu } from 'react-icons/fi'; 
 import { IoMdClose } from 'react-icons/io';
-import logo from './images/logo.png';
+import logo from './images/opt/logo.webp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLeaf } from '@fortawesome/free-solid-svg-icons';
 import { useHeaderContext } from './HeaderContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -30,7 +30,7 @@ const HeaderContainer = styled.header`
   align-items: center;
 
   @media (max-width: 768px) {
-    height: ${({ isOpen }) => (isOpen ? '333px' : '28px')};
+    height: ${({ isOpen }) => (isOpen ? '372px' : '28px')};
     transition: height 0.7s ease-in-out;
   }
 `;
@@ -111,7 +111,7 @@ const Nav = styled.nav`
     background-color: transparent;
     overflow: hidden;
     gap: 12px;
-    height: ${({ isOpen }) => (isOpen ? '300px' : '0')};
+    height: ${({ isOpen }) => (isOpen ? '340px' : '0')};
     opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
     transition: height 0.7s ease-in-out, opacity 0.7s ease-in-out;
     width: 100%;
@@ -210,14 +210,8 @@ const Header = ({ contactUsRef, preEnrollmentRef }) => {
     }
   };
 
-  const navigateToKids = () => {
-    navigate('/kidscare');
-    setIsOpen(!isOpen);
-  };
-
-  const navigateToHome = () => {
-    navigate('/');
-    setIsOpen(!isOpen);
+  const closeMenu = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -232,19 +226,23 @@ const Header = ({ contactUsRef, preEnrollmentRef }) => {
           </MobileIcon>
         </TopBar>
         <Nav isOpen={isOpen}>
-          <NavLink onClick={scrollToTop}>
+          <NavLink as={Link} to="/" onClick={scrollToTop}>
             Home
             <LeafIcon icon={faLeaf} />
           </NavLink>
-          <NavLink href="daypass">
+          <NavLink as={Link} to="/membership" onClick={closeMenu}>
+            Membership
+            <LeafIcon icon={faLeaf} />
+          </NavLink>
+          <NavLink as={Link} to="/daypass" onClick={closeMenu}>
             Day Pass
             <LeafIcon icon={faLeaf} />
           </NavLink>
-          <NavLink onClick={navigateToKids}>
+          <NavLink as={Link} to="/kidscare" onClick={closeMenu}>
             Kids Care
             <LeafIcon icon={faLeaf} />
           </NavLink>
-          <NavLink href="classes">
+          <NavLink as={Link} to="/classes" onClick={closeMenu}>
             Classes
             <LeafIcon icon={faLeaf} />
           </NavLink>
@@ -256,7 +254,7 @@ const Header = ({ contactUsRef, preEnrollmentRef }) => {
             FAQ
             <LeafIcon icon={faLeaf} />
           </NavLink>
-          <NavLink href="codeofconduct">
+          <NavLink as={Link} to="/codeofconduct" onClick={closeMenu}>
             Code of Conduct
             <LeafIcon icon={faLeaf} />
           </NavLink>
