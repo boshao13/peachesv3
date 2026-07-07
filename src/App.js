@@ -10,6 +10,7 @@ import PreEnrollment from './PreEnrollment';
 import Address from "./Address";
 import Footer from './Footer';
 import FAQ from './FAQ';
+import Seo from './Seo';
 import { useHeaderContext } from './HeaderContext';
 
 import './App.css';
@@ -139,6 +140,11 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
+      <Seo
+        path="/"
+        title="Peaches Fitness Club | Women's Gym in Albuquerque, NM"
+        description="Albuquerque's women-focused gym: group classes, sauna, cold plunge, kids care & month-to-month memberships. Judgment-free, no contracts. Join today."
+      />
       <RootContainer>
         <Header 
           contactUsRef={contactUsRef}
@@ -149,6 +155,7 @@ const App = () => {
           setIsOpen={setIsOpen} 
         />
         <MainContent className={isOpen ? 'blur' : ''}>
+          <h1 className="sr-only">Peaches Fitness Club — Women's Gym in Albuquerque, NM</h1>
           <ParallaxImage />
           <MissionStatement />
           <ImageGallery />

@@ -59,9 +59,11 @@ const EmailInput = styled.input`
   outline: none;
   // additional styles ...
 `;
-const FollowUs = styled.h1`
+const FollowUs = styled.p`
 font-size:20px;
 margin-right:20px;
+margin-top:0;
+margin-bottom:0;
 `;
 
 
@@ -200,7 +202,7 @@ const Footer = () => {
       </LinksAndSignupContainer>
       <FooterText>
         Our services are available to all members of the public regardless of race, gender, or sexual orientation.<br/>
-        &copy; {new Date().getFullYear()} Peaches Gym. All rights reserved.
+        &copy; {new Date().getFullYear()} Peaches Fitness Club. All rights reserved.
       </FooterText>
       <FooterText>
         <UtilityLink href="/careers">Careers |</UtilityLink>
@@ -215,7 +217,7 @@ const Footer = () => {
       >
         <ModalContent>
           <h2>Privacy Policy</h2>
-          <p>Your privacy is important to us. It is Peaches Gym's policy to respect your privacy regarding any information we may collect from you across our website, http://peachesfitnessclub.com, and other sites we own and operate.</p>
+          <p>Your privacy is important to us. It is Peaches Fitness Club's policy to respect your privacy regarding any information we may collect from you across our website, https://peachesfitnessclub.com, and other sites we own and operate.</p>
           <p>We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.</p>
           <button onClick={closePrivacyModal}>Close</button>
         </ModalContent>
@@ -228,8 +230,8 @@ const Footer = () => {
       >
         <ModalContent>
           <h2>Terms of Service</h2>
-          <p>Welcome to Peaches Gym! These terms and conditions outline the rules and regulations for the use of Peaches Gym's Website, located at http://peachesfitnessclub.com.</p>
-          <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use Peaches Gym if you do not agree to take all of the terms and conditions stated on this page.</p>
+          <p>Welcome to Peaches Fitness Club! These terms and conditions outline the rules and regulations for the use of Peaches Fitness Club's Website, located at https://peachesfitnessclub.com.</p>
+          <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use Peaches Fitness Club if you do not agree to take all of the terms and conditions stated on this page.</p>
           <button onClick={closeTermsModal}>Close</button>
         </ModalContent>
       </ReactModal>

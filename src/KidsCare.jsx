@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import Header from './Header';
-import kidscare from "./images/kidscare.png";
+import Seo from './Seo';
+import kidscare from "./images/opt/kidscare.webp";
 import PreModal from './PreModal';
-import blurredBackground from './images/background4.png'
+import blurredBackground from './images/opt/background4.webp'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import Footer from './Footer';
@@ -127,7 +128,7 @@ const CarouselArrow = styled.div`
 
 
 const KidsCare = () => {
-  const images = [require('./images/kidscare4.jpg')];
+  const images = [require('./images/opt/kidscare4.webp')];
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToPrevious = () => {
@@ -141,16 +142,21 @@ const KidsCare = () => {
   return (
     <RootContainer>
               <BackgroundImage />
+      <Seo
+        path="/kidscare"
+        title="Kids Care & Childcare | Peaches Fitness Club Albuquerque"
+        description="Work out while we watch the kids. On-site childcare at Peaches for $20/month, $10 per extra child. Women-focused gym in Albuquerque."
+      />
       <Header />
       <KidsCareContainer>
 
         <SubContainer>
+        <h1 className="sr-only">Kids Care & Childcare in Albuquerque — Peaches Fitness Club</h1>
 
-    
-        <ImageHeader src={kidscare} alt="Kids Care Header" />
+        <ImageHeader src={kidscare} alt="Peaches Fitness Club kids care and childcare" />
         <IntroText> 
         <p>
-            Embrace your fitness journey with confidence while we take care of your little ones. For only $15 a month, and $5 for each additional child, delight in the freedom to work out, knowing your kids are enjoying their time just a hop, skip, and a jump away. Step into our women-focused gym where we empower you to prioritize yourself, as we nurture your children with fun and engaging activities.
+            Embrace your fitness journey with confidence while we take care of your little ones. For only $20 a month, and $10 for each additional child, delight in the freedom to work out, knowing your kids are enjoying their time just a hop, skip, and a jump away. Step into our women-focused gym where we empower you to prioritize yourself, as we nurture your children with fun and engaging activities.
         </p> 
         </IntroText>
         <CarouselContainer>

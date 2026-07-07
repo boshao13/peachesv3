@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import mapboxgl from 'mapbox-gl';
-import customMarkerImg from './images/logo3.png'; 
-import headerImage from './images/cometrainwithus.png'; // Update the path to your image
+import 'mapbox-gl/dist/mapbox-gl.css';
+import customMarkerImg from './images/opt/logo3.webp';
+import headerImage from './images/opt/cometrainwithus.webp'; // Update the path to your image
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapPin } from '@fortawesome/free-solid-svg-icons';
 import ContactUsModal from './ContactUsModal';

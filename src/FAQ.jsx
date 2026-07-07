@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import faq from './images/Faq.png'
+import faq from './images/opt/Faq.webp'
 
 const Container = styled.div`
   max-width: 600px;

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import {styled, keyframes} from 'styled-components';
 import Modal from 'react-modal';
-import modalheader from "./images/modaltitle.png"
-import thankyou from './images/thankyou.png'
+import modalheader from "./images/opt/modaltitle.webp"
+import thankyou from './images/opt/thankyou.webp'
 const ThankYouHeader = styled.img`
   max-width: 300px;
   margin-top: 45px; // Adjust as needed

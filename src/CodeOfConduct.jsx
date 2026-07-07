@@ -1,8 +1,9 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import Header from './Header';
-import codeofconduct from './images/codeofconduct.png'
-import background from './images/background.png'
+import Seo from './Seo';
+import codeofconduct from './images/opt/codeofconduct.webp'
+import background from './images/opt/background.webp'
 import Footer from './Footer';
 
 const BackgroundImage = styled.div`
@@ -100,9 +101,15 @@ const CodeOfConduct = () => {
     return (
       <>
         <RootContainer>
+        <Seo
+          path="/codeofconduct"
+          title="Code of Conduct | Peaches Fitness Club"
+          description="Our Code of Conduct keeps Peaches a safe, respectful, women-focused space. Read the rules every member agrees to."
+        />
         <Header />
         <ClassesContainer>
-          <ImageHeader src={codeofconduct} />
+          <h1 className="sr-only">Peaches Fitness Club Code of Conduct</h1>
+          <ImageHeader src={codeofconduct} alt="Peaches Fitness Club code of conduct" />
           <IntroText>
             Welcome to Peaches Fitness Club, a sanctuary dedicated to fostering a secure and respectful environment. Our Code of Conduct is crucial in maintaining this atmosphere. All members must strictly adhere to these rules, ensuring our gym remains an empowering and inclusive space. Be aware that any violation may lead to immediate membership termination at management's discretion. Your cooperation helps uplift our community! 
           </IntroText>

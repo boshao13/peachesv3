@@ -6,9 +6,11 @@ import App from './App';
 import KidsCare from './KidsCare';
 import Classes from './Classes';
 import { HeaderProvider } from './HeaderContext'; // Import the provider
+import { HelmetProvider } from 'react-helmet-async';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import DayPasses from './DayPasses';
-import Careers from './Careers'; 
+import Membership from './Membership';
+import Careers from './Careers';
 import CodeOfConduct from './CodeOfConduct';
 
 const router = createBrowserRouter([
@@ -29,6 +31,10 @@ const router = createBrowserRouter([
     element: <DayPasses />,
   },
   {
+    path: "/membership",
+    element: <Membership />,
+  },
+  {
     path: "/codeofconduct",
     element: <CodeOfConduct/>,
   },
@@ -41,8 +47,10 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <HeaderProvider>
-      <RouterProvider router={router} />
-    </HeaderProvider>
+    <HelmetProvider>
+      <HeaderProvider>
+        <RouterProvider router={router} />
+      </HeaderProvider>
+    </HelmetProvider>
   </React.StrictMode>
 );
