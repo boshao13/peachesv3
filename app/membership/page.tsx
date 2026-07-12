@@ -11,7 +11,7 @@ import { site } from "@/content/site";
 export const metadata: Metadata = pageMeta({
   title: "Membership",
   description:
-    "Peaches Fitness Club memberships in Albuquerque — monthly, quarterly and annual plans with full access to amenities and classes. No sign-up fee for a limited time.",
+    "Peaches Fitness Club memberships in Albuquerque — monthly, quarterly and annual plans with full access to amenities and classes.",
   path: "/membership",
 });
 

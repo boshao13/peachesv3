@@ -43,7 +43,7 @@ export const site: SiteConfig = {
     pitch: 60,
   },
   promo: {
-    enabled: true,
+    enabled: false,
     text: "No sign-up fee — limited-time grand-opening rate",
   },
   priceRange: "$$",
