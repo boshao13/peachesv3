@@ -11,7 +11,7 @@ import { site } from "@/content/site";
 export const metadata: Metadata = pageMeta({
   title: "Membership",
   description:
-    "Peaches Fitness Club memberships in Albuquerque — monthly, quarterly and annual plans with full access to amenities and classes.",
+    "Peaches Fitness Club memberships in Albuquerque — month-to-month or 12-month plans with classes, sauna, equipment and cold plunge.",
   path: "/membership",
 });
 
@@ -31,7 +31,7 @@ export default function MembershipPage() {
       ) : null}
 
       <Section tone="cream">
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="mx-auto grid max-w-3xl gap-6 sm:grid-cols-2">
           {plans.map((p) => (
             <div
               key={p.slug}

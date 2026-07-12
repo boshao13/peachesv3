@@ -15,20 +15,12 @@ export function MembershipCTA() {
           Ready to join the Peaches family?
         </h2>
         <p className="mt-4 text-cream/80 text-lg">
-          Memberships are monthly, quarterly or annual — every plan includes full access to
-          amenities and classes. Stop by or reach out and we&apos;ll find your perfect fit.
+          Month-to-month or 12-month memberships — every plan includes classes, sauna,
+          equipment and cold plunge. Stop by or reach out and we&apos;ll find your perfect fit.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Button href={site.glofox.membershipsUrl} external size="lg">
             Join Now
-          </Button>
-          <Button
-            href="/membership"
-            size="lg"
-            variant="secondary"
-            className="!text-cream !ring-cream/40 hover:!text-peach hover:!ring-peach"
-          >
-            Compare plans
           </Button>
         </div>
       </Container>

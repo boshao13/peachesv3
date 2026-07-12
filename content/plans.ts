@@ -1,43 +1,31 @@
 import type { Plan } from "./types";
 
-// Pricing intentionally left as "Contact for pricing" placeholders (spec §6.2) — owner to confirm.
+// The gym's two current membership offerings. Purchase/registration is Glofox-only
+// (every "Join Now" CTA links to site.glofox.membershipsUrl).
 export const plans: Plan[] = [
   {
-    slug: "monthly",
-    tier: "Monthly",
-    price: null,
+    slug: "12-month",
+    tier: "12-Month Commitment",
+    price: "$65/mo",
     cadence: "monthly",
-    features: [
-      "Full access to all gym amenities",
-      "Unlimited group classes",
-      "Sauna & cold plunge",
-      "Members lounge & Peachy Bar",
-      "Month-to-month flexibility",
-    ],
-  },
-  {
-    slug: "quarterly",
-    tier: "Quarterly",
-    price: null,
-    cadence: "quarterly",
     highlighted: true,
     features: [
-      "Everything in Monthly",
-      "Better per-month value",
-      "Priority class booking",
-      "Bring-a-friend guest passes",
+      "Classes, sauna, equipment & cold plunge",
+      "12-month commitment",
+      "$25 sign-up fee",
+      "No annual fee",
     ],
   },
   {
-    slug: "annual",
-    tier: "Annual",
-    price: null,
-    cadence: "annual",
+    slug: "month-to-month",
+    tier: "Month-to-Month",
+    price: "$75/mo",
+    cadence: "monthly",
     features: [
-      "Everything in Quarterly",
-      "Best per-month value",
-      "Exclusive member perks & events",
-      "Locked-in rate",
+      "Classes, sauna, equipment & cold plunge",
+      "No monthly commitment",
+      "$25 sign-up fee",
+      "No annual fee",
     ],
   },
 ];
