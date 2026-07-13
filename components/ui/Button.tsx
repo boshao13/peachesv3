@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 type Variant = "primary" | "secondary" | "ghost";
-type Size = "md" | "lg";
+type Size = "md" | "lg" | "xl";
 
 const base =
   "inline-flex items-center justify-center gap-2 rounded-full font-medium tracking-wide " +
@@ -20,6 +20,7 @@ const variants: Record<Variant, string> = {
 const sizes: Record<Size, string> = {
   md: "px-5 py-2.5 text-sm",
   lg: "px-7 py-3.5 text-base",
+  xl: "px-10 py-4 text-lg",
 };
 
 type CommonProps = {

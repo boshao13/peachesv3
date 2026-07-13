@@ -17,7 +17,7 @@ export function TrainersPreview() {
         ))}
       </div>
       <div className="mt-10 text-center">
-        <Button href="/trainers" variant="secondary">
+        <Button href="/trainers" size="xl">
           Meet our trainers
         </Button>
       </div>

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/PageHero";
 import { Section } from "@/components/ui/Section";
+import { Card } from "@/components/ui/Card";
 import { MembershipCTA } from "@/components/sections/MembershipCTA";
 import { TrainerCard } from "@/components/trainers/TrainerCard";
+import { PersonalTrainingForm } from "@/components/forms/PersonalTrainingForm";
 import { JsonLd, breadcrumbSchema } from "@/components/seo/JsonLd";
 import { pageMeta } from "@/lib/seo";
 import { trainers } from "@/content/trainers";
@@ -29,13 +31,21 @@ export default function TrainersPage() {
             <TrainerCard key={t.slug} trainer={t} />
           ))}
         </div>
-        <p className="mt-10 text-center text-charcoal/80">
-          Interested in personal training?{" "}
-          <a href="/contact" className="font-semibold text-coral-deep hover:text-coral-dark">
-            Get in touch
-          </a>{" "}
-          and we&apos;ll match you with the right coach.
-        </p>
+      </Section>
+
+      <Section tone="cream-2">
+        <div className="mx-auto max-w-2xl">
+          <div className="text-center">
+            <h2 className="text-3xl font-semibold">Request personal training</h2>
+            <p className="mt-3 text-charcoal/80">
+              Tell us your goals and we&apos;ll match you with the right coach and get your first
+              session set up.
+            </p>
+          </div>
+          <Card className="mt-8 p-6 sm:p-8">
+            <PersonalTrainingForm />
+          </Card>
+        </div>
       </Section>
 
       <MembershipCTA />

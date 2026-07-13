@@ -14,6 +14,9 @@ const C = {
   sage: "#4e7a51",
 };
 
+// Absolute URL (emails can't use relative paths); served from the site's public/ dir.
+const LOGO_URL = `${site.siteUrl}/images/brand/MAINLOGO-dark.png`;
+
 /** Escape untrusted user input before interpolating into email HTML. */
 function esc(input: string): string {
   return String(input).replace(
@@ -39,8 +42,8 @@ function shell(opts: { heading: string; preheader: string; inner: string }): str
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${C.cream2};padding:24px 12px;">
   <tr><td align="center">
     <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:${C.cream};border-radius:16px;overflow:hidden;">
-      <tr><td style="background:${C.coralDeep};padding:22px 32px;">
-        <span style="font-size:19px;font-weight:700;letter-spacing:.10em;color:${C.cream};text-transform:uppercase;">Peaches Fitness Club</span>
+      <tr><td align="center" style="background:${C.cream};padding:26px 32px 22px;border-bottom:3px solid ${C.coralDeep};">
+        <img src="${LOGO_URL}" alt="Peaches Fitness Club" width="200" style="display:block;width:200px;max-width:72%;height:auto;margin:0 auto;border:0;outline:none;text-decoration:none;">
       </td></tr>
       <tr><td style="padding:32px;">
         <h1 style="margin:0 0 18px;font-size:22px;line-height:1.3;color:${C.charcoal};">${esc(opts.heading)}</h1>
