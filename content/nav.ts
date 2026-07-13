@@ -9,6 +9,7 @@ export const primaryNav: NavLink[] = [
   { href: "/amenities", label: "Amenities" },
   { href: "/trainers", label: "Trainers" },
   { href: "/classes", label: "Classes" },
+  { href: "/kids-care", label: "Kids Care" },
   { href: "/membership", label: "Membership" },
   { href: "/contact", label: "Contact" },
 ];
@@ -17,7 +18,6 @@ export const primaryNav: NavLink[] = [
 export const secondaryNav: NavLink[] = [
   { href: "/personal-training", label: "Personal Training" },
   { href: "/day-pass", label: "Day Pass" },
-  { href: "/kids-care", label: "Kids Care" },
   { href: "/faq", label: "FAQ" },
   { href: "/careers", label: "Careers" },
   { href: "/code-of-conduct", label: "Code of Conduct" },

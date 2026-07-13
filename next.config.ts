@@ -14,7 +14,11 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
-    formats: ["image/avif", "image/webp"],
+    // WebP only. AVIF encoding is ~4x slower on the t3.micro and images optimize
+    // on-demand, so AVIF made first-load of photo-heavy pages (amenities) crawl.
+    formats: ["image/webp"],
+    // Cache optimized variants for 30 days so they're only ever encoded once.
+    minimumCacheTTL: 2592000,
   },
 };
 
