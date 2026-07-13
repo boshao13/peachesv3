@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { IconPeach } from "@/components/ui/icons";
 import { contactBodySchema } from "@/lib/schemas";
-import { sendEmail } from "@/lib/emailjs";
+import { submitLeadForm } from "@/lib/submit-form";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -29,7 +29,7 @@ export function NewsletterForm() {
 
     setStatus("submitting");
     try {
-      await sendEmail("newsletter", { user_email: email });
+      await submitLeadForm({ formType: "newsletter", email });
       setStatus("success");
       setEmail("");
     } catch {

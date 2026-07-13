@@ -15,6 +15,7 @@ export const primaryNav: NavLink[] = [
 
 // Full set for the mobile menu + footer.
 export const secondaryNav: NavLink[] = [
+  { href: "/personal-training", label: "Personal Training" },
   { href: "/day-pass", label: "Day Pass" },
   { href: "/kids-care", label: "Kids Care" },
   { href: "/faq", label: "FAQ" },

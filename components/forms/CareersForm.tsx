@@ -13,7 +13,7 @@ import {
 import { Button } from "@/components/ui/Button";
 import { GENDERS, POSITIONS } from "@/content/careers";
 import { contactBodySchema, fieldErrors } from "@/lib/schemas";
-import { sendEmail } from "@/lib/emailjs";
+import { submitLeadForm } from "@/lib/submit-form";
 
 export function CareersForm() {
   const [state, setState] = useState<SubmitState>("idle");
@@ -56,17 +56,7 @@ export function CareersForm() {
 
     setState("submitting");
     try {
-      await sendEmail("careers", {
-        name: payload.name,
-        email: payload.email,
-        phone: payload.phone,
-        address: payload.address,
-        education: payload.education,
-        experience: payload.experience,
-        overEighteen: payload.overEighteen,
-        gender: payload.gender,
-        position: payload.position,
-      });
+      await submitLeadForm(parsed.data);
       setState("success");
       form.reset();
     } catch {

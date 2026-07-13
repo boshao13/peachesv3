@@ -37,10 +37,22 @@ const newsletterSchema = z.object({
   company: honeypot,
 });
 
+const personalTrainingSchema = z.object({
+  formType: z.literal("personal-training"),
+  name: z.string().min(1, "Please enter your name"),
+  email: z.string().email("Please enter a valid email"),
+  phone: z.string().min(1, "Please enter your phone number"),
+  goals: z.string().max(2000).optional(),
+  experience: z.string().max(200).optional(),
+  availability: z.string().max(500).optional(),
+  company: honeypot,
+});
+
 export const contactBodySchema = z.discriminatedUnion("formType", [
   contactSchema,
   careersSchema,
   newsletterSchema,
+  personalTrainingSchema,
 ]);
 
 export type ContactBody = z.infer<typeof contactBodySchema>;

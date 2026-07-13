@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/FormControls";
 import { Button } from "@/components/ui/Button";
 import { contactBodySchema, fieldErrors } from "@/lib/schemas";
-import { sendEmail } from "@/lib/emailjs";
+import { submitLeadForm } from "@/lib/submit-form";
 
 // variant "full" = contact page (with message); "lead" = membership/join CTA (no message).
 export function ContactForm({ variant = "full" }: { variant?: "full" | "lead" }) {
@@ -50,12 +50,7 @@ export function ContactForm({ variant = "full" }: { variant?: "full" | "lead" })
 
     setState("submitting");
     try {
-      await sendEmail("contact", {
-        user_name: payload.name,
-        user_email: payload.email,
-        user_phone: payload.phone,
-        message: payload.message ?? "",
-      });
+      await submitLeadForm(parsed.data);
       setState("success");
       form.reset();
     } catch {
