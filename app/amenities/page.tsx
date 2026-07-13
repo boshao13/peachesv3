@@ -11,7 +11,7 @@ import { amenities } from "@/content/amenities";
 export const metadata: Metadata = pageMeta({
   title: "Amenities",
   description:
-    "Explore Peaches Fitness Club amenities — weight room, cardio, Booty Builder® equipment, group classes, sauna, cold plunge, recovery, members lounge, Peachy Bar and more in Albuquerque.",
+    "Explore Peaches Fitness Club amenities — weight room, cardio, Booty Builder® equipment, group classes, sauna, cold plunge, recovery, members lounge, free Tea Bar and more in Albuquerque.",
   path: "/amenities",
 });
 

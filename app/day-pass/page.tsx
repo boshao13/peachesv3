@@ -11,7 +11,7 @@ import { site } from "@/content/site";
 export const metadata: Metadata = pageMeta({
   title: "Day Pass",
   description:
-    "Drop in at Peaches Fitness Club in Albuquerque with a day pass — Standard ($15) for 24-hour gym access, or Premium ($25) adding sauna, cold plunge and classes.",
+    "Drop in at Peaches Fitness Club in Albuquerque with a day pass — Standard ($15) or Premium ($25) with sauna, cold plunge and classes. Available during staffed hours.",
   path: "/day-pass",
 });
 
@@ -49,8 +49,14 @@ export default function DayPassPage() {
           ))}
         </div>
         <div className="mt-10 text-center">
-          <p className="text-charcoal/70">Grab a pass at the front desk, or join anytime.</p>
-          <div className="mt-4">
+          <p className="text-charcoal/80">
+            Day passes are available <strong>during staffed hours only</strong> — grab one at the
+            front desk.
+          </p>
+          <p className="mt-1 text-sm text-charcoal/60">
+            Staffed hours: {site.hours.staffed.map((h) => `${h.days} ${h.open}–${h.close}`).join(" · ")}
+          </p>
+          <div className="mt-5">
             <Button href={site.glofox.membershipsUrl} external>
               Become a member
             </Button>

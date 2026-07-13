@@ -26,7 +26,7 @@ const values: {
   {
     icon: IconSparkle,
     title: "Premium Amenities",
-    body: "Sauna, cold plunge, recovery, a members lounge and the Peachy Bar — wellness that goes beyond the workout.",
+    body: "Sauna, cold plunge, recovery, a members lounge and a free Tea Bar — wellness that goes beyond the workout.",
   },
 ];
 

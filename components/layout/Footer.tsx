@@ -3,7 +3,6 @@ import { site } from "@/content/site";
 import { primaryNav, secondaryNav } from "@/content/nav";
 import { formatAddress, directionsUrl } from "@/lib/nap";
 import { IconInstagram } from "@/components/ui/icons";
-import { NewsletterForm } from "./NewsletterForm";
 
 export function Footer() {
   const { nap } = site;
@@ -20,10 +19,6 @@ export function Footer() {
               Albuquerque&apos;s women-focused fitness club — a safe, judgment-free, community-driven
               space to grow strong.
             </p>
-            <div className="mt-5">
-              <p className="text-xs uppercase tracking-widest text-cream/60 mb-2">Newsletter</p>
-              <NewsletterForm />
-            </div>
           </div>
 
           {/* explore */}

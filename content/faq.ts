@@ -17,7 +17,7 @@ export const faq: FaqItem[] = [
   },
   {
     q: "Is the gym equipped with amenities specific to women's needs?",
-    a: "Yes, we provide amenities like private changing rooms, secure lockers, women-specific fitness equipment, and a lounge area for relaxation and socializing. Our goal is to make your gym experience as comfortable and convenient as possible.",
+    a: "Yes, we provide amenities like secure lockers, women-specific fitness equipment, and a lounge area for relaxation and socializing. Our goal is to make your gym experience as comfortable and convenient as possible.",
   },
   {
     q: "Are there any membership packages available at Peaches?",

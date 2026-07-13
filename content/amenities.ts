@@ -87,21 +87,14 @@ export const amenities: Amenity[] = [
     images: [img("/images/lounge/PeachesLounge.webp", 2400, 1600, "Members lounge at Peaches")],
   },
   {
-    slug: "peachy-bar",
-    name: "Peachy Bar",
+    slug: "tea-bar",
+    name: "Tea Bar",
     description:
-      "Refuel at the Peachy Bar with smoothies, shakes and pick-me-ups made to power your day.",
+      "Help yourself to complimentary tea at our Tea Bar — a warm, free way to relax and refuel before or after your workout.",
     images: [
-      img("/images/peachybar/Peachybar1.webp", 1600, 2400, "The Peachy Bar"),
-      img("/images/peachybar/Peachybar2.webp", 1600, 2400, "Smoothies at the Peachy Bar"),
+      img("/images/peachybar/Peachybar1.webp", 1600, 2400, "The Tea Bar"),
+      img("/images/peachybar/Peachybar2.webp", 1600, 2400, "Complimentary tea at the Tea Bar"),
     ],
-  },
-  {
-    slug: "private-changing-rooms",
-    name: "Private Changing Rooms",
-    description:
-      "Spacious, private changing rooms so you can get ready in comfort and total privacy.",
-    images: [],
   },
   {
     slug: "secure-lockers",
