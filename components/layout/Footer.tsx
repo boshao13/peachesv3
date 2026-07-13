@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { site } from "@/content/site";
 import { primaryNav, secondaryNav } from "@/content/nav";
 import { formatAddress, directionsUrl } from "@/lib/nap";
@@ -14,7 +15,13 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* brand + newsletter */}
           <div className="lg:col-span-1">
-            <p className="script text-3xl text-peach">Peaches</p>
+            <Image
+              src="/images/brand/MAINLOGO-white.png"
+              alt="Peaches Fitness Club"
+              width={1000}
+              height={620}
+              className="w-40 h-auto"
+            />
             <p className="mt-3 text-sm text-cream/70 max-w-xs">
               Albuquerque&apos;s women-focused fitness club — a safe, judgment-free, community-driven
               space to grow strong.

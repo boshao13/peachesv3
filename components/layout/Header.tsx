@@ -47,8 +47,8 @@ export function Header() {
           <Image
             src="/images/brand/MAINLOGO-dark.png"
             alt="Peaches Fitness Club"
-            width={1200}
-            height={655}
+            width={1000}
+            height={620}
             priority
             className={`hidden w-auto transition-all lg:block ${scrolled ? "h-11" : "h-12"}`}
           />
