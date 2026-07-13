@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { amenities } from "@/content/amenities";
 
 // Feature a handful of photogenic amenities on the Home page.
-const featured = ["weight-room", "booty-builder", "sauna", "cold-plunge", "members-lounge", "peachy-bar"];
+const featured = ["weight-room", "booty-builder", "group-classes", "sauna", "cold-plunge", "members-lounge"];
 
 export function AmenitiesPreview() {
   const items = featured
