@@ -27,8 +27,8 @@ export function Hero() {
         <Image
           src="/images/brand/MAINLOGO.png"
           alt="Peaches Fitness Club"
-          width={1200}
-          height={655}
+          width={1000}
+          height={619}
           priority
           className="w-72 sm:w-96 lg:w-[30rem] h-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.35)]"
         />
