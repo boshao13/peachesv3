@@ -1,6 +1,6 @@
 import { Hero } from "@/components/sections/Hero";
-import { ValueProps } from "@/components/sections/ValueProps";
-import { StatsBand } from "@/components/sections/StatsBand";
+// import { ValueProps } from "@/components/sections/ValueProps"; // temporarily disabled per owner request
+// import { StatsBand } from "@/components/sections/StatsBand"; // temporarily disabled per owner request
 import { AmenitiesPreview } from "@/components/sections/AmenitiesPreview";
 import { ClassesPreview } from "@/components/sections/ClassesPreview";
 import { TrainersPreview } from "@/components/sections/TrainersPreview";
@@ -13,11 +13,10 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <ValueProps />
-      <StatsBand />
+      {/* ValueProps + StatsBand temporarily disabled per owner request */}
       <AmenitiesPreview />
-      <ClassesPreview />
       <TrainersPreview />
+      <ClassesPreview />
       <FaqSection />
       <MembershipCTA />
       <LocationHours mapSlot={<MapEmbed className="h-full" />} />

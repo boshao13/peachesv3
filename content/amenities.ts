@@ -73,13 +73,6 @@ export const amenities: Amenity[] = [
     ],
   },
   {
-    slug: "recovery-area",
-    name: "Recovery Area",
-    description:
-      "A dedicated space to stretch, roll out and reset — because recovery is part of the work, not an afterthought.",
-    images: [img("/images/plunge/Plunge3.webp", 1600, 2400, "Recovery space")],
-  },
-  {
     slug: "members-lounge",
     name: "Members Lounge",
     description:
