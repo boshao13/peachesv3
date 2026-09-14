@@ -3,6 +3,7 @@ import { contactBodySchema, type ContactBody } from "@/lib/schemas";
 import { sendEmail } from "@/lib/resend";
 import { confirmationEmail, notificationEmail } from "@/lib/email-templates";
 import { site } from "@/content/site";
+import { clientIp } from "@/lib/client-ip";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -53,7 +54,7 @@ function fieldsFor(data: ContactBody): Array<[string, string | undefined]> {
 }
 
 export async function POST(req: Request) {
-  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  const ip = clientIp(req.headers);
   if (rateLimited(ip)) {
     return NextResponse.json({ ok: false, error: "Too many requests — please try again in a minute." }, { status: 429 });
   }
@@ -79,10 +80,22 @@ export async function POST(req: Request) {
   const confirm = confirmationEmail(data.formType, name);
 
   try {
-    await Promise.all([
-      sendEmail({ to: site.nap.email, replyTo: data.email, subject: notify.subject, html: notify.html }),
-      sendEmail({ to: data.email, subject: confirm.subject, html: confirm.html }),
-    ]);
+    // Only ever mail a FIXED, trusted address. The submitted address rides along as
+    // reply-to so the gym can just hit reply.
+    //
+    // We deliberately do NOT auto-send a confirmation to data.email. That address is
+    // unverified and attacker-chosen, which made this endpoint an open relay: anyone
+    // could make peachesfitnessclub.com deliver DKIM-signed mail to any mailbox they
+    // named, and each request also mailed the gym's own inbox (2x amplification).
+    // Restoring a confirmation requires double opt-in: store the pending address and
+    // send only after the recipient clicks a signed, expiring token.
+    void confirm;
+    await sendEmail({
+      to: site.nap.email,
+      replyTo: data.email,
+      subject: notify.subject,
+      html: notify.html,
+    });
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("[contact] email send failed:", err);
