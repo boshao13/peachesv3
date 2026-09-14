@@ -10,8 +10,8 @@ import { groupHours } from "@/lib/hours";
 
 export const metadata: Metadata = pageMeta({
   title: "Kids Care",
-  description:
-    "On-site Kids Care at Peaches Fitness Club in Albuquerque — $15/month plus $5 per additional child. Work out with peace of mind while your kids have fun nearby.",
+  // Priced from content so the search-result snippet can't drift from the page again.
+  description: `On-site Kids Care at Peaches Fitness Club in Albuquerque — ${kidsCare.priceMonthly} plus ${kidsCare.priceAdditional} per additional child. Work out with peace of mind while your kids have fun nearby.`,
   path: "/kids-care",
 });
 
