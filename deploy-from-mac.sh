@@ -15,7 +15,11 @@
 set -euo pipefail
 
 KEY="${KEY:-$HOME/.ssh/peaches-2026.pem}"        # rotated key (2026-07); old ~/Downloads/peaches.pem also still works
-HOST="${HOST:-ubuntu@18.225.92.153}"
+# 2026-09-14: the box moved. peachesfitnessclub.com now resolves to 16.58.31.172
+# (ec2-16-58-31-172.us-east-2.compute.amazonaws.com); the old 18.225.92.153 is dead
+# (22/80/443 all time out). Not derived from DNS on purpose, so putting a CDN in
+# front of the domain later can't silently point this at the CDN instead of the box.
+HOST="${HOST:-ubuntu@16.58.31.172}"
 REMOTE="${REMOTE:-/home/ubuntu/peachesv3}"
 BRANCH="${BRANCH:-rebuild/nextjs}"
 REPO="${REPO:-https://github.com/boshao13/peachesv3.git}"
