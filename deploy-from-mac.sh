@@ -14,7 +14,9 @@
 # OVERRIDE:  KEY=~/path/key.pem HOST=ubuntu@1.2.3.4 bash deploy-from-mac.sh
 set -euo pipefail
 
-KEY="${KEY:-$HOME/.ssh/peaches-2026.pem}"        # rotated key (2026-07); old ~/Downloads/peaches.pem also still works
+# 2026-09-14: keys rotated again with the post-reinfection rebuild. The box this
+# targets is a NEW instance (i-0720e365a20dbdf2d); the 2026-07 key does not open it.
+KEY="${KEY:-$HOME/.ssh/peaches-2026-09.pem}"
 # 2026-09-14: the box moved. peachesfitnessclub.com now resolves to 16.58.31.172
 # (ec2-16-58-31-172.us-east-2.compute.amazonaws.com); the old 18.225.92.153 is dead
 # (22/80/443 all time out). Not derived from DNS on purpose, so putting a CDN in
@@ -40,7 +42,13 @@ npm ci --no-audit --no-fund
 NODE_OPTIONS="--max-old-space-size=4096" npm run build
 
 echo "==> 4/6 Ship compiled .next -> box staging (.next.new, excluding build cache)"
-rsync -az --delete --exclude cache -e "${SSH[*]}" .next/ "$HOST:$REMOTE/.next.new/"
+# Single-tarball transfer, not rsync: on the 2026-09 t3.micro the remote closed
+# the connection partway through every rsync run, leaving a truncated .next and
+# a 500. One scp of a ~2 MB tarball is both faster and reliable here.
+tar --exclude='./cache' -czf /tmp/peaches-next.tgz -C .next .
+scp -i "$KEY" -o IdentitiesOnly=yes -o ServerAliveInterval=15 /tmp/peaches-next.tgz "$HOST:/home/ubuntu/peaches-next.tgz"
+rm -f /tmp/peaches-next.tgz
+"${SSH[@]}" "$HOST" 'set -e; cd /home/ubuntu/peachesv3; rm -rf .next.new; mkdir -p .next.new; tar -xzf /home/ubuntu/peaches-next.tgz -C .next.new 2>/dev/null; rm -f /home/ubuntu/peaches-next.tgz' 
 
 echo "==> 5/6 Atomic swap + restart + health check (auto-rollback on failure)"
 "${SSH[@]}" "$HOST" bash -s <<'REMOTE_EOF'

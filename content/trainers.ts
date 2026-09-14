@@ -12,9 +12,11 @@ export const trainers: Trainer[] = [
       2160,
       "Kira, personal trainer and nutrition coach at Peaches"
     ),
+    // bio[0] is the collapsed teaser on the card. Kept long enough to fill the
+    // card next to Katie's, whose opening paragraph is substantial — a short
+    // teaser here leaves the grid-equalised card mostly white space.
     bio: [
-      "I'm a NASM certified personal trainer & nutrition coach who's passionate about helping women feel stronger, more confident, and capable through sustainable lifestyle coaching.",
-      "As part of the Peaches personal training team for over 2 years, I've had the opportunity to work with women of all backgrounds, fitness levels, and goals. With a background in strength training, bodybuilding, and distance running, I take a well-rounded approach to fitness that is tailored to each woman's goals, lifestyle, and stage of life.",
+      "I'm a NASM certified personal trainer & nutrition coach who's passionate about helping women feel stronger, more confident, and capable through sustainable lifestyle coaching. As part of the Peaches personal training team for over 2 years, I've had the opportunity to work with women of all backgrounds, fitness levels, and goals. With a background in strength training, bodybuilding, and distance running, I take a well-rounded approach to fitness that is tailored to each woman's goals, lifestyle, and stage of life.",
       "I specialize in women's health and fitness, including pregnancy, postpartum, perimenopause, menopause, and post-menopause training. My goal is to help women build strength, improve their relationship with fitness and nutrition, and create sustainable results that support them through every stage of life.",
     ],
     specializations: [
