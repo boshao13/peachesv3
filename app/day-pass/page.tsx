@@ -7,6 +7,7 @@ import { IconCheck } from "@/components/ui/icons";
 import { pageMeta } from "@/lib/seo";
 import { dayPasses } from "@/content/dayPasses";
 import { site } from "@/content/site";
+import { formatHoursLine } from "@/lib/hours";
 
 export const metadata: Metadata = pageMeta({
   title: "Day Pass",
@@ -54,7 +55,7 @@ export default function DayPassPage() {
             front desk.
           </p>
           <p className="mt-1 text-sm text-charcoal/60">
-            Staffed hours: {site.hours.staffed.map((h) => `${h.days} ${h.open}–${h.close}`).join(" · ")}
+            Staffed hours: {formatHoursLine(site.hours.staffed)}
           </p>
           <div className="mt-5">
             <Button href={site.glofox.membershipsUrl} external>

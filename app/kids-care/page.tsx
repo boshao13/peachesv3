@@ -6,6 +6,7 @@ import { MembershipCTA } from "@/components/sections/MembershipCTA";
 import { JsonLd, breadcrumbSchema } from "@/components/seo/JsonLd";
 import { pageMeta } from "@/lib/seo";
 import { kidsCare } from "@/content/kidsCare";
+import { groupHours } from "@/lib/hours";
 
 export const metadata: Metadata = pageMeta({
   title: "Kids Care",
@@ -34,6 +35,24 @@ export default function KidsCarePage() {
             <p className="text-3xl font-semibold text-coral-deep">{kidsCare.priceAdditional}</p>
             <p className="text-sm text-charcoal/70">per additional child</p>
           </div>
+        </div>
+
+        <div className="mt-10">
+          <h2 className="text-sm font-semibold uppercase tracking-widest text-charcoal/80">
+            Kids Care hours
+          </h2>
+          <ul className="mt-3 space-y-1 text-charcoal/80">
+            {groupHours(kidsCare.hours).map((h) => (
+              <li key={h.days}>
+                <span className="font-medium">{h.days}:</span> {h.times.join(", ")}
+              </li>
+            ))}
+            {kidsCare.closedDays ? (
+              <li>
+                <span className="font-medium">{kidsCare.closedDays}:</span> Closed
+              </li>
+            ) : null}
+          </ul>
         </div>
       </Section>
 

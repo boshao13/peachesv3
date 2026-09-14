@@ -21,9 +21,14 @@ export const site: SiteConfig = {
       { days: "Mon–Fri", open: "5:00 AM", close: "10:00 PM" },
       { days: "Sat–Sun", open: "5:00 AM", close: "8:00 PM" },
     ],
+    // Staffed hours are split: a morning block and an evening block, with the
+    // desk unstaffed midday. Two entries per day label = two blocks; groupHours()
+    // collapses them onto one line for display.
     staffed: [
-      { days: "Mon–Fri", open: "8:00 AM", close: "10:00 PM" },
-      { days: "Sat–Sun", open: "8:00 AM", close: "8:00 PM" },
+      { days: "Mon–Fri", open: "8:00 AM", close: "12:00 PM" },
+      { days: "Mon–Fri", open: "4:00 PM", close: "10:00 PM" },
+      { days: "Sat–Sun", open: "8:00 AM", close: "12:00 PM" },
+      { days: "Sat–Sun", open: "4:00 PM", close: "8:00 PM" },
     ],
   },
   socials: {

@@ -79,6 +79,10 @@ export interface KidsCare {
   intro: string;
   priceMonthly: string;
   priceAdditional: string;
+  /** Blocks Kids Care is open. Repeat a day label for split (morning/evening) hours. */
+  hours: DayRange[];
+  /** Day label(s) with no Kids Care at all, rendered explicitly as closed. */
+  closedDays?: string;
   images: ImgRef[];
 }
 

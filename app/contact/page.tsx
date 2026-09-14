@@ -7,6 +7,7 @@ import { MapEmbed } from "@/components/map/MapEmbed";
 import { JsonLd, breadcrumbSchema } from "@/components/seo/JsonLd";
 import { pageMeta } from "@/lib/seo";
 import { site } from "@/content/site";
+import { groupHours } from "@/lib/hours";
 import { formatAddress, directionsUrl } from "@/lib/nap";
 
 export const metadata: Metadata = pageMeta({
@@ -65,9 +66,9 @@ export default function ContactPage() {
                   Access hours
                 </h3>
                 <ul className="mt-2 space-y-1 text-charcoal/80">
-                  {hours.operating.map((h) => (
+                  {groupHours(hours.operating).map((h) => (
                     <li key={h.days}>
-                      <span className="font-medium">{h.days}:</span> {h.open} – {h.close}
+                      <span className="font-medium">{h.days}:</span> {h.times.join(", ")}
                     </li>
                   ))}
                 </ul>
@@ -77,9 +78,9 @@ export default function ContactPage() {
                   Staffed hours
                 </h3>
                 <ul className="mt-2 space-y-1 text-charcoal/80">
-                  {hours.staffed.map((h) => (
+                  {groupHours(hours.staffed).map((h) => (
                     <li key={h.days}>
-                      <span className="font-medium">{h.days}:</span> {h.open} – {h.close}
+                      <span className="font-medium">{h.days}:</span> {h.times.join(", ")}
                     </li>
                   ))}
                 </ul>

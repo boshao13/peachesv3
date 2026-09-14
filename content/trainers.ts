@@ -7,7 +7,7 @@ export const trainers: Trainer[] = [
     name: "Kira",
     title: "NASM Certified Personal Trainer & Nutrition Coach",
     photo: img(
-      "/images/trainers/kira.webp",
+      "/images/trainers/kira-2026.webp",
       1620,
       2160,
       "Kira, personal trainer and nutrition coach at Peaches"

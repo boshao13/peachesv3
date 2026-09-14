@@ -6,6 +6,12 @@ export const kidsCare: KidsCare = {
     "Embrace your fitness journey with confidence while we take care of your little ones. For only $20 a month, and $10 for each additional child, delight in the freedom to work out, knowing your kids are enjoying their time just a hop, skip, and a jump away. Step into our women-focused gym where we empower you to prioritize yourself, as we nurture your children with fun and engaging activities.",
   priceMonthly: "$20/month",
   priceAdditional: "$10",
+  hours: [
+    { days: "Mon–Fri", open: "8:00 AM", close: "12:00 PM" },
+    { days: "Mon–Fri", open: "4:00 PM", close: "8:00 PM" },
+    { days: "Sat", open: "8:00 AM", close: "12:00 PM" },
+  ],
+  closedDays: "Sun",
   images: [
     img("/images/kids/kidsclub1.webp", 2400, 2400, "Kids Care play area"),
     img("/images/kids/kidsclub2.webp", 2400, 2400, "Children at Kids Care"),
